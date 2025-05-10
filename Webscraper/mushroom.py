@@ -6,8 +6,8 @@ mushroom = fetch_ucirepo(id=73)
 # data (as pandas dataframes) 
 X = mushroom.data.features 
 y = mushroom.data.targets 
-  
-# metadata 
+
+# metadata s
 print(mushroom.metadata) 
   
 # variable information 
