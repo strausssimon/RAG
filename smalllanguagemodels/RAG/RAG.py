@@ -56,7 +56,7 @@ def frage_beantworten(frage, top_k=3):
     kontext = "\n\n".join([texte[i] for i in indices[0]])
 
     prompt = (
-    f"Du bist ein deutschsprachiger Pilzexperte. Nutze ausschließlich den folgenden Kontext, um die Frage zu beantworten. "
+    f"Du bist ein deutschsprachiger Pilzexperte. Nutze ausschließlich den folgenden Kontext, um die Frage zu beantworten. Weitere Informationen stehen dir nicht zur Verfügung! "
     f"Wenn die Antwort nicht im Kontext enthalten ist, sage 'Ich habe dazu keine Information.'\n\n"
     f"=== Kontext ===\n{kontext}\n\n"
     f"=== Frage ===\n{frage}\n\n"
