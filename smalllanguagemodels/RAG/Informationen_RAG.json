@@ -1,32 +1,74 @@
 [
   {
-    "name": "Steinpilz",
-    "lateinisch": "Boletus edulis",
-    "essbar": true,
-    "beschreibung": "Der Steinpilz besitzt einen dickfleischigen, braunen bis rotbraunen Hut, einen weißen bis hellbraunen Stiel mit feinem, weißen Netz und weiße bis gelbliche Röhren unter dem Hut. Das Fleisch ist fest und verfärbt sich beim Anschneiden nicht.",
-    "geruch": "Angenehm, leicht nussig oder pilzartig",
-    "geschmack": "Mild, nussig, sehr aromatisch",
-    "vorkommen": "Laub- und Nadelwälder, bevorzugt unter Fichten, Buchen und Eichen",
-    "region": "Ganz Europa, besonders in gemäßigten Zonen",
+    "bezeichnung":{
+      "name": "Gemeiner Steinpilz",
+      "weitere_namen": ["Edelpilz","Herrenpilz"],
+      "lateinischer_name": "Boletus edulis"
+    },
+
+    "pilzfamilie": "Dickröhrlingsverwandte",
+    
+    "aussehen":{
+      "hut": "hell- bis dunkelbraun",
+      "stiel": "hellbraun",
+      "schwamm_lamellen": "besitzt einen Schwamm"
+    },
+
+    "verwendung": "Speisepilz",
+
+    "verzehr":{
+      "essbar": "nach dem Garen essbar, bei rohem Verzehr schwer verdaulich",
+      "geschmack": ["Mild", "nussig", "sehr aromatisch"],
+      "zubereitung": ["ideal zum Braten", "zum Trocknen", "für Pilzrisotto und Suppen"]
+    },
+
+    "vorkommen":{
+      "verbreitungsgebiet": ["Nordhalbkugel", "Europa, Nordamerika, Asien", "besonders in gemäßigten Zonen"],
+      "umgebung": ["feuchte Umgebung, ansonsten anspruchslos", "Laub- oder Nadelwälder"]
+    },
+
     "saison": "Juli bis Oktober",
+
     "verwechslungsgefahr": ["Gallenröhrling (Tylopilus felleus)", "Satansröhrling (Rubroboletus satanas)"],
-    "zubereitung": "Nur gegart verzehren. Ideal zum Braten, Trocknen oder für Pilzrisotto und Suppen. Nicht roh essen.",
-    "gefahrstoffe": "Keine, essbar – bei rohem Verzehr jedoch schwer verdaulich",
-    "quelle": "Wikipedia, Deutsche Gesellschaft für Mykologie"
+    
+    "quelle": "www.biologie-schule.de/steinpilz.php"
   },
+
+
   {
-    "name": "Hallimasch",
-    "lateinisch": "Armillaria mellea",
-    "essbar": "bedingt",
-    "beschreibung": "Der Hallimasch hat einen honiggelben bis braunen Hut, oft mit dunkleren Schüppchen, weiße bis gelbliche Lamellen, einen zentralen Ring am Stiel und wächst meist in dichten Büscheln an Holz.",
-    "geruch": "Aromatisch, leicht süßlich-pilzartig",
-    "geschmack": "Angenehm nach dem Abkochen, vorher leicht bitter",
-    "vorkommen": "An totem oder lebendem Holz – bevorzugt Laubbäume",
-    "region": "Europa, Asien, Nordamerika",
-    "saison": "September bis November",
-    "verwechslungsgefahr": ["Gift-Häubling (Galerina marginata)", "Schwefelköpfe"],
-    "zubereitung": "Nur nach gründlichem Abkochen (mind. 15 Minuten) essbar! Danach weiterverwenden zum Braten oder Einlegen.",
-    "gefahrstoffe": "Roh giftig – enthält hitzeempfindliche Toxine (z. B. Hämolysine), die zu Magen-Darm-Beschwerden führen können",
-    "quelle": "DGfM, Pilzlexikon, 123pilze.de"
+    "bezeichnung":{
+      "name": "Hallimasch",
+      "weitere_namen": ["Halawatsch","Stuppling"],
+      "lateinischer_name": "Armillaria mellea"
+    },
+
+    "pilzfamilie": "hallimaschartige Blätterpilze",
+    
+    "aussehen":{
+      "hut": "gelb",
+      "stiel": ["dunkelbraun bis schwarz", "oft mit Ring"],
+      "schwamm_lamellen": "Lamellen"
+    },
+
+    "verwendung": "eingeschränkter Speisepilz",
+
+    "verzehr":{
+      "essbar": "roh giftig, nach dem Abkochen genießbar",
+      "geschmack": ["mild", "leicht süßlich", "pilztypisch"],
+      "zubereitung": "mindestens 15 Minuten abkochen, anschließend braten, schmoren oder einlegen"
+    },
+
+    "vorkommen":{
+      "verbreitungsgebiet": ["Nordhalbkugel", "weltweit außer Tropen, Arktis und Antarktis"],
+      "umgebung": ["auf Nadel- und Laubbäumen", "außerhalb von Wäldern", "an Waldlichtungen", "in Parks", "auf Wiesen und in Gärten"]
+    },
+
+    "besonderheit": "Wirtsbaum stirbt nach Befall durch Hallimasch allmählig ab",
+
+    "saison": "August bis November",
+
+    "verwechslungsgefahr": ["Schüpplinge (Pholiota-Arten)", "Gift-Häubling (Galerina marginata)"],
+    
+    "quelle": "www.biologie-schule.de/steinpilz.php"
   }
 ]
