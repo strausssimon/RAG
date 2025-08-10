@@ -7,6 +7,7 @@ import os
 PILZ_NAME = "Gemeiner Steinpilz"  # <-- Hier Pilznamen ändern
 OLLAMA_PATH = r"C:\Users\Angle\AppData\Local\Programs\Ollama\ollama.exe"
 MODELL_NAME = "llama2"
+CNN_MODEL_PATH = os.path.join(os.path.dirname(__file__), "mushroom_4class_cnn_external_test.h5")
 
 # === Pfade ===
 PILZ_DATEI = os.path.join(os.path.dirname(__file__), "Informationen_RAG.json")
