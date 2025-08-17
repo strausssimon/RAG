@@ -6,7 +6,7 @@ from tqdm import tqdm
 import random
 
 class ImageAugmenter:
-    def __init__(self, output_dir="Webscraper/data/augmented_cropped_mushrooms"):
+    def __init__(self, output_dir="data/augmented_cropped_mushrooms"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         

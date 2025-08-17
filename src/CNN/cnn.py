@@ -248,41 +248,46 @@ class MushroomCNN:
     
     def build_model(self):
         print("\nBuilding 4-class CNN model for mushroom classification...")
-        self.model = models.Sequential([
-            # Erste Convolution Block
-            layers.Conv2D(32, (3, 3), activation='relu', input_shape=(*self.image_size, 3)),
-            layers.BatchNormalization(),
-            layers.MaxPooling2D((2, 2)),
-            layers.Dropout(0.25),
-            
-            # Zweiter Convolution Block
-            layers.Conv2D(64, (3, 3), activation='relu'),
-            layers.BatchNormalization(),
-            layers.MaxPooling2D((2, 2)),
-            layers.Dropout(0.25),
-            
-            # Dritter Convolution Block
-            layers.Conv2D(128, (3, 3), activation='relu'),
-            layers.BatchNormalization(),
-            layers.MaxPooling2D((2, 2)),
-            layers.Dropout(0.25),
-            
-            # Vierter Convolution Block
-            layers.Conv2D(256, (3, 3), activation='relu'),
-            layers.BatchNormalization(),
-            layers.MaxPooling2D((2, 2)),
-            layers.Dropout(0.3),
-            
-            # Classifier
-            layers.Flatten(),
-            layers.Dense(128, activation='relu'),
-            layers.BatchNormalization(),
-            layers.Dropout(0.5),
-            layers.Dense(64, activation='relu'),
-            layers.BatchNormalization(),
-            layers.Dropout(0.5),
-            layers.Dense(self.num_classes, activation='softmax')
-        ])
+        
+        # Moderne Keras Functional API für bessere Kompatibilität
+        inputs = layers.Input(shape=(200, 200, 3), name='input_image')
+        
+        # Erste Convolution Block
+        x = layers.Conv2D(32, (3, 3), activation='relu', name='conv1')(inputs)
+        x = layers.BatchNormalization(name='bn1')(x)
+        x = layers.MaxPooling2D((2, 2), name='pool1')(x)
+        x = layers.Dropout(0.25, name='dropout1')(x)
+        
+        # Zweiter Convolution Block
+        x = layers.Conv2D(64, (3, 3), activation='relu', name='conv2')(x)
+        x = layers.BatchNormalization(name='bn2')(x)
+        x = layers.MaxPooling2D((2, 2), name='pool2')(x)
+        x = layers.Dropout(0.25, name='dropout2')(x)
+        
+        # Dritter Convolution Block
+        x = layers.Conv2D(128, (3, 3), activation='relu', name='conv3')(x)
+        x = layers.BatchNormalization(name='bn3')(x)
+        x = layers.MaxPooling2D((2, 2), name='pool3')(x)
+        x = layers.Dropout(0.25, name='dropout3')(x)
+        
+        # Vierter Convolution Block
+        x = layers.Conv2D(256, (3, 3), activation='relu', name='conv4')(x)
+        x = layers.BatchNormalization(name='bn4')(x)
+        x = layers.MaxPooling2D((2, 2), name='pool4')(x)
+        x = layers.Dropout(0.3, name='dropout4')(x)
+        
+        # Classifier
+        x = layers.Flatten(name='flatten')(x)
+        x = layers.Dense(128, activation='relu', name='dense1')(x)
+        x = layers.BatchNormalization(name='bn5')(x)
+        x = layers.Dropout(0.5, name='dropout5')(x)
+        x = layers.Dense(64, activation='relu', name='dense2')(x)
+        x = layers.BatchNormalization(name='bn6')(x)
+        x = layers.Dropout(0.5, name='dropout6')(x)
+        outputs = layers.Dense(self.num_classes, activation='softmax', name='predictions')(x)
+        
+        # Modell mit Functional API erstellen
+        self.model = tf.keras.Model(inputs=inputs, outputs=outputs, name='mushroom_cnn')
         
         # Optimizer mit angepasster Learning Rate
         optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
@@ -292,7 +297,7 @@ class MushroomCNN:
             loss='categorical_crossentropy',
             metrics=['accuracy']
         )
-        print(f"Model built successfully for {self.num_classes} classes")
+        print(f"Model built successfully for {self.num_classes} classes using Functional API")
         
     def train(self, epochs=30, use_external_test=True):
         print("\nStarting training process...")

@@ -83,6 +83,8 @@ smalllanguagemodels/
 ├── src/                      # Hauptmodule und Kernlogik
 │   ├── CNN/
 │   │   └──  cnn.py
+│   ├── GUI/
+│   │   └──  gui.py
 │   ├── helpers/              # Hilfsfunktionen und Utilities für Daten und Modelle
 │   │   ├── augment_images.py
 │   │   ├── augment.py
