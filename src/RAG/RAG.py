@@ -65,68 +65,13 @@ rag_verzeichnis = os.path.dirname(__file__)
 TEST_IMAGE_PATH = finde_erstes_bild(rag_verzeichnis)
 
 # === CNN Klassifikation ===
-def create_compatible_model():
-    """Erstellt ein kompatibles CNN-Modell mit der EXAKT gleichen Architektur wie in cnn.py"""
-    from tensorflow.keras import layers, models
-    
-    model = models.Sequential([
-        # Input Layer (200x200x3) - EXAKT wie in cnn.py
-        layers.Conv2D(32, (3, 3), activation='relu', input_shape=(200, 200, 3)),
-        layers.BatchNormalization(),
-        layers.MaxPooling2D((2, 2)),
-        layers.Dropout(0.25),
-        
-        # Zweiter Convolution Block
-        layers.Conv2D(64, (3, 3), activation='relu'),
-        layers.BatchNormalization(),
-        layers.MaxPooling2D((2, 2)),
-        layers.Dropout(0.25),
-        
-        # Dritter Convolution Block - KORRIGIERT: 0.25 statt 0.3
-        layers.Conv2D(128, (3, 3), activation='relu'),
-        layers.BatchNormalization(),
-        layers.MaxPooling2D((2, 2)),
-        layers.Dropout(0.25),  # ← KORRIGIERT von 0.3 zu 0.25
-        
-        # Vierter Convolution Block
-        layers.Conv2D(256, (3, 3), activation='relu'),
-        layers.BatchNormalization(),
-        layers.MaxPooling2D((2, 2)),
-        layers.Dropout(0.3),
-        
-        # Classifier
-        layers.Flatten(),
-        layers.Dense(128, activation='relu'),
-        layers.BatchNormalization(),
-        layers.Dropout(0.5),
-        layers.Dense(64, activation='relu'),
-        layers.BatchNormalization(),
-        layers.Dropout(0.5),
-        layers.Dense(4, activation='softmax')  # 4 Klassen
-    ])
-    
-    return model
-
 def klassifiziere_pilzbild(image_path, model_path):
     """Lädt ein Bild, klassifiziert es mit dem CNN-Modell und gibt die vorhergesagte Klasse zurück."""
     try:
-        # Konvertiere Pfade zu raw strings um Encoding-Probleme zu vermeiden
-        model_path = os.path.normpath(model_path)
-        image_path = os.path.normpath(image_path)
+        print(f"Lade Modell: {model_path}")
+        model = tf.keras.models.load_model(model_path)
         
-        print(f"Versuche Keras-Modell zu laden: {model_path}")
-        
-        # Versuche das Modell zu laden, bei Fehlern verwende kompatible Architektur
-        try:
-            model = tf.keras.models.load_model(model_path)
-            print("Originales Modell erfolgreich geladen")
-        except Exception as e:
-            print(f"Fehler beim Laden des Originalmodells: {e}")
-            print("Verwende kompatible Modellarchitektur...")
-            model = create_compatible_model()
-            print("Hinweis: Verwende untrainiertes kompatibles Modell")
-        
-        print(f"Versuche Bild zu laden: {image_path}")
+        print(f"Lade Bild: {image_path}")
         img = Image.open(image_path).convert('RGB')
         img = img.resize((200, 200))  # Angepasst an die Modell-Eingabegröße
         x = np.array(img)
@@ -136,10 +81,15 @@ def klassifiziere_pilzbild(image_path, model_path):
         print("Führe Vorhersage durch...")
         pred = model.predict(x, verbose=0)
         class_idx = np.argmax(pred, axis=1)[0]
+        confidence = pred[0][class_idx]
         
-        # WICHTIG: Klassenlabels müssen EXAKT mit cnn.py übereinstimmen!
+        # Klassenlabels exakt wie in cnn.py definiert
         class_labels = ["Amanita_phalloides", "Armillaria_mellea", "Boletus_edulis", "Cantharellus_cibarius"]
-        return class_labels[class_idx], pred[0][class_idx]
+        predicted_class = class_labels[class_idx]
+        
+        print(f"Vorhersage: {predicted_class} (Konfidenz: {confidence:.4f})")
+        return predicted_class, confidence
+        
     except Exception as e:
         raise Exception(f"Fehler bei der Bildklassifikation: {str(e)}")
 
@@ -211,9 +161,9 @@ def frage_mit_ollama(prompt, modell=MODELL_NAME):
         return result.stdout.strip()
     except subprocess.CalledProcessError as e:
         if "pull" in str(e.stderr):
-            return f"📥 Modell '{modell}' muss heruntergeladen werden. Führen Sie aus: ollama pull {modell}"
+            return f"Modell '{modell}' muss heruntergeladen werden. Führen Sie aus: ollama pull {modell}"
         else:
-            return f"❌ Fehler bei Ollama CLI: {e.stderr}"
+            return f"Fehler bei Ollama CLI: {e.stderr}"
 
 # === Fragebeantwortung nur für gewählten Pilz ===
 def frage_beantworten(frage):
@@ -235,9 +185,9 @@ def frage_beantworten(frage):
 # === Interaktive Schleife ===
 if __name__ == "__main__":
     while True:
-        frage = input("\n❓ Stelle deine Frage (oder 'exit' zum Beenden): ")
+        frage = input("\nStellen Sie Ihre Frage (oder 'exit' zum Beenden): ")
         if frage.lower() == "exit":
             break
         antwort = frage_beantworten(frage)
-        print("\n💡 Antwort:")
+        print("\nAntwort:")
         print(antwort)

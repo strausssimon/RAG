@@ -83,6 +83,24 @@ smalllanguagemodels/
 ├── src/                      # Hauptmodule und Kernlogik
 │   ├── CNN/
 │   │   └──  cnn.py
+│   ├── helpers/              # Hilfsfunktionen und Utilities für Daten und Modelle
+│   │   ├── augment_images.py
+│   │   ├── augment.py
+│   │   ├── augmentation.py
+│   │   ├── convert_model_fixed.py
+│   │   ├── convert_model.py
+│   │   ├── create_augmentation_examples.py
+│   │   ├── create_test_set.py
+│   │   ├── crop_mushrooms.py
+│   │   ├── dataset.py
+│   │   ├── find_min_image_size.py
+│   │   ├── rename_2_fixed.py
+│   │   ├── rename_2.py
+│   │   ├── rename_test_clean.py
+│   │   ├── rename.py
+│   │   ├── resize.py
+│   │   ├── restore_test_set.py
+│   │   └── robust_test_set.py
 │   ├── RAG/
 │   │   ├── ragas/
 │   │   │   ├── ragas_demo.py
