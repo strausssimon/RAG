@@ -1,0 +1,74 @@
+[
+  {
+    "bezeichnung":{
+      "name": "Gemeiner Steinpilz",
+      "weitere_namen": ["Edelpilz","Herrenpilz"],
+      "lateinischer_name": "Boletus edulis"
+    },
+
+    "pilzfamilie": "Dickröhrlingsverwandte",
+    
+    "aussehen":{
+      "hut": "hell- bis dunkelbraun",
+      "stiel": "hellbraun",
+      "schwamm_lamellen": "besitzt einen Schwamm"
+    },
+
+    "verwendung": "Speisepilz",
+
+    "verzehr":{
+      "essbar": "nach dem Garen essbar, bei rohem Verzehr schwer verdaulich",
+      "geschmack": ["Mild", "nussig", "sehr aromatisch"],
+      "zubereitung": ["ideal zum Braten", "zum Trocknen", "für Pilzrisotto und Suppen"]
+    },
+
+    "vorkommen":{
+      "verbreitungsgebiet": ["Nordhalbkugel", "Europa, Nordamerika, Asien", "besonders in gemäßigten Zonen"],
+      "umgebung": ["feuchte Umgebung, ansonsten anspruchslos", "Laub- oder Nadelwälder"]
+    },
+
+    "saison": "Juli bis Oktober",
+
+    "verwechslungsgefahr": ["Gallenröhrling (Tylopilus felleus)", "Satansröhrling (Rubroboletus satanas)"],
+    
+    "quelle": "www.biologie-schule.de/steinpilz.php"
+  },
+
+
+  {
+    "bezeichnung":{
+      "name": "Hallimasch",
+      "weitere_namen": ["Halawatsch","Stuppling"],
+      "lateinischer_name": "Armillaria mellea"
+    },
+
+    "pilzfamilie": "hallimaschartige Blätterpilze",
+    
+    "aussehen":{
+      "hut": "gelb",
+      "stiel": ["dunkelbraun bis schwarz", "oft mit Ring"],
+      "schwamm_lamellen": "Lamellen"
+    },
+
+    "verwendung": "eingeschränkter Speisepilz",
+
+    "verzehr":{
+      "essbar": "roh giftig, nach dem Abkochen genießbar",
+      "geschmack": ["mild", "leicht süßlich", "pilztypisch"],
+      "zubereitung": "mindestens 15 Minuten abkochen, anschließend braten, schmoren oder einlegen"
+    },
+
+    "vorkommen":{
+      "verbreitungsgebiet": ["Nordhalbkugel", "weltweit außer Tropen, Arktis und Antarktis"],
+      "umgebung": ["auf Nadel- und Laubbäumen", "außerhalb von Wäldern", "an Waldlichtungen", "in Parks", "auf Wiesen und in Gärten"]
+    },
+
+    "besonderheit": "Wirtsbaum stirbt nach Befall durch Hallimasch allmählig ab",
+
+    "saison": "August bis November",
+
+    "verwechslungsgefahr": ["Schüpplinge (Pholiota-Arten)", "Gift-Häubling (Galerina marginata)"],
+    
+    "quelle": "www.biologie-schule.de/steinpilz.php"
+  }
+]
