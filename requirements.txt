@@ -13,3 +13,4 @@ datasets
 openai
 langchain
 huggingface_hub
+Pillow
