@@ -12,7 +12,7 @@ from collections import defaultdict, Counter
 # Verwendete Datenpfade in diesem Skript:
 # - data/augmented_mushrooms/resized: Pfad zu den augmentierten und auf 200x200 Pixel skalierten Trainings- und Testbildern
 # - data/test_mushrooms: Pfad zu externen Testbildern
-# - best_mushroom_model.h5, mushroom_4class_cnn_external_test.h5, mushroom_cnn_model.h5: Speicherorte für trainierte Modelle
+# - best_mushroom_model.keras, mushroom_4class_cnn_external_test.keras, mushroom_cnn_model.keras: Speicherorte für trainierte Modelle
 
 class MushroomCNN:
     def __init__(self, image_size=(200, 200)):
@@ -337,7 +337,7 @@ class MushroomCNN:
         )
         
         model_checkpoint = tf.keras.callbacks.ModelCheckpoint(
-            'best_mushroom_model.h5',
+            'best_mushroom_model.keras',
             monitor='val_accuracy',
             save_best_only=True,
             mode='max'
@@ -403,16 +403,16 @@ class MushroomCNN:
         
         return predicted_class, confidence
     
-    def save_model(self, filepath="mushroom_cnn_model.h5"):
-        """Speichert das trainierte Modell"""
+    def save_model(self, filepath="mushroom_cnn_model.keras"):
+        """Speichert das trainierte Modell im .keras Format"""
         if self.model is not None:
             self.model.save(filepath)
             print(f"Modell gespeichert: {filepath}")
         else:
             print("Fehler: Kein Modell zum Speichern vorhanden!")
     
-    def load_model(self, filepath="mushroom_cnn_model.h5"):
-        """Lädt ein gespeichertes Modell"""
+    def load_model(self, filepath="mushroom_cnn_model.keras"):
+        """Lädt ein gespeichertes Modell im .keras Format"""
         try:
             self.model = tf.keras.models.load_model(filepath)
             print(f"Modell geladen: {filepath}")
@@ -432,8 +432,8 @@ if __name__ == "__main__":
     history = cnn.train(epochs=30, use_external_test=True)
 
     if history is not None:
-        # Speichert das trainierte Modell
-        cnn.save_model("models/mushroom_4class_cnn_external_test.h5")
-        print("\nTraining abgeschlossen! Modell gespeichert.")
+        # Speichert das trainierte Modell nur im modernen .keras Format
+        cnn.save_model("models/mushroom_4class_cnn_external_test.keras")
+        print("\nTraining abgeschlossen! Modell gespeichert im .keras Format.")
     else:
         print("\nTraining fehlgeschlagen!")
