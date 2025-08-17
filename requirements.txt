@@ -1,0 +1,15 @@
+tensorflow
+numpy
+pandas
+opencv-python
+scikit-learn
+tqdm
+requests
+sentence-transformers
+bs4
+termcolor
+ragas
+datasets
+openai
+langchain
+huggingface_hub
