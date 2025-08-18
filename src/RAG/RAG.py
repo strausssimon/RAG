@@ -1,39 +1,51 @@
 
+# TensorFlow 2.19.1 & Keras 3.11.2 Konfiguration - EXKLUSIV
+import os
+# Moderne TensorFlow/Keras 3 Konfiguration
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'  # OneDNN Optimierungen falls problematisch
+
+# Standard Imports
 import json
 import subprocess
 from sentence_transformers import SentenceTransformer
-import os
-import tensorflow as tf
 import numpy as np
 from PIL import Image
 import glob
 import shutil
-import tempfile
+
+# EXKLUSIV Keras 3.11.2 - Keine Fallbacks
+try:
+    import keras
+    import tensorflow as tf
+    
+    # Überprüfe Keras-Version - nur 3.x erlaubt
+    keras_version = keras.__version__
+    major_version = int(keras_version.split('.')[0])
+    
+    if major_version < 3:
+        raise ImportError(f"Keras {keras_version} ist nicht unterstützt. Mindestens Keras 3.x erforderlich!")
+    
+    KERAS_AVAILABLE = True
+    print(f"✅ Keras 3.x erfolgreich geladen (Version: {keras.__version__})")
+    print(f"✅ TensorFlow erfolgreich geladen (Version: {tf.__version__})")
+    
+except ImportError as e:
+    print(f"❌ KRITISCHER FEHLER: Keras 3.x ist erforderlich!")
+    print(f"❌ Fehlerdetails: {e}")
+    print(f"❌ Installieren Sie Keras 3.x mit: pip install keras>=3.11.2")
+    print("🛑 Script wird beendet - Keras 3.x ist zwingend erforderlich!")
+    exit(1)
+except Exception as e:
+    print(f"❌ UNERWARTETER FEHLER beim Keras 3.x Import: {e}")
+    print("🛑 Script wird beendet!")
+    exit(1)
 
 
 # === Konfiguration ===
 MODELL_NAME = "llama2"
-# CNN-Modell und Bildpfad - verwende .keras Format für bessere Kompatibilität
-try:
-    # Versuche das .keras Modell zu verwenden
-    original_model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models", "mushroom_4class_cnn_external_test.keras"))
-    # Erstelle einen temporären Pfad ohne Umlaute
-    temp_model_dir = "C:\\temp_model"
-    if not os.path.exists(temp_model_dir):
-        os.makedirs(temp_model_dir)
-    CNN_MODEL_PATH = os.path.join(temp_model_dir, "model.keras")
-    # Kopiere Modell falls es noch nicht existiert
-    if not os.path.exists(CNN_MODEL_PATH) and os.path.exists(original_model_path):
-        shutil.copy2(original_model_path, CNN_MODEL_PATH)
-        print(f"Keras-Modell kopiert nach: {CNN_MODEL_PATH}")
-    elif os.path.exists(CNN_MODEL_PATH):
-        print(f"Verwende bereits kopiertes Keras-Modell: {CNN_MODEL_PATH}")
-    else:
-        CNN_MODEL_PATH = original_model_path  # Fallback
-except Exception as e:
-    print(f"Warnung beim Kopieren des Modells: {e}")
-    CNN_MODEL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models", "mushroom_4class_cnn_external_test.keras"))
-
+# CNN-Modell Pfade - versuche mehrere Formate
+CNN_MODEL_KERAS = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models", "mushroom_4class_cnn_external_test.keras"))
+CNN_MODEL_H5 = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models", "mushroom_4class_cnn_external_test.h5"))
 PILZ_DATEI = os.path.join(os.path.dirname(__file__), "Informationen_RAG.json")
 
 def check_ollama_installed():
@@ -60,57 +72,118 @@ def finde_erstes_bild(verzeichnis):
             return files[0]
     return None
 
+# CNN Modell laden - EXKLUSIV für Keras 3.x
+def load_cnn_model(model_paths=None):
+    """
+    Lädt das CNN-Modell mit Keras 3.x.
+    Unterstützt .keras und .h5 Formate.
+    
+    Args:
+        model_paths (list): Liste von Modellpfaden oder None für Standard-Pfade
+        
+    Returns:
+        model: Geladenes Keras-Modell oder None bei Fehler
+    """
+    # Standard-Pfade wenn keine angegeben
+    if model_paths is None:
+        model_paths = [CNN_MODEL_KERAS, CNN_MODEL_H5]
+    
+    for model_path in model_paths:
+        if not os.path.exists(model_path):
+            print(f"⚠️ Modell nicht gefunden: {os.path.basename(model_path)}")
+            continue
+            
+        print(f"Versuche Modell zu laden: {os.path.basename(model_path)}")
+        
+        # Keras 3.x Standard-Methode
+        try:
+            model = keras.models.load_model(model_path)
+            print(f"✅ Modell erfolgreich geladen mit Keras 3.x: {os.path.basename(model_path)}")
+            return model
+        except Exception as e1:
+            print(f"Keras 3.x Standard-Laden fehlgeschlagen: {str(e1)[:100]}...")
+            
+            # Keras 3.x ohne Kompilierung (für Kompatibilität)
+            try:
+                model = keras.models.load_model(model_path, compile=False)
+                print(f"✅ Modell erfolgreich geladen (compile=False) mit Keras 3.x: {os.path.basename(model_path)}")
+                return model
+            except Exception as e2:
+                print(f"Keras 3.x compile=False fehlgeschlagen: {str(e2)[:100]}...")
+                continue
+    
+    print("❌ Alle verfügbaren Modell-Formate fehlgeschlagen mit Keras 3.x")
+    return None
+
 # Dynamische Bildsuche im RAG-Ordner
 rag_verzeichnis = os.path.dirname(__file__)
 TEST_IMAGE_PATH = finde_erstes_bild(rag_verzeichnis)
 
 # === CNN Klassifikation ===
-def klassifiziere_pilzbild(image_path, model_path):
-    """Lädt ein Bild, klassifiziert es mit dem CNN-Modell und gibt die vorhergesagte Klasse zurück."""
+def klassifiziere_pilzbild(image_path, model_paths=None):
+    """
+    Klassifiziert ein Pilzbild mit dem CNN-Modell.
+    EXKLUSIV für Keras 3.x.
+    """
     try:
-        print(f"Lade Modell: {model_path}")
-        model = tf.keras.models.load_model(model_path)
+        # Verwende die Keras 3.x Lade-Methode
+        model = load_cnn_model(model_paths)
         
-        print(f"Lade Bild: {image_path}")
+        # Prüfe ob das Modell erfolgreich geladen wurde
+        if model is None:
+            raise Exception("Modell konnte nicht geladen werden - alle verfügbaren Formate versucht")
+        
+        print(f"Lade und verarbeite Bild: {os.path.basename(image_path)}")
+        
+        # Bildverarbeitung für Keras 3.x
         img = Image.open(image_path).convert('RGB')
-        img = img.resize((200, 200))  # Angepasst an die Modell-Eingabegröße
-        x = np.array(img)
+        img = img.resize((200, 200))
+        
+        # Konvertierung zu NumPy Array mit korrekter Normalisierung
+        x = np.array(img, dtype=np.float32)
         x = np.expand_dims(x, axis=0)
-        x = x / 255.0
+        x = x / 255.0  # Normalisierung auf [0,1]
         
-        print("Führe Vorhersage durch...")
+        print("Führe CNN-Vorhersage durch...")
+        
+        # Vorhersage mit Keras 3.x
         pred = model.predict(x, verbose=0)
+            
         class_idx = np.argmax(pred, axis=1)[0]
-        confidence = pred[0][class_idx]
+        confidence = float(pred[0][class_idx])
         
-        # Klassenlabels exakt wie in cnn.py definiert
+        # Aktualisierte Klassenlabels
         class_labels = ["Amanita_phalloides", "Armillaria_mellea", "Boletus_edulis", "Cantharellus_cibarius"]
         predicted_class = class_labels[class_idx]
         
-        print(f"Vorhersage: {predicted_class} (Konfidenz: {confidence:.4f})")
+        print(f"✅ Vorhersage: {predicted_class} (Konfidenz: {confidence:.4f})")
         return predicted_class, confidence
         
     except Exception as e:
         raise Exception(f"Fehler bei der Bildklassifikation: {str(e)}")
 
 # --- Führe Klassifikation beim Start aus ---
-print("\n=== CNN-Bildklassifikation ===")
+print("\n=== CNN-Bildklassifikation (TensorFlow 2.19.1 & Keras 3.x EXKLUSIV) ===")
+print("🚀 Keras 3.x erfolgreich initialisiert")
+
 klassifikations_info = ""
 if TEST_IMAGE_PATH:
-    print(f"Gefundenes Bild: {TEST_IMAGE_PATH}")
-    print(f"Modell: {CNN_MODEL_PATH}")
+    print(f"Gefundenes Bild: {os.path.basename(TEST_IMAGE_PATH)}")
+    print(f"Verfügbare Modellformate: .keras (bevorzugt), .h5 (Fallback)")
     try:
-        klasse, score = klassifiziere_pilzbild(TEST_IMAGE_PATH, CNN_MODEL_PATH)
-        print(f"Vorhergesagte Klasse: {klasse} (Score: {score:.4f})")
+        klasse, score = klassifiziere_pilzbild(TEST_IMAGE_PATH)
+        print(f"✅ Vorhergesagte Klasse: {klasse} (Konfidenz: {score:.1%})")
         # PILZ_NAME dynamisch aus Klassifikation setzen
         PILZ_NAME = klasse
         klassifikations_info = f"Das analysierte Bild wurde mit {score:.1%} Wahrscheinlichkeit als {klasse} klassifiziert. "
     except Exception as e:
-        print(f"Fehler bei der Bildklassifikation: {e}")
+        print(f"❌ Fehler bei der Bildklassifikation: {e}")
         PILZ_NAME = "Gemeiner Steinpilz"  # Fallback
         klassifikations_info = f"Bildklassifikation fehlgeschlagen ({e}). Verwende Fallback-Pilz. "
 else:
-    print("Kein Bild im RAG-Ordner gefunden!")
+    print("ℹ️ Kein Bild im RAG-Ordner gefunden!")
+    PILZ_NAME = "Gemeiner Steinpilz"  # Fallback
+    klassifikations_info = "Kein Bild gefunden. Verwende Fallback-Pilz. "
     PILZ_NAME = "Gemeiner Steinpilz"  # Fallback
     klassifikations_info = "Kein Bild zur Analyse gefunden. Verwende Fallback-Pilz. "
 

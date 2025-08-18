@@ -1,5 +1,35 @@
-import tensorflow as tf
-from tensorflow.keras import layers, models
+# TensorFlow 2.19.1 & Keras 3.11.2 Konfiguration - EXKLUSIV
+import os
+# Moderne TensorFlow/Keras 3 Konfiguration
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'  # OneDNN Optimierungen falls problematisch
+
+# EXKLUSIV Keras 3.11.2 - Keine Fallbacks
+try:
+    import keras
+    from keras import layers, models, optimizers, callbacks
+    import tensorflow as tf
+    
+    # Überprüfe Keras-Version - nur 3.x erlaubt
+    keras_version = keras.__version__
+    major_version = int(keras_version.split('.')[0])
+    
+    if major_version < 3:
+        raise ImportError(f"Keras {keras_version} ist nicht unterstützt. Mindestens Keras 3.x erforderlich!")
+    
+    print(f"✅ Keras 3.x erfolgreich geladen (Version: {keras.__version__})")
+    print(f"✅ TensorFlow erfolgreich geladen (Version: {tf.__version__})")
+    
+except ImportError as e:
+    print(f"❌ KRITISCHER FEHLER: Keras 3.x ist erforderlich!")
+    print(f"❌ Fehlerdetails: {e}")
+    print(f"❌ Installieren Sie Keras 3.x mit: pip install keras>=3.11.2")
+    print("🛑 Script wird beendet - Keras 3.x ist zwingend erforderlich!")
+    exit(1)
+except Exception as e:
+    print(f"❌ UNERWARTETER FEHLER beim Keras 3.x Import: {e}")
+    print("🛑 Script wird beendet!")
+    exit(1)
+
 import numpy as np
 from pathlib import Path
 import cv2
@@ -247,12 +277,12 @@ class MushroomCNN:
         return X_test, y_test
     
     def build_model(self):
-        print("\nBuilding 4-class CNN model for mushroom classification...")
+        print("\nBuilding 4-class CNN model for mushroom classification (Keras 3.x EXKLUSIV)...")
         
-        # Moderne Keras Functional API für bessere Kompatibilität
+        # Keras 3.x Functional API
         inputs = layers.Input(shape=(200, 200, 3), name='input_image')
         
-        # Erste Convolution Block
+        # Erste Convolution Block mit Keras 3.x Layers
         x = layers.Conv2D(32, (3, 3), activation='relu', name='conv1')(inputs)
         x = layers.BatchNormalization(name='bn1')(x)
         x = layers.MaxPooling2D((2, 2), name='pool1')(x)
@@ -276,7 +306,7 @@ class MushroomCNN:
         x = layers.MaxPooling2D((2, 2), name='pool4')(x)
         x = layers.Dropout(0.3, name='dropout4')(x)
         
-        # Classifier
+        # Classifier mit Keras 3.x Dense Layers
         x = layers.Flatten(name='flatten')(x)
         x = layers.Dense(128, activation='relu', name='dense1')(x)
         x = layers.BatchNormalization(name='bn5')(x)
@@ -286,18 +316,18 @@ class MushroomCNN:
         x = layers.Dropout(0.5, name='dropout6')(x)
         outputs = layers.Dense(self.num_classes, activation='softmax', name='predictions')(x)
         
-        # Modell mit Functional API erstellen
-        self.model = tf.keras.Model(inputs=inputs, outputs=outputs, name='mushroom_cnn')
+        # Modell mit Keras 3.x Functional API erstellen
+        self.model = keras.Model(inputs=inputs, outputs=outputs, name='mushroom_cnn')
         
-        # Optimizer mit angepasster Learning Rate
-        optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
+        # Keras 3.x Optimizer
+        optimizer = keras.optimizers.Adam(learning_rate=0.001)
         
         self.model.compile(
             optimizer=optimizer,
             loss='categorical_crossentropy',
             metrics=['accuracy']
         )
-        print(f"Model built successfully for {self.num_classes} classes using Functional API")
+        print(f"✅ Modell erfolgreich erstellt für {self.num_classes} Klassen mit Keras 3.x Functional API")
         
     def train(self, epochs=30, use_external_test=True):
         print("\nStarting training process...")
@@ -326,22 +356,22 @@ class MushroomCNN:
         if self.model is None:
             self.build_model()
         
-        # Callbacks für Training
-        early_stopping = tf.keras.callbacks.EarlyStopping(
+        # Keras 3.x Callbacks für Training
+        early_stopping = keras.callbacks.EarlyStopping(
             monitor='val_accuracy',
             patience=7,
             restore_best_weights=True,
             min_delta=0.005
         )
         
-        reduce_lr = tf.keras.callbacks.ReduceLROnPlateau(
+        reduce_lr = keras.callbacks.ReduceLROnPlateau(
             monitor='val_loss',
             factor=0.5,
             patience=5,
             min_lr=0.00001
         )
         
-        model_checkpoint = tf.keras.callbacks.ModelCheckpoint(
+        model_checkpoint = keras.callbacks.ModelCheckpoint(
             'best_mushroom_model.keras',
             monitor='val_accuracy',
             save_best_only=True,
@@ -409,36 +439,48 @@ class MushroomCNN:
         return predicted_class, confidence
     
     def save_model(self, filepath="mushroom_cnn_model.keras"):
-        """Speichert das trainierte Modell im .keras Format"""
+        """Speichert das trainierte Modell im modernen .keras Format (Keras 3.x kompatibel)"""
         if self.model is not None:
             self.model.save(filepath)
-            print(f"Modell gespeichert: {filepath}")
+            print(f"✅ Modell gespeichert im Keras 3.x Format: {filepath}")
+            
+            # Erstelle auch .h5 Version für Rückwärtskompatibilität
+            if filepath.endswith('.keras'):
+                h5_filepath = filepath.replace('.keras', '.h5')
+                try:
+                    self.model.save(h5_filepath)
+                    print(f"✅ Rückwärtskompatible .h5 Version erstellt: {h5_filepath}")
+                except Exception as e:
+                    print(f"⚠️ .h5 Version konnte nicht erstellt werden: {e}")
         else:
-            print("Fehler: Kein Modell zum Speichern vorhanden!")
+            print("❌ Fehler: Kein Modell zum Speichern vorhanden!")
     
     def load_model(self, filepath="mushroom_cnn_model.keras"):
-        """Lädt ein gespeichertes Modell im .keras Format"""
+        """Lädt ein gespeichertes Modell (Keras 3.x EXKLUSIV)"""
         try:
-            self.model = tf.keras.models.load_model(filepath)
-            print(f"Modell geladen: {filepath}")
+            self.model = keras.models.load_model(filepath)
+            print(f"✅ Modell erfolgreich geladen mit Keras 3.x: {filepath}")
         except Exception as e:
-            print(f"Fehler beim Laden des Modells: {e}")
+            print(f"❌ Fehler beim Laden des Modells: {e}")
 
 if __name__ == "__main__":
-    print("\nMUSHROOM CLASSIFICATION CNN - 4 CLASSES")
-    print("=" * 60)
+    print("\nMUSHROOM CLASSIFICATION CNN - 4 CLASSES (TensorFlow 2.19.1 & Keras 3.x EXKLUSIV)")
+    print("=" * 80)
     print("Classes: Amanita_phalloides, Armillaria_mellea, Boletus_edulis, Cantharellus_cibarius")
     print("Training: Augmented 200x200 images")
     print("Testing: External test data from data/test_mushrooms")
-    print("=" * 60)
+    print("Output: Modern .keras format (with .h5 fallback for compatibility)")
+    print("KERAS 3.x ERFORDERLICH - Keine Fallbacks!")
+    print("=" * 80)
 
-    # Erstellt und trainiert das Modell
+    # Erstellt und trainiert das Modell mit Keras 3.x
     cnn = MushroomCNN()
     history = cnn.train(epochs=30, use_external_test=True)
 
     if history is not None:
-        # Speichert das trainierte Modell nur im modernen .keras Format
+        # Speichert das trainierte Modell im modernen .keras Format + .h5 Fallback
         cnn.save_model("models/mushroom_4class_cnn_external_test.keras")
-        print("\nTraining abgeschlossen! Modell gespeichert im .keras Format.")
+        print("\n🎉 Training erfolgreich abgeschlossen mit Keras 3.x!")
+        print("✅ Modell gespeichert im modernen .keras Format mit .h5 Rückwärtskompatibilität")
     else:
-        print("\nTraining fehlgeschlagen!")
+        print("\n❌ Training fehlgeschlagen!")

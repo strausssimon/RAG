@@ -1,4 +1,6 @@
-tensorflow
+# TensorFlow 2.19.1 & Keras 3.11.2 (neueste Versionen)
+tensorflow>=2.19.1
+keras>=3.11.2
 numpy
 pandas
 opencv-python
