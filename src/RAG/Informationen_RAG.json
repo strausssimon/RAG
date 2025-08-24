@@ -3,7 +3,7 @@
     "bezeichnung":{
       "name": "Gemeiner Steinpilz",
       "weitere_namen": ["Edelpilz","Herrenpilz"],
-      "lateinischer_name": "Boletus edulis"
+      "lateinischer_name": "boletus edulis"
     },
 
     "pilzfamilie": "Dickröhrlingsverwandte",
@@ -29,9 +29,7 @@
 
     "saison": "Juli bis Oktober",
 
-    "verwechslungsgefahr": ["Gallenröhrling (Tylopilus felleus)", "Satansröhrling (Rubroboletus satanas)"],
-    
-    "quelle": "www.biologie-schule.de/steinpilz.php"
+    "verwechslungsgefahr": ["Gallenröhrling (Tylopilus felleus)", "Satansröhrling (Rubroboletus satanas)"]
   },
 
 
@@ -63,12 +61,110 @@
       "umgebung": ["auf Nadel- und Laubbäumen", "außerhalb von Wäldern", "an Waldlichtungen", "in Parks", "auf Wiesen und in Gärten"]
     },
 
-    "besonderheit": "Wirtsbaum stirbt nach Befall durch Hallimasch allmählig ab",
-
     "saison": "August bis November",
 
-    "verwechslungsgefahr": ["Schüpplinge (Pholiota-Arten)", "Gift-Häubling (Galerina marginata)"],
+    "verwechslungsgefahr": ["Schüpplinge (Pholiota-Arten)", "Gift-Häubling (Galerina marginata)"]
+  },
+
+
+  {
+    "bezeichnung":{
+      "name": "Fliegenpilz",
+      "weitere_namen": [""],
+      "lateinischer_name": "amanita muscaria"
+    },
+
+    "pilzfamilie": "Wulstlingsverwandte",
     
-    "quelle": "www.biologie-schule.de/steinpilz.php"
+    "aussehen":{
+      "hut": "orange bis rot mit weißen Punkten",
+      "stiel": "weiß",
+      "schwamm_lamellen": "weiße Lamellen"
+    },
+
+    "verwendung": "keine Verwendung",
+
+    "verzehr":{
+      "essbar": "nicht essbar, hochgiftig",
+      "geschmack": [""],
+      "zubereitung": [""]
+    },
+
+    "vorkommen":{
+      "verbreitungsgebiet": ["Nordhalbkugel", "Asien", "Amerika"],
+      "umgebung": ["meist unter Birken und Fichten", "bevorzugt saure Böden"]
+    },
+
+    "saison": "Juli bis Oktober",
+
+    "verwechslungsgefahr": ["Perlpilz", "Pantherpilz"]
+  },
+
+
+  {
+    "bezeichnung":{
+      "name": "Echter Pfifferling",
+      "weitere_namen": ["Eierschwamm","Eierschwammerl"],
+      "lateinischer_name": "Cantharellus cibarius"
+    },
+
+    "pilzfamilie": "Pfifferlingsverwandte",
+    
+    "aussehen":{
+      "hut": "dottergelb bis goldgelb",
+      "stiel": "gelblich",
+      "schwamm_lamellen": "Leisten, die am Stiel herablaufen"
+    },
+
+    "verwendung": "Speisepilz",
+
+    "verzehr":{
+      "essbar": "in geringen Mengen essbar aufgrund von Schwermetallen",
+      "geschmack": ["aromatischer Geschmack"],
+      "zubereitung": ["Rahmsaucen", "Reisegerichte", "Geschnetzeltem", "Rührei", "Omelett"]
+    },
+
+    "vorkommen":{
+      "verbreitungsgebiet": ["weltweit"],
+      "umgebung": ["an wenig begrünten Flächen", "in Laub- und Nadelwäldern", "nährstoffarme und saure Böden"]
+    },
+
+    "saison": "Juni bis Oktober",
+
+    "verwechslungsgefahr": [""]
+  },
+
+
+  {
+    "bezeichnung":{
+      "name": "Stinkmorchel",
+      "weitere_namen": [""],
+      "lateinischer_name": "Phallus impudicus"
+    },
+
+    "pilzfamilie": "Stinkmorchelverwandte",
+    
+    "aussehen":{
+      "hut": ["schlank", "zylindrisch"],
+      "stiel": ["weiß", "styroporartig"],
+      "schwamm_lamellen": "weder Schwamm noch Lamellen"
+    },
+
+    "verwendung": "Hexeneier essbar",
+
+    "verzehr":{
+      "essbar": ["Hexeneier essbar", "ausgewachsen ungenießbar"],
+      "geschmack": ["mild", "leicht erdig"],
+      "zubereitung": ["in Scheiben schneiden und in Öl anbraten"]
+    },
+
+    "vorkommen":{
+      "verbreitungsgebiet": ["", " "],
+      "umgebung": ["nahezu alle Waldtypen"]
+    },
+
+    "saison": "Juni bis Oktober",
+
+    "verwechslungsgefahr": [""]
   }
 ]
