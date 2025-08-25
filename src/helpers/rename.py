@@ -1,3 +1,13 @@
+"""
+====================================================
+Programmname :  Rename Images
+Datum        :  17.08.2025
+Version      :  1.0
+Beschreibung :  Benennt alle Bilder im gewählten Pfad um. 
+
+====================================================
+"""
+
 import os
 from pathlib import Path
 import shutil

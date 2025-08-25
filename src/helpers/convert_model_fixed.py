@@ -1,3 +1,12 @@
+"""
+====================================================
+Programmname : ModelConverter
+Datum        : 17.08.2025
+Version      : 1.0
+Beschreibung : Konvertiert ein Keras-Modell in ein TensorFlow SavedModel-Format.
+
+====================================================
+"""
 import tensorflow as tf
 import os
 

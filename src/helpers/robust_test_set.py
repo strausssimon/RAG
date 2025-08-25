@@ -1,3 +1,13 @@
+"""
+====================================================
+Programmname :  RobustTestSet
+Datum        :  17.08.2025
+Version      :  1.0
+Beschreibung :  Überprüft und verschiebt Testbilder aus dem Quellverzeichnis in das Zielverzeichnis.
+
+====================================================
+"""
+
 import os
 import shutil
 import random

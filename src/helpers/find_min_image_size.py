@@ -1,3 +1,12 @@
+"""
+====================================================
+Programmname :  Find Minimum Image Size
+Datum        :  17.08.2025
+Version      :  1.0
+Beschreibung :  Findet die kleinste Bildgröße in allen Unterordnern
+
+====================================================
+"""
 import cv2
 import numpy as np
 from pathlib import Path

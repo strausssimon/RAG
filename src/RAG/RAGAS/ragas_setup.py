@@ -1,7 +1,12 @@
 """
-Installation und Setup für RAGAS Evaluation
+====================================================
+Programmname : RAGAS Setup
+Datum        : 17.08.2025
+Version      : 1.0
+Beschreibung : Installation und Setup für RAGAS Evaluation
+ 
+====================================================
 """
-
 import subprocess
 import sys
 import os

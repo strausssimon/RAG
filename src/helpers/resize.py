@@ -1,3 +1,13 @@
+"""
+====================================================
+Programmname :  ResizeImages
+Datum        :  17.08.2025
+Version      :  1.0
+Beschreibung :  Ändert die Größe von Bildern in einem Verzeichnis.
+
+====================================================
+"""
+
 import cv2
 import numpy as np
 from pathlib import Path

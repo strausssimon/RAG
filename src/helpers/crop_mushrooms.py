@@ -1,3 +1,12 @@
+"""
+====================================================
+Programmname : MushroomCropper
+Datum        : 17.08.2025
+Version      : 1.0
+Beschreibung : Ein Tool zum Zuschneiden von Pilzbildern
+
+====================================================
+"""
 import cv2
 import numpy as np
 from pathlib import Path

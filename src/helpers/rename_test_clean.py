@@ -1,3 +1,12 @@
+"""
+====================================================
+Programmname :  Rename Test Images
+Datum        :  17.08.2025
+Version      :  1.0
+Beschreibung :  Benennt alle Bilder im gewählten Ordner um
+
+====================================================
+"""
 import re
 from pathlib import Path
 

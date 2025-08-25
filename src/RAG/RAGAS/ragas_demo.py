@@ -1,6 +1,11 @@
 """
-Demonstration und Anleitung zur Nutzung der RAGAS Evaluation.
-Dieses Skript zeigt die wichtigsten Evaluationsmetriken und den Ablauf der Auswertung.
+====================================================
+Programmname : RAGAS Evaluation
+Datum        : 17.08.2025
+Version      : 1.0
+Beschreibung : Demonstration und Anleitung zur Nutzung der RAGAS Evaluation.
+               Dieses Skript zeigt die wichtigsten Evaluationsmetriken und den Ablauf der Auswertung.
+====================================================
 """
 
 def show_demo():
