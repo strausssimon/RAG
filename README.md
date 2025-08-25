@@ -126,24 +126,24 @@ smalllanguagemodels/
 ## Installation
 
 1. **Repository klonen:**
-   ```sh
-   git clone https://github.com/strausssimon/SmallLanguageModels.git
-   cd SmallLanguageModels
-   ```
+git clone https://github.com/strausssimon/SmallLanguageModels.git
+cd SmallLanguageModels
+
+2. **Git LFS initialisieren und Modelle herunterladen**
+git lfs install          # nur einmal nötig
+git lfs pull             # lädt alle großen Dateien herunter
+
 
 2. **Python-Umgebung einrichten (empfohlen):**
-   ```sh
-   python -m venv venv
-   source venv/bin/activate  # Windows: venv\Scripts\activate
-   ```
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
 
 3. **Abhängigkeiten installieren:**
-   ```sh
-   pip install -r requirements.txt
-   ```
+pip install -r requirements.txt
 
 4. **Umgebungsvariablen anpassen:**  
-   Trage sensible Informationen (API-Keys, Pfade etc.) in die `.env`-Datei ein (nicht mit Git tracken!).
+Trage sensible Informationen (API-Keys, Pfade etc.) in die `.env`-Datei ein (nicht mit Git tracken!).
 
 ---
 
@@ -156,7 +156,7 @@ smalllanguagemodels/
   Scraper-Skripte im `src/webscraper/`-Verzeichnis.
 
 - **Evaluation:**  
-  Nutze die Skripte in `src/rag/evaluation.py` oder die bereitgestellten Notebooks für das Benchmarking.
+  Das Skript in `ragas_evaluation.py` ist für das Benchmarking.
 
 - **Interaktive Wissensabfrage:**  
   Über das SLM können, basierend auf Klassifikationsergebnissen, Erklärungen und Zusatzinformationen zu Pilzarten abgerufen werden.
@@ -168,19 +168,6 @@ smalllanguagemodels/
 ```sh
 python src/rag/rag.py --image data/beispiel_pilz.jpg
 ```
-
----
-
-## Weiterführende Hinweise
-
-- **Tests:**  
-  Alle Testskripte befinden sich im Ordner `tests/` und können via `pytest` ausgeführt werden.
-
-- **Eigene Modelle:**  
-  Zum Austausch des CNN-Modells einfach die entsprechende `.h5`-Datei im `models/`-Verzeichnis ersetzen.
-
-- **Datenquellen:**  
-  Verwendete Bilder und externe Datenquellen sind im Ordner `data/` dokumentiert.
 
 ---
 
