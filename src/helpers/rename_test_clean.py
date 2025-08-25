@@ -22,13 +22,10 @@ def extract_mushroom_info(filename):
     # Bekannte Pilzklassen (lowercase für Vergleich)
     known_mushrooms = [
         'amanita_muscaria',
-        'amanita_pantherina', 
-        'amanita_phalloides',
         'armillaria_mellea',
         'boletus_edulis',
         'cantharellus_cibarius',
-        'imleria_badia',
-        'tylopilus_felleus'
+        'phallus_impudicus'
     ]
     
     # Versuche bekannte Pilznamen zu finden
@@ -60,7 +57,7 @@ def rename_test_images():
     pilzname_nummer.extension (alles lowercase)
     Entfernt Duplikat-Suffixes wie _dup1, _copy1, etc.
     """
-    test_path = Path("Webscraper/data/test_mushrooms")
+    test_path = Path("data/test_mushrooms")
     
     if not test_path.exists():
         print(f"Fehler: Ordner {test_path} existiert nicht!")
@@ -94,7 +91,7 @@ def rename_test_images():
         if number is None:
             # Falls keine Nummer erkennbar, verwende laufende Nummer
             number = str(renamed_count + 1)
-            print(f"⚠️  Keine Nummer erkennbar in '{old_name}', verwende: {number}")
+            print(f"Keine Nummer erkennbar in '{old_name}', verwende: {number}")
         
         # Neuen Namen erstellen: pilzname_nummer.extension (alles lowercase)
         new_name = f"{mushroom_name}_{number}{file_extension}"
@@ -108,7 +105,7 @@ def rename_test_images():
         
         # Prüfen ob Zieldatei bereits existiert
         if new_path.exists():
-            print(f"⚠️  Zieldatei '{new_name}' existiert bereits, überspringe '{old_name}'")
+            print(f"Zieldatei '{new_name}' existiert bereits, überspringe '{old_name}'")
             continue
         
         try:
@@ -119,7 +116,7 @@ def rename_test_images():
             
         except Exception as e:
             error_msg = f"Fehler beim Umbenennen von '{old_name}': {e}"
-            print(f"❌ {error_msg}")
+            print(f"ERROR: {error_msg}")
             errors.append(error_msg)
     
     print("\n" + "=" * 60)
@@ -138,7 +135,7 @@ def preview_renaming():
     """
     Zeigt eine Vorschau der geplanten Umbenennungen an, ohne sie durchzuführen.
     """
-    test_path = Path("Webscraper/data/test_mushrooms")
+    test_path = Path("data/test_mushrooms")
     
     if not test_path.exists():
         print(f"Fehler: Ordner {test_path} existiert nicht!")

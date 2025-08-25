@@ -1,8 +1,6 @@
 """
 ====================================================
 Programmname :  ResizeImages
-Datum        :  17.08.2025
-Version      :  1.0
 Beschreibung :  Ändert die Größe von Bildern in einem Verzeichnis.
 
 ====================================================
@@ -72,13 +70,13 @@ def resize_images_in_directory(source_path, target_path, target_size=(128, 128))
             relative_path = img_path.relative_to(source_path)
             target_img_path = target_path / relative_path
             
-            # ⭐ WICHTIG: Zielverzeichnis für das Bild erstellen (alle Unterordner werden automatisch angelegt!)
+            # WICHTIG: Zielverzeichnis für das Bild erstellen (alle Unterordner werden automatisch angelegt!)
             target_img_path.parent.mkdir(parents=True, exist_ok=True)
-            print(f"📁 Erstelle Verzeichnis: {target_img_path.parent}")  # Debug-Info
+            print(f"Erstelle Verzeichnis: {target_img_path.parent}")  # Debug-Info
             
             # Vorhandene Dateien werden überschrieben
             if target_img_path.exists():
-                print(f"🔄 Überschreibe vorhandene Datei: {target_img_path.name}")
+                print(f"Überschreibe vorhandene Datei: {target_img_path.name}")
                 # Datei wird überschrieben - kein Skip
             
             # Bild resizen
@@ -99,11 +97,11 @@ def resize_images_in_directory(source_path, target_path, target_size=(128, 128))
     
     # Abschlussbericht
     print(f"\n=== RESIZE ABGESCHLOSSEN ===")
-    print(f"✅ Erfolgreich resized: {successful_resizes}")
-    print(f"⏭️ Übersprungen (bereits existiert): {skipped_files}")
-    print(f"❌ Fehlgeschlagen: {failed_resizes}")
-    print(f"📊 Gesamt verarbeitet: {len(all_images)}")
-    print(f"📁 Gespeichert in: {target_path}")
+    print(f"Erfolgreich resized: {successful_resizes}")
+    print(f"Übersprungen (bereits existiert): {skipped_files}")
+    print(f"Fehlgeschlagen: {failed_resizes}")
+    print(f"Gesamt verarbeitet: {len(all_images)}")
+    print(f"Gespeichert in: {target_path}")
 
 def verify_resize(check_path, expected_size=(128, 128)):
     """
@@ -142,9 +140,9 @@ def verify_resize(check_path, expected_size=(128, 128)):
             unreadable += 1
             print(f"Fehler bei {img_path.name}: {str(e)}")
     
-    print(f"✅ Korrekte Größe ({expected_size[0]}x{expected_size[1]}): {correct_size}")
-    print(f"❌ Falsche Größe: {wrong_size}")
-    print(f"📷 Nicht lesbar: {unreadable}")
+    print(f"Korrekte Größe ({expected_size[0]}x{expected_size[1]}): {correct_size}")
+    print(f"Falsche Größe: {wrong_size}")
+    print(f"Nicht lesbar: {unreadable}")
 
 def count_images_by_class(directory_path):
     """
@@ -167,15 +165,15 @@ def count_images_by_class(directory_path):
                 image_files.extend(list(class_dir.glob(f"*{ext}")))
                 image_files.extend(list(class_dir.glob(f"*{ext.upper()}")))
             
-            print(f"📁 {class_dir.name}: {len(image_files)} Bilder")
+            print(f"{class_dir.name}: {len(image_files)} Bilder")
 
 if __name__ == "__main__":
     # Pfade definieren (korrekte relative Pfade von src/helpers aus)
-    source_directory = "Webscraper/data/images_mushrooms"
-    target_directory = "Webscraper/data/resized_mushrooms"
+    source_directory = "data/inaturalist_mushrooms"
+    target_directory = "data/resized_mushrooms/inaturalist"
     resize_target = (200, 200)
     
-    print("🍄 MUSHROOM IMAGE RESIZER 🍄")
+    print("MUSHROOM IMAGE RESIZER")
     print("=" * 50)
     
     # Originalbilder zählen
@@ -193,7 +191,7 @@ if __name__ == "__main__":
     count_images_by_class(target_directory)
     
     print("\n" + "="*50)
-    print("✅ Resize-Vorgang abgeschlossen!")
-    print(f"📂 Originale bleiben unverändert in: {source_directory}")
-    print(f"📂 Resized Bilder (200x200) gespeichert in: {target_directory}")
-    print("🔄 Dateistruktur wurde beibehalten")
+    print("Resize-Vorgang abgeschlossen!")
+    print(f"Originale bleiben unverändert in: {source_directory}")
+    print(f"Resized Bilder (200x200) gespeichert in: {target_directory}")
+    print("Dateistruktur wurde beibehalten")

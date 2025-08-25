@@ -1,8 +1,6 @@
 """
 ====================================================
-Programmname : RAG
-Datum        : 17.08.2025
-Version      : 1.0
+Programmname : RAG mit CNN
 Beschreibung : RAG (Retrieval-Augmented Generation) zur Klassifikation von Pilzen und Informationsbereitstellung
 
 ====================================================

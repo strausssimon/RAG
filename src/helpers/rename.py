@@ -1,8 +1,6 @@
 """
 ====================================================
 Programmname :  Rename Images
-Datum        :  17.08.2025
-Version      :  1.0
 Beschreibung :  Benennt alle Bilder im gewählten Pfad um. 
 
 ====================================================
@@ -23,7 +21,7 @@ def rename_mushroom_images():
     """
     
     # Basis-Pfad zu den Bildern
-    base_path = Path("Webscraper/data/images_mushrooms")
+    base_path = Path("data/images_mushrooms")
     
     if not base_path.exists():
         print(f"Fehler: Ordner {base_path} existiert nicht!")
@@ -87,8 +85,8 @@ def preview_renaming():
     """
     Zeigt eine Vorschau der geplanten Umbenennungen an, ohne sie durchzuführen.
     """
-    base_path = Path("Webscraper/data/images_mushrooms")
-    
+    base_path = Path("data/resized_mushrooms/inaturalist")
+
     if not base_path.exists():
         print(f"Fehler: Ordner {base_path} existiert nicht!")
         return

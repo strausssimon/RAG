@@ -1,8 +1,6 @@
 """
 ====================================================
 Programmname :  RobustTestSet
-Datum        :  17.08.2025
-Version      :  1.0
 Beschreibung :  Überprüft und verschiebt Testbilder aus dem Quellverzeichnis in das Zielverzeichnis.
 
 ====================================================
@@ -14,8 +12,8 @@ import random
 from pathlib import Path
 from tqdm import tqdm
 
-def check_and_move_test_images(source_dir="Webscraper/data/resized_mushrooms", 
-                               target_dir="Webscraper/data/test_mushrooms", 
+def check_and_move_test_images(source_dir="data/resized_mushrooms", 
+                               target_dir="data/test_mushrooms", 
                                test_percentage=0.2):
     """
     Robuste Version: Überprüft zuerst vorhandene Dateien, dann verschiebt klassenweise

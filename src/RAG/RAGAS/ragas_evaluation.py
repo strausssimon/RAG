@@ -1,8 +1,6 @@
 """
 ====================================================
 Programmname : RAGAS Evaluation
-Datum        : 17.08.2025
-Version      : 1.0
 Beschreibung : RAGAS Evaluation Script für RAG.py mit Ollama
                Testet die Qualität des RAG-Systems mit lokalen Modellen
 ====================================================
@@ -134,7 +132,7 @@ class RAGASEvaluator:
             }
         ]
         
-        print(f"✅ {len(self.test_cases)} Testfälle erstellt")
+        print(f"{len(self.test_cases)} Testfälle erstellt")
         
         # Zeige Beispiel-Testfall
         print("\nBeispiel-Testfall:")
