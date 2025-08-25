@@ -1,8 +1,6 @@
 """
 ====================================================
 Programmname : Model Test
-Datum        : 17.08.2025
-Version      : 1.0
 Beschreibung : Test-Skript für das CNN-Modell zur Pilzklassifikation inkl. Lime.
 
 ====================================================

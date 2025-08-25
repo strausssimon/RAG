@@ -1,8 +1,6 @@
 """
 ====================================================
 Programmname :  Find Minimum Image Size
-Datum        :  17.08.2025
-Version      :  1.0
 Beschreibung :  Findet die kleinste Bildgröße in allen Unterordnern
 
 ====================================================
@@ -13,7 +11,7 @@ from pathlib import Path
 import os
 from PIL import Image
 
-def find_minimum_image_size(root_dir="Webscraper/data/images_mushrooms"):
+def find_minimum_image_size(root_dir="data/randomized_mushrooms/inaturalist"): #data\randomized_mushrooms\inaturalist
     """Findet die kleinste Bildgröße in allen Unterordnern"""
     root_path = Path(root_dir)
     

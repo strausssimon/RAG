@@ -1,8 +1,6 @@
 """
 ====================================================
 Programmname : CountFilesInPath
-Datum        : 17.08.2025
-Version      : 1.0
 Beschreibung : Skript zum Zählen von Dateien in Unterordnern. Zeigt die Anzahl der Dateien in data\randomized_mushrooms\inaturalist an
 
 ====================================================
@@ -26,7 +24,7 @@ def count_files_in_directory(directory_path):
     results = {}
     
     if not os.path.exists(directory_path):
-        print(f"❌ Verzeichnis nicht gefunden: {directory_path}")
+        print(f"Verzeichnis nicht gefunden: {directory_path}")
         return results
     
     # Alle Unterordner finden
@@ -61,42 +59,42 @@ def main():
     # Bestimme den Basispfad (3 Ebenen nach oben von src/helpers/)
     script_dir = os.path.dirname(os.path.abspath(__file__))
     base_dir = os.path.join(script_dir, "..", "..")
-    target_dir = os.path.join(base_dir, "data", "all_mushrooms")#, "inaturalist")
+    target_dir = os.path.join(base_dir, "data", "inaturalist_mushrooms")
     target_dir = os.path.abspath(target_dir)
     
-    print("🔍 NEW FILE - iNaturalist Mushrooms Dataset Counter")
+    print("NEW FILE - iNaturalist Mushrooms Dataset Counter")
     print("=" * 60)
-    print(f"🎯 ZIELVERZEICHNIS: {target_dir}")
-    print("📷 Zählt Bilddateien: .jpg, .jpeg, .png, .bmp, .gif, .tiff, .webp")
-    print("📄 Zählt alle Dateien: inklusive txt, csv, json, etc.")
+    print(f"ZIELVERZEICHNIS: {target_dir}")
+    print("Zählt Bilddateien: .jpg, .jpeg, .png, .bmp, .gif, .tiff, .webp")
+    print("Zählt alle Dateien: inklusive txt, csv, json, etc.")
     print("=" * 60)
     print()
     
     # Prüfe ob das Verzeichnis existiert
     if not os.path.exists(target_dir):
-        print(f"❌ Verzeichnis nicht gefunden: {target_dir}")
+        print(f"Verzeichnis nicht gefunden: {target_dir}")
         print("Verfügbare Verzeichnisse in data/:")
         
         data_dir = os.path.join(base_dir, "data")
         if os.path.exists(data_dir):
             subdirs = [d for d in os.listdir(data_dir) if os.path.isdir(os.path.join(data_dir, d))]
             for subdir in sorted(subdirs):
-                print(f"  📁 {subdir}")
+                print(f"{subdir}")
         else:
-            print("  ❌ data Verzeichnis nicht gefunden")
+            print("data Verzeichnis nicht gefunden")
         return
     
     # Zähle Dateien
     file_counts = count_files_in_directory(target_dir)
     
     if not file_counts:
-        print("❌ Keine Dateien gefunden oder Fehler beim Zugriff")
+        print("Keine Dateien gefunden oder Fehler beim Zugriff")
         return
     
     # Sortiere nach Anzahl der Bilddateien (absteigend)
     sorted_counts = sorted(file_counts.items(), key=lambda x: x[1][0], reverse=True)
     
-    print("📊 Ergebnisse (sortiert nach Anzahl der Bilddateien):")
+    print("Ergebnisse (sortiert nach Anzahl der Bilddateien):")
     print("-" * 80)
     
     total_images = 0
@@ -108,7 +106,7 @@ def main():
         print(f"📁 {folder_name:<30} | {image_count:>6} Bilddateien | {total_count:>6} Dateien gesamt")
     
     print("-" * 80)
-    print(f"📋 Gesamt: {total_images:>6} Bilddateien | {total_files:>6} Dateien gesamt")
+    print(f"Gesamt: {total_images:>6} Bilddateien | {total_files:>6} Dateien gesamt")
     
     if len(file_counts) > 1:
         # Berechne Statistiken nur wenn mehr als ein Ordner
@@ -127,7 +125,7 @@ def main():
         max_folder_images = max(file_counts, key=lambda x: file_counts[x][0])
         min_folder_images = min(file_counts, key=lambda x: file_counts[x][0])
         
-        print("📈 Statistiken:")
+        print("Statistiken:")
         print(f"   Durchschnitt pro Ordner: {avg_images:.1f} Bilddateien | {avg_files:.1f} Dateien gesamt")
         print(f"   Maximum: {max_images} Bilddateien | {max_files} Dateien gesamt ({max_folder_images})")
         print(f"   Minimum: {min_images} Bilddateien | {min_files} Dateien gesamt ({min_folder_images})")

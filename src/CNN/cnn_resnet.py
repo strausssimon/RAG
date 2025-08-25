@@ -1,8 +1,6 @@
 """
 ====================================================
 Programmname : CNN: ResNet
-Datum        : 24.08.2025
-Version      : 1.0
 Beschreibung : CNN-Modell basierend auf der ResNet-Architektur für die Bildklassifikation.
 
 ====================================================

@@ -1,8 +1,6 @@
 """
 ====================================================
 Programmname : GUI: Pilz-Experte 
-Datum        : 17.08.2025 
-Version      : 1.0
 Beschreibung : GUI-Anwendung zur Interaktion mit RAG für die Pilzidentifikation.
 
 ====================================================
