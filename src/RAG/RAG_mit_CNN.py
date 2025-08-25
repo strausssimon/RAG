@@ -16,8 +16,9 @@ import cv2
 MODELL_NAME = "llama2"
 
 # CNN-Modell Pfad vorbereiten
-original_model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models", "mushroom_resnet50_transfer_80_20.keras"))
-modell = tf.keras.models.load_model(original_model_path)
+#original_model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models", "mushroom_resnet50_transfer_80_20.keras"))
+modell = tf.keras.models.load_model("models/mushroom_resnet50_transfer_80_20.keras")
+#modell = tf.keras.models.load_model(original_model_path)
 
 PILZ_DATEI = os.path.join(os.path.dirname(__file__), "Informationen_RAG.json")
 
