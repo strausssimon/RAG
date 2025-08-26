@@ -128,6 +128,7 @@ class MushroomCNN:
         # Pfad zu den randomisierten Bilddaten
         # data_path = Path("data/randomized_mushrooms/inaturalist")
         data_path = Path("data/resized_mushrooms/inaturalist")
+        # data_path = Path("data/recolored_mushrooms/inaturalist") 
 
         if not data_path.exists():
             print(f"Fehler: Randomisierte Daten nicht gefunden in {data_path}")

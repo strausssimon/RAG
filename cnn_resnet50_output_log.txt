@@ -52,8 +52,8 @@ Anzahl Klassen: 5
      Armillaria_mellea: 300 Bilder
 
 3. Lade Bilddaten...
-Loading training images:   0%|                                                                                                               | 0/6000 [00:00<?, ?it/s]Loading training images:   1%|#3                                                                                                   | 78/6000 [00:00<00:07, 773.55it/s]Loading training images:   3%|###                                                                                                 | 183/6000 [00:00<00:06, 928.98it/s]Loading training images:   5%|####8                                                                                               | 289/6000 [00:00<00:05, 981.42it/s]Loading training images:   7%|######7                                                                                            | 409/6000 [00:00<00:05, 1012.59it/s]Loading training images:   9%|########5                                                                                           | 511/6000 [00:00<00:05, 997.41it/s]Loading training images:  10%|##########1                                                                                         | 611/6000 [00:00<00:05, 994.50it/s]Loading training images:  12%|###########8                                                                                        | 711/6000 [00:00<00:05, 989.46it/s]Loading training images:  14%|#############5                                                                                      | 810/6000 [00:00<00:05, 960.65it/s]Loading training images:  15%|###############1                                                                                    | 907/6000 [00:00<00:05, 955.68it/s]Loading training images:  17%|################5                                                                                  | 1003/6000 [00:01<00:05, 924.84it/s]Loading training images:  18%|##################                                                                                 | 1096/6000 [00:01<00:05, 902.85it/s]Loading training images:  20%|###################7                                                                               | 1197/6000 [00:01<00:05, 906.20it/s]Loading training images:  22%|#####################3                                                                             | 1293/6000 [00:01<00:05, 920.89it/s]Loading training images:  23%|######################9                                                                            | 1388/6000 [00:01<00:04, 928.84it/s]Loading training images:  25%|########################4                                                                          | 1482/6000 [00:01<00:04, 931.92it/s]Loading training images:  26%|##########################                                                                         | 1579/6000 [00:01<00:04, 940.88it/s]Loading training images:  28%|###########################6                                                                       | 1676/6000 [00:01<00:04, 948.38it/s]Loading training images:  30%|#############################2                                                                     | 1772/6000 [00:01<00:04, 951.48it/s]Loading training images:  31%|##############################8                                                                    | 1868/6000 [00:01<00:04, 933.48it/s]Loading training images:  33%|################################3                                                                  | 1962/6000 [00:02<00:04, 925.02it/s]Loading training images:  34%|#################################9                                                                 | 2058/6000 [00:02<00:04, 922.00it/s]Loading training images:  36%|###################################5                                                               | 2153/6000 [00:02<00:04, 929.90it/s]Loading training images:  37%|#####################################1                                                             | 2249/6000 [00:02<00:03, 938.76it/s]Loading training images:  39%|######################################6                                                            | 2343/6000 [00:02<00:03, 938.77it/s]Loading training images:  41%|########################################2                                                          | 2437/6000 [00:02<00:03, 938.52it/s]Loading training images:  42%|#########################################7                                                         | 2532/6000 [00:02<00:03, 939.20it/s]Loading training images:  44%|###########################################3                                                       | 2626/6000 [00:02<00:03, 933.77it/s]Loading training images:  45%|############################################8                                                      | 2720/6000 [00:02<00:03, 921.77it/s]Loading training images:  47%|##############################################4                                                    | 2813/6000 [00:02<00:03, 918.07it/s]Loading training images:  48%|###############################################9                                                   | 2908/6000 [00:03<00:03, 927.35it/s]Loading training images:  50%|#################################################5                                                 | 3002/6000 [00:03<00:03, 930.51it/s]Loading training images:  52%|###################################################                                                | 3096/6000 [00:03<00:03, 923.66it/s]Loading training images:  53%|####################################################6                                              | 3189/6000 [00:03<00:03, 917.97it/s]Loading training images:  55%|######################################################1                                            | 3281/6000 [00:03<00:02, 918.23it/s]Loading training images:  56%|#######################################################7                                           | 3378/6000 [00:03<00:02, 933.45it/s]Loading training images:  58%|#########################################################2                                         | 3472/6000 [00:03<00:02, 933.16it/s]Loading training images:  60%|###########################################################                                        | 3578/6000 [00:03<00:02, 929.21it/s]Loading training images:  61%|############################################################6                                      | 3673/6000 [00:03<00:02, 934.96it/s]Loading training images:  63%|##############################################################1                                    | 3767/6000 [00:04<00:02, 933.09it/s]Loading training images:  64%|###############################################################7                                   | 3861/6000 [00:04<00:02, 931.52it/s]Loading training images:  66%|#################################################################2                                 | 3955/6000 [00:04<00:02, 894.05it/s]Loading training images:  67%|##################################################################7                                | 4045/6000 [00:04<00:02, 895.14it/s]Loading training images:  69%|####################################################################3                              | 4140/6000 [00:04<00:02, 909.27it/s]Loading training images:  71%|#####################################################################8                             | 4234/6000 [00:04<00:01, 915.23it/s]Loading training images:  72%|#######################################################################4                           | 4328/6000 [00:04<00:01, 922.37it/s]Loading training images:  74%|########################################################################9                          | 4421/6000 [00:04<00:01, 910.94it/s]Loading training images:  75%|##########################################################################4                        | 4513/6000 [00:04<00:01, 907.66it/s]Loading training images:  77%|###########################################################################9                       | 4604/6000 [00:04<00:01, 907.58it/s]Loading training images:  78%|#############################################################################5                     | 4698/6000 [00:05<00:01, 914.54it/s]Loading training images:  80%|###############################################################################                    | 4790/6000 [00:05<00:01, 910.64it/s]Loading training images:  81%|################################################################################5                  | 4882/6000 [00:05<00:01, 905.10it/s]Loading training images:  83%|##################################################################################                 | 4973/6000 [00:05<00:01, 903.91it/s]Loading training images:  84%|###################################################################################5               | 5064/6000 [00:05<00:01, 901.93it/s]Loading training images:  86%|#####################################################################################              | 5155/6000 [00:05<00:00, 904.16it/s]Loading training images:  87%|######################################################################################5            | 5246/6000 [00:05<00:00, 902.93it/s]Loading training images:  89%|########################################################################################2          | 5346/6000 [00:05<00:00, 892.67it/s]Loading training images:  91%|#########################################################################################6         | 5436/6000 [00:05<00:00, 891.63it/s]Loading training images:  92%|###########################################################################################2       | 5530/6000 [00:05<00:00, 904.82it/s]Loading training images:  94%|############################################################################################7      | 5621/6000 [00:06<00:00, 898.18it/s]Loading training images:  95%|##############################################################################################2    | 5711/6000 [00:06<00:00, 893.10it/s]Loading training images:  97%|###############################################################################################7   | 5801/6000 [00:06<00:00, 876.52it/s]Loading training images:  98%|#################################################################################################1 | 5890/6000 [00:06<00:00, 878.06it/s]Loading training images: 100%|##################################################################################################6| 5979/6000 [00:06<00:00, 880.70it/s]Loading training images: 100%|###################################################################################################| 6000/6000 [00:06<00:00, 921.28it/s]
-Loading test images:   0%|                                                                                                                   | 0/1500 [00:00<?, ?it/s]Loading test images:   6%|######3                                                                                                  | 91/1500 [00:00<00:01, 907.83it/s]Loading test images:  12%|############6                                                                                           | 182/1500 [00:00<00:01, 852.79it/s]Loading test images:  18%|##################5                                                                                     | 268/1500 [00:00<00:01, 823.16it/s]Loading test images:  23%|########################4                                                                               | 352/1500 [00:00<00:01, 825.72it/s]Loading test images:  29%|##############################1                                                                         | 435/1500 [00:00<00:01, 824.51it/s]Loading test images:  35%|####################################                                                                    | 520/1500 [00:00<00:01, 829.58it/s]Loading test images:  41%|##########################################1                                                             | 608/1500 [00:00<00:01, 839.84it/s]Loading test images:  47%|#################################################                                                       | 707/1500 [00:00<00:00, 881.12it/s]Loading test images:  54%|#######################################################9                                                | 807/1500 [00:00<00:00, 914.71it/s]Loading test images:  61%|##############################################################9                                         | 908/1500 [00:01<00:00, 942.56it/s]Loading test images:  67%|#####################################################################2                                 | 1009/1500 [00:01<00:00, 960.28it/s]Loading test images:  74%|############################################################################1                          | 1109/1500 [00:01<00:00, 969.36it/s]Loading test images:  81%|###################################################################################                    | 1210/1500 [00:01<00:00, 981.04it/s]Loading test images:  87%|#########################################################################################8             | 1309/1500 [00:01<00:00, 981.92it/s]Loading test images:  94%|################################################################################################8      | 1411/1500 [00:01<00:00, 992.86it/s]Loading test images: 100%|#######################################################################################################| 1500/1500 [00:01<00:00, 924.25it/s]
+Loading training images:   0%|                                                                                                               | 0/6000 [00:00<?, ?it/s]Loading training images:   2%|#8                                                                                                 | 113/6000 [00:00<00:05, 1124.67it/s]Loading training images:   4%|###7                                                                                               | 227/6000 [00:00<00:05, 1129.26it/s]Loading training images:   6%|#####6                                                                                             | 340/6000 [00:00<00:05, 1113.03it/s]Loading training images:   8%|#######4                                                                                           | 452/6000 [00:00<00:04, 1115.12it/s]Loading training images:   9%|#########3                                                                                         | 564/6000 [00:00<00:04, 1087.23it/s]Loading training images:  11%|###########1                                                                                       | 675/6000 [00:00<00:04, 1093.62it/s]Loading training images:  13%|############9                                                                                      | 787/6000 [00:00<00:04, 1099.55it/s]Loading training images:  15%|##############8                                                                                    | 898/6000 [00:00<00:04, 1090.05it/s]Loading training images:  17%|################4                                                                                 | 1010/6000 [00:00<00:04, 1096.73it/s]Loading training images:  19%|##################2                                                                               | 1120/6000 [00:01<00:04, 1097.21it/s]Loading training images:  21%|####################1                                                                             | 1232/6000 [00:01<00:04, 1103.45it/s]Loading training images:  22%|#####################9                                                                            | 1343/6000 [00:01<00:04, 1096.23it/s]Loading training images:  24%|#######################7                                                                          | 1453/6000 [00:01<00:04, 1096.93it/s]Loading training images:  26%|#########################5                                                                        | 1563/6000 [00:01<00:04, 1074.55it/s]Loading training images:  28%|###########################2                                                                      | 1671/6000 [00:01<00:04, 1059.63it/s]Loading training images:  30%|#############################                                                                     | 1779/6000 [00:01<00:03, 1065.58it/s]Loading training images:  31%|##############################8                                                                   | 1889/6000 [00:01<00:03, 1073.02it/s]Loading training images:  33%|################################6                                                                 | 1997/6000 [00:01<00:03, 1074.81it/s]Loading training images:  35%|##################################3                                                               | 2105/6000 [00:01<00:03, 1043.07it/s]Loading training images:  37%|####################################                                                              | 2210/6000 [00:02<00:03, 1043.23it/s]Loading training images:  39%|#####################################8                                                            | 2316/6000 [00:02<00:03, 1048.04it/s]Loading training images:  40%|#######################################5                                                          | 2421/6000 [00:02<00:03, 1048.06it/s]Loading training images:  42%|#########################################2                                                        | 2526/6000 [00:02<00:03, 1045.08it/s]Loading training images:  44%|##########################################9                                                       | 2631/6000 [00:02<00:03, 1039.20it/s]Loading training images:  46%|############################################6                                                     | 2735/6000 [00:02<00:03, 1014.32it/s]Loading training images:  47%|##############################################4                                                   | 2842/6000 [00:02<00:03, 1028.44it/s]Loading training images:  49%|################################################1                                                 | 2945/6000 [00:02<00:02, 1024.58it/s]Loading training images:  51%|#################################################7                                                | 3048/6000 [00:02<00:02, 1020.85it/s]Loading training images:  53%|###################################################4                                              | 3151/6000 [00:02<00:02, 1002.16it/s]Loading training images:  54%|#####################################################6                                             | 3252/6000 [00:03<00:02, 985.00it/s]Loading training images:  56%|#######################################################2                                           | 3351/6000 [00:03<00:02, 986.35it/s]Loading training images:  57%|########################################################9                                          | 3450/6000 [00:03<00:02, 985.76it/s]Loading training images:  59%|##########################################################5                                        | 3549/6000 [00:03<00:02, 984.66it/s]Loading training images:  61%|############################################################1                                      | 3648/6000 [00:03<00:02, 977.68it/s]Loading training images:  62%|#############################################################8                                     | 3746/6000 [00:03<00:02, 948.50it/s]Loading training images:  64%|###############################################################4                                   | 3848/6000 [00:03<00:02, 969.12it/s]Loading training images:  66%|#################################################################1                                 | 3951/6000 [00:03<00:02, 985.47it/s]Loading training images:  68%|##################################################################8                                | 4053/6000 [00:03<00:01, 993.00it/s]Loading training images:  69%|####################################################################5                              | 4153/6000 [00:03<00:01, 987.79it/s]Loading training images:  71%|######################################################################1                            | 4254/6000 [00:04<00:01, 993.73it/s]Loading training images:  73%|#######################################################################8                           | 4354/6000 [00:04<00:01, 961.77it/s]Loading training images:  74%|#########################################################################4                         | 4451/6000 [00:04<00:01, 917.21it/s]Loading training images:  76%|##########################################################################9                        | 4544/6000 [00:04<00:01, 896.99it/s]Loading training images:  77%|############################################################################4                      | 4635/6000 [00:04<00:01, 872.77it/s]Loading training images:  79%|#############################################################################9                     | 4723/6000 [00:04<00:01, 851.67it/s]Loading training images:  80%|###############################################################################3                   | 4809/6000 [00:04<00:01, 838.51it/s]Loading training images:  82%|################################################################################7                  | 4893/6000 [00:04<00:01, 833.12it/s]Loading training images:  83%|##################################################################################1                | 4977/6000 [00:04<00:01, 824.03it/s]Loading training images:  84%|###################################################################################5               | 5062/6000 [00:05<00:01, 829.45it/s]Loading training images:  86%|#####################################################################################2             | 5164/6000 [00:05<00:00, 884.36it/s]Loading training images:  88%|######################################################################################8            | 5263/6000 [00:05<00:00, 915.27it/s]Loading training images:  89%|########################################################################################5          | 5365/6000 [00:05<00:00, 945.97it/s]Loading training images:  91%|##########################################################################################1        | 5464/6000 [00:05<00:00, 955.88it/s]Loading training images:  93%|###########################################################################################8       | 5565/6000 [00:05<00:00, 969.90it/s]Loading training images:  94%|#############################################################################################5     | 5667/6000 [00:05<00:00, 984.16it/s]Loading training images:  96%|###############################################################################################1   | 5766/6000 [00:05<00:00, 963.34it/s]Loading training images:  98%|################################################################################################7  | 5865/6000 [00:05<00:00, 971.13it/s]Loading training images:  99%|##################################################################################################4| 5966/6000 [00:05<00:00, 979.78it/s]Loading training images: 100%|###################################################################################################| 6000/6000 [00:06<00:00, 997.38it/s]
+Loading test images:   0%|                                                                                                                   | 0/1500 [00:00<?, ?it/s]Loading test images:   7%|#######                                                                                                | 102/1500 [00:00<00:01, 1010.52it/s]Loading test images:  14%|##############3                                                                                        | 209/1500 [00:00<00:01, 1044.70it/s]Loading test images:  21%|#####################6                                                                                 | 315/1500 [00:00<00:01, 1042.52it/s]Loading test images:  28%|############################8                                                                          | 420/1500 [00:00<00:01, 1029.12it/s]Loading test images:  35%|###################################9                                                                   | 523/1500 [00:00<00:00, 1022.46it/s]Loading test images:  42%|##########################################9                                                            | 626/1500 [00:00<00:00, 1010.24it/s]Loading test images:  49%|##################################################4                                                     | 728/1500 [00:00<00:00, 943.96it/s]Loading test images:  55%|#########################################################1                                              | 824/1500 [00:00<00:00, 924.26it/s]Loading test images:  61%|###############################################################5                                        | 917/1500 [00:00<00:00, 923.24it/s]Loading test images:  68%|#####################################################################6                                 | 1015/1500 [00:01<00:00, 936.04it/s]Loading test images:  75%|#############################################################################3                         | 1126/1500 [00:01<00:00, 986.01it/s]Loading test images:  82%|###################################################################################9                  | 1235/1500 [00:01<00:00, 1015.65it/s]Loading test images:  90%|###########################################################################################4          | 1345/1500 [00:01<00:00, 1040.55it/s]Loading test images:  97%|##################################################################################################9   | 1455/1500 [00:01<00:00, 1055.14it/s]Loading test images: 100%|######################################################################################################| 1500/1500 [00:01<00:00, 1005.48it/s]
 
 === FINALE STATISTIKEN ===
 Training shape: (6000, 200, 200, 3)
@@ -66,11 +66,63 @@ Test: 1500 Bilder
 
 Training for max 30 epochs...
 Epoch 1/30
+188/188 - 432s - 2s/step - accuracy: 0.2880 - loss: 1.5487 - val_accuracy: 0.2647 - val_loss: 4.7083 - learning_rate: 5.0000e-04
+Epoch 2/30
+188/188 - 431s - 2s/step - accuracy: 0.3817 - loss: 1.4206 - val_accuracy: 0.3093 - val_loss: 2.8774 - learning_rate: 5.0000e-04
+Epoch 3/30
+188/188 - 443s - 2s/step - accuracy: 0.4228 - loss: 1.3521 - val_accuracy: 0.2560 - val_loss: 4.0584 - learning_rate: 5.0000e-04
+Epoch 4/30
+188/188 - 456s - 2s/step - accuracy: 0.4457 - loss: 1.2960 - val_accuracy: 0.3113 - val_loss: 2.2651 - learning_rate: 5.0000e-04
+Epoch 5/30
+188/188 - 454s - 2s/step - accuracy: 0.4818 - loss: 1.2503 - val_accuracy: 0.3987 - val_loss: 1.3481 - learning_rate: 5.0000e-04
+Epoch 6/30
+188/188 - 438s - 2s/step - accuracy: 0.5008 - loss: 1.1975 - val_accuracy: 0.2407 - val_loss: 3.6951 - learning_rate: 5.0000e-04
+Epoch 7/30
+188/188 - 438s - 2s/step - accuracy: 0.5283 - loss: 1.1514 - val_accuracy: 0.3327 - val_loss: 2.1683 - learning_rate: 5.0000e-04
+Epoch 8/30
+188/188 - 436s - 2s/step - accuracy: 0.5517 - loss: 1.1074 - val_accuracy: 0.2453 - val_loss: 2.6313 - learning_rate: 5.0000e-04
+Epoch 9/30
+188/188 - 439s - 2s/step - accuracy: 0.5683 - loss: 1.0781 - val_accuracy: 0.4480 - val_loss: 1.4205 - learning_rate: 5.0000e-04
+Epoch 10/30
+188/188 - 436s - 2s/step - accuracy: 0.5775 - loss: 1.0608 - val_accuracy: 0.4440 - val_loss: 1.4456 - learning_rate: 5.0000e-04
+Epoch 11/30
+188/188 - 436s - 2s/step - accuracy: 0.6073 - loss: 0.9816 - val_accuracy: 0.4273 - val_loss: 1.7491 - learning_rate: 2.5000e-04
+Epoch 12/30
+188/188 - 404s - 2s/step - accuracy: 0.6233 - loss: 0.9482 - val_accuracy: 0.3927 - val_loss: 1.5977 - learning_rate: 2.5000e-04
+Epoch 13/30
+188/188 - 402s - 2s/step - accuracy: 0.6392 - loss: 0.9166 - val_accuracy: 0.4453 - val_loss: 1.5778 - learning_rate: 2.5000e-04
+Epoch 14/30
+188/188 - 402s - 2s/step - accuracy: 0.6388 - loss: 0.8978 - val_accuracy: 0.4873 - val_loss: 1.5175 - learning_rate: 2.5000e-04
+Epoch 15/30
+188/188 - 404s - 2s/step - accuracy: 0.6585 - loss: 0.8735 - val_accuracy: 0.4820 - val_loss: 1.7143 - learning_rate: 2.5000e-04
+Epoch 16/30
+188/188 - 403s - 2s/step - accuracy: 0.6795 - loss: 0.8165 - val_accuracy: 0.4300 - val_loss: 1.8427 - learning_rate: 1.2500e-04
+Epoch 17/30
+188/188 - 404s - 2s/step - accuracy: 0.6883 - loss: 0.7833 - val_accuracy: 0.4280 - val_loss: 2.0163 - learning_rate: 1.2500e-04
+Epoch 18/30
+188/188 - 404s - 2s/step - accuracy: 0.7002 - loss: 0.7698 - val_accuracy: 0.5247 - val_loss: 1.4278 - learning_rate: 1.2500e-04
+Epoch 19/30
+188/188 - 403s - 2s/step - accuracy: 0.7132 - loss: 0.7479 - val_accuracy: 0.4133 - val_loss: 1.8892 - learning_rate: 1.2500e-04
+Epoch 20/30
+188/188 - 403s - 2s/step - accuracy: 0.7132 - loss: 0.7370 - val_accuracy: 0.5213 - val_loss: 1.4311 - learning_rate: 1.2500e-04
+Epoch 21/30
+188/188 - 403s - 2s/step - accuracy: 0.7342 - loss: 0.6950 - val_accuracy: 0.5240 - val_loss: 1.4506 - learning_rate: 6.2500e-05
+Epoch 22/30
+188/188 - 413s - 2s/step - accuracy: 0.7422 - loss: 0.6738 - val_accuracy: 0.5413 - val_loss: 1.4589 - learning_rate: 6.2500e-05
+Epoch 23/30
+188/188 - 411s - 2s/step - accuracy: 0.7497 - loss: 0.6581 - val_accuracy: 0.5293 - val_loss: 1.6692 - learning_rate: 6.2500e-05
+Epoch 24/30
+188/188 - 429s - 2s/step - accuracy: 0.7492 - loss: 0.6466 - val_accuracy: 0.5227 - val_loss: 1.5450 - learning_rate: 6.2500e-05
+Epoch 25/30
+188/188 - 415s - 2s/step - accuracy: 0.7747 - loss: 0.6078 - val_accuracy: 0.5627 - val_loss: 1.3575 - learning_rate: 6.2500e-05
+Epoch 26/30
+188/188 - 408s - 2s/step - accuracy: 0.7767 - loss: 0.5859 - val_accuracy: 0.5853 - val_loss: 1.2903 - learning_rate: 3.1250e-05
+Epoch 27/30
 Traceback (most recent call last):
-  File "c:\Users\strau\OneDrive\Documents\Git\sml_main\SmallLanguageModels\src\CNN\cnn_resnet.py", line 473, in <module>
+  File "c:\Users\strau\OneDrive\Documents\Git\sml_main\SmallLanguageModels\src\CNN\cnn_resnet.py", line 472, in <module>
     history = cnn.train(epochs=30)
               ^^^^^^^^^^^^^^^^^^^^
-  File "c:\Users\strau\OneDrive\Documents\Git\sml_main\SmallLanguageModels\src\CNN\cnn_resnet.py", line 369, in train
+  File "c:\Users\strau\OneDrive\Documents\Git\sml_main\SmallLanguageModels\src\CNN\cnn_resnet.py", line 368, in train
     history = self.model.fit(
               ^^^^^^^^^^^^^^^
   File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\utils\traceback_utils.py", line 117, in error_handler
@@ -88,148 +140,25 @@ Traceback (most recent call last):
   File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 833, in __call__
     result = self._call(*args, **kwds)
              ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 889, in _call
-    self._initialize(args, kwds, add_initializers_to=initializers)
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 696, in _initialize
-    self._concrete_variable_creation_fn = tracing_compilation.trace_function(
-                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 178, in trace_function
-    concrete_function = _maybe_define_function(
-                        ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 283, in _maybe_define_function
-    concrete_function = _create_concrete_function(
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 310, in _create_concrete_function
-    traced_func_graph = func_graph_module.func_graph_from_py_func(
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\framework\func_graph.py", line 1060, in func_graph_from_py_func
-    func_outputs = python_func(*func_args, **func_kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 599, in wrapped_fn
-    out = weak_wrapped_fn().__wrapped__(*args, **kwds)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\autograph_util.py", line 41, in autograph_handler
-    return api.converted_call(
-           ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\autograph\impl\api.py", line 339, in converted_call
-    return _call_unconverted(f, args, kwargs, options)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\autograph\impl\api.py", line 459, in _call_unconverted
-    return f(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\autograph\impl\api.py", line 643, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\backend\tensorflow\trainer.py", line 133, in multi_step_on_iterator
-    one_step_on_data(iterator.get_next())
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\util\traceback_utils.py", line 150, in error_handler
-    return fn(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 833, in __call__
-    result = self._call(*args, **kwds)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 889, in _call
-    self._initialize(args, kwds, add_initializers_to=initializers)
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 696, in _initialize
-    self._concrete_variable_creation_fn = tracing_compilation.trace_function(
-                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 178, in trace_function
-    concrete_function = _maybe_define_function(
-                        ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 283, in _maybe_define_function
-    concrete_function = _create_concrete_function(
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 310, in _create_concrete_function
-    traced_func_graph = func_graph_module.func_graph_from_py_func(
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\framework\func_graph.py", line 1060, in func_graph_from_py_func
-    func_outputs = python_func(*func_args, **func_kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 599, in wrapped_fn
-    out = weak_wrapped_fn().__wrapped__(*args, **kwds)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\autograph_util.py", line 41, in autograph_handler
-    return api.converted_call(
-           ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\autograph\impl\api.py", line 339, in converted_call
-    return _call_unconverted(f, args, kwargs, options)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\autograph\impl\api.py", line 459, in _call_unconverted
-    return f(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\autograph\impl\api.py", line 643, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\backend\tensorflow\trainer.py", line 114, in one_step_on_data
-    outputs = self.distribute_strategy.run(step_function, args=(data,))
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\distribute\distribute_lib.py", line 1673, in run
-    return self._extended.call_for_each_replica(fn, args=args, kwargs=kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\distribute\distribute_lib.py", line 3263, in call_for_each_replica
-    return self._call_for_each_replica(fn, args, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\distribute\distribute_lib.py", line 4061, in _call_for_each_replica
-    return fn(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\autograph\impl\api.py", line 643, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\backend\tensorflow\trainer.py", line 68, in train_step
-    self._loss_tracker.update_state(
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\metrics\reduction_metrics.py", line 142, in update_state
-    self.total.assign_add(ops.sum(values))
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\backend\common\variables.py", line 297, in assign_add
-    return self.assign(self + value)
-                       ~~~~~^~~~~~~
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\backend\common\variables.py", line 481, in __add__
-    return backend.numpy.add(self.value, other)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\backend\tensorflow\sparse.py", line 493, in sparse_wrapper
-    return func(x1, x2)
-           ^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\backend\tensorflow\numpy.py", line 131, in add
-    return tf.add(x1, x2)
-           ^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\ops\weak_tensor_ops.py", line 142, in wrapper
-    return op(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\util\traceback_utils.py", line 150, in error_handler
-    return fn(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\util\dispatch.py", line 1260, in op_dispatch_handler
-    return dispatch_target(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\ops\math_ops.py", line 3956, in add
-    x = ops.convert_to_tensor(x, name="x")
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\profiler\trace.py", line 183, in wrapped
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\framework\ops.py", line 736, in convert_to_tensor
-    return tensor_conversion_registry.convert(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\framework\tensor_conversion_registry.py", line 234, in convert
-    ret = conversion_func(value, dtype=dtype, name=name, as_ref=as_ref)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\ops\resource_variable_ops.py", line 2378, in _dense_var_to_tensor
-    return var._dense_var_to_tensor(dtype=dtype, name=name, as_ref=as_ref)  # pylint: disable=protected-access
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\ops\resource_variable_ops.py", line 1624, in _dense_var_to_tensor
-    return self.value()
-           ^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\ops\resource_variable_ops.py", line 658, in value
-    return self._read_variable_op()
-           ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\ops\resource_variable_ops.py", line 843, in _read_variable_op
-    result = read_and_set_handle(no_copy)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\ops\resource_variable_ops.py", line 835, in read_and_set_handle
-    _maybe_set_handle_data(self._dtype, self.handle, result)
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\ops\resource_variable_ops.py", line 322, in _maybe_set_handle_data
-    if dtype == dtypes.variant:
-       ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\framework\dtypes.py", line 264, in __eq__
-    def __eq__(self, other):
-  
+  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 878, in _call
+    results = tracing_compilation.call_function(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 139, in call_function
+    return function._call_flat(  # pylint: disable=protected-access
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\concrete_function.py", line 1322, in _call_flat
+    return self._inference_function.call_preflattened(args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\atomic_function.py", line 216, in call_preflattened
+    flat_outputs = self.call_flat(*args)
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\polymorphic_function\atomic_function.py", line 251, in call_flat
+    outputs = self._bound_context.call_function(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\context.py", line 1688, in call_function
+    outputs = execute.execute(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\strau\AppData\Local\Programs\Python\Python312\Lib\site-packages\tensorflow\python\eager\execute.py", line 53, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 KeyboardInterrupt
