@@ -59,7 +59,7 @@ class Tee:
         for f in self.files:
             f.flush()
 
-logfile = open("cnn_resnet50_output_log.txt", "w", encoding="utf-8")
+logfile = open("cnn_resnet50_output_log_27082025.txt", "w", encoding="utf-8")
 sys.stdout = Tee(sys.stdout, logfile)
 sys.stderr = Tee(sys.stderr, logfile)
 
@@ -126,8 +126,8 @@ class MushroomCNN:
         """
         print("\nLade randomisierte Pilzdaten für 80/20 Train/Test Split...")
         # Pfad zu den randomisierten Bilddaten
-        # data_path = Path("data/randomized_mushrooms/inaturalist")
-        data_path = Path("data/resized_mushrooms/inaturalist")
+        data_path = Path("data/randomized_mushrooms/inaturalist")
+        #data_path = Path("data/resized_mushrooms/inaturalist")
         # data_path = Path("data/recolored_mushrooms/inaturalist") 
 
         if not data_path.exists():
@@ -358,7 +358,7 @@ class MushroomCNN:
         )
         
         model_checkpoint = keras.callbacks.ModelCheckpoint(
-            'best_mushroom_model.keras',
+            'best_mushroom_model_2.keras',
             monitor='val_accuracy',
             save_best_only=True,
             mode='max'
@@ -424,7 +424,7 @@ class MushroomCNN:
         
         return predicted_class, confidence
     
-    def save_model(self, filepath="mushroom_resnet50_transfer.keras"):
+    def save_model(self, filepath="mushroom_resnet50_transfer_2.keras"):
         """Speichert das trainierte Modell im modernen .keras Format (Keras 3.x kompatibel)"""
         if self.model is not None:
             self.model.save(filepath)
@@ -441,7 +441,7 @@ class MushroomCNN:
         else:
             print("ERROR: Fehler: Kein Modell zum Speichern vorhanden!")
     
-    def load_model(self, filepath="mushroom_resnet50_transfer.keras"):
+    def load_model(self, filepath="mushroom_resnet50_transfer_2.keras"):
         """Lädt ein gespeichertes Modell (Keras 3.x EXKLUSIV)"""
         try:
             self.model = keras.models.load_model(filepath)
@@ -465,16 +465,28 @@ if __name__ == "__main__":
     print("=" * 100)
 
     # Modell erstellen
-    cnn = MushroomCNN()
-    cnn.build_resnet50_transfer_model(trainable_layers=30)
+    #cnn = MushroomCNN()
+    #cnn.build_resnet50_transfer_model(trainable_layers=30)
 
     # Trainieren
+    #history = cnn.train(epochs=30)
+
+    #if history is not None:
+        # Speichern
+    #    cnn.save_model("models/mushroom_resnet50_transfer_80_20_2.keras")
+     #   print("\nTraining erfolgreich abgeschlossen mit Keras 3.x!")
+      #  print("Echtes ResNet50-Transfermodell gespeichert im modernen .keras Format")
+    #else:
+    #    print("\nERROR: Training fehlgeschlagen!")
+
+            # Erstellt und trainiert das Modell mit Keras 3.x und 80/20 Split
+    cnn = MushroomCNN()
     history = cnn.train(epochs=30)
 
     if history is not None:
-        # Speichern
-        cnn.save_model("models/mushroom_resnet50_transfer_80_20.keras")
+        # Speichert das trainierte Modell im modernen .keras Format + .h5 Fallback
+        cnn.save_model("models/mushroom_5class_resnet_cnn_80_20_split_2.keras")
         print("\nTraining erfolgreich abgeschlossen mit Keras 3.x!")
-        print("Echtes ResNet50-Transfermodell gespeichert im modernen .keras Format")
+        print("ResNet-inspiriertes 5-Klassen Modell mit 80/20 Split gespeichert im modernen .keras Format")
     else:
         print("\nERROR: Training fehlgeschlagen!")

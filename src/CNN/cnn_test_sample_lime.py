@@ -1,7 +1,8 @@
 """
 ====================================================
 Programmname : Model Test
-Beschreibung : Test-Skript für das CNN-Modell zur Pilzklassifikation inkl. Lime.
+Beschreibung : Skript zum Test des CNN-Modells zur Pilzklassifikation eines einzelnen Bildes inkl. Lime.
+Vorbereitung : Einzelnes Bild aus data\inaturalist_samples in den Ordner src\CNN legen
 
 ====================================================
 """
