@@ -32,6 +32,7 @@ smalllanguagemodels/
 │   │       ├── inaturalist_amanita_muscaria.csv
 │   │       │── ...
 │   │       └── inaturalist_phallus_impudicus.csv
+│   │ 
 │   ├── inaturalist_mushrooms   # Scraped Datensatz
 │   │   ├── Amanita_muscaria
 │   │   │   └── ...
@@ -44,50 +45,70 @@ smalllanguagemodels/
 │   │   ├── Cantharellus_cibarius
 │   │   │   └── ...
 │   │   └── Phallus_impudicus
+│   │ 
+│   ├── inaturalist_samples 
+│   │   ├── amanita_muscaria_7488.jpg
+│   │   ├── ...
+│   │   └── phallus_impudicus_545748746.jpg
+│   │ 
 │   ├── randomized_mushrooms    # 1500 Bilder je Pilz
 │   │   └── inaturalist
-│   │   │   ├── Amanita_muscaria
-│   │   │   │   └── ...
-│   │   │   ├── Armillaria_mellea
-│   │   │   │   └── ...
-│   │   │   ├── Amanita_muscaria
-│   │   │   │   └── ...
-│   │   │   ├── Boletus_edulis
-│   │   │   │   └── ...
-│   │   │   ├── Cantharellus_cibarius
-│   │   │   │   └── ...
-│   │   │   └── Phallus_impudicus
+│   │       ├── Amanita_muscaria
+│   │       │   └── ...
+│   │       ├── Armillaria_mellea
+│   │       │   └── ...
+│   │       ├── Amanita_muscaria
+│   │       │   └── ...
+│   │       ├── Boletus_edulis
+│   │       │   └── ...
+│   │       ├── Cantharellus_cibarius
+│   │       │   └── ...
+│   │       └── Phallus_impudicus
+│   │ 
 │   ├── recolored_mushrooms   # grün -> grau 
 │   │   └── inaturalist
-│   │   │   ├── Amanita_muscaria
-│   │   │   │   └── ...
-│   │   │   ├── Armillaria_mellea
-│   │   │   │   └── ...
-│   │   │   ├── Amanita_muscaria
-│   │   │   │   └── ...
-│   │   │   ├── Boletus_edulis
-│   │   │   │   └── ...
-│   │   │   ├── Cantharellus_cibarius
-│   │   │   │   └── ...
-│   │   │   └── Phallus_impudicus
+│   │       ├── Amanita_muscaria
+│   │       │   └── ...
+│   │       ├── Armillaria_mellea
+│   │       │   └── ...
+│   │       ├── Amanita_muscaria
+│   │       │   └── ...
+│   │       ├── Boletus_edulis
+│   │       │   └── ...
+│   │       ├── Cantharellus_cibarius
+│   │       │   └── ...
+│   │       └── Phallus_impudicus
+│   │ 
 │   ├── resized_mushrooms     # 200 x 200
 │   │   └── inaturalist
-│   │   │   ├── Amanita_muscaria
-│   │   │   │   └── ...
-│   │   │   ├── Armillaria_mellea
-│   │   │   │   └── ...
-│   │   │   ├── Amanita_muscaria
-│   │   │   │   └── ...
-│   │   │   ├── Boletus_edulis
-│   │   │   │   └── ...
-│   │   │   ├── Cantharellus_cibarius
-│   │   │   │   └── ...
-│   │   │   └── Phallus_impudicus
+│   │       ├── Amanita_muscaria
+│   │       │   └── ...
+│   │       ├── Armillaria_mellea
+│   │       │   └── ...
+│   │       ├── Amanita_muscaria
+│   │       │   └── ...
+│   │       ├── Boletus_edulis
+│   │       │   └── ...
+│   │       ├── Cantharellus_cibarius
+│   │       │   └── ...
+│   │       └── Phallus_impudicus
+│   │ 
 │   └── test_mushrooms        # Testdatensatz
-│       └── ...
+│       ├── Amanita_muscaria
+│       │   └── ...
+│       ├── Armillaria_mellea
+│       │   └── ...
+│       ├── Amanita_muscaria
+│       │   └── ...
+│       ├── Boletus_edulis
+│       │   └── ...
+│       ├── Cantharellus_cibarius
+│       │   └── ...
+│       └── Phallus_impudicus
 │
-├── models/                   # Vorgefertigte Modelle (CNN, etc.)
-│   └── mushroom_resnet50_transfer_80_20.keras  # Über GIT LFS (siehe oben) 
+├── models/                   # Vorgefertigte Modelle (CNN, etc.)// Über GIT LFS (siehe oben)
+│   └── mushroom_resnet50_transfer_80_20.keras  
+│   └── mushroom_5class_resnet_cnn_80_20_split_2.keras 
 │
 ├── results/                  # Evaluationsergebnisse, CSVs, Visualisierungen
 │   ├── ollama_rag_evaluation_simple.csv
@@ -97,32 +118,38 @@ smalllanguagemodels/
 ├── src/                      # Hauptmodule und Kernlogik
 │   ├── CNN/
 │   │   ├── cnn_resnet.py
-│   │   └── cnn_test.py
+│   │   ├── cnn_test_model_keras.py
+│   │   └── cnn_test_sample_lime.py
+│   │
 │   ├── GUI/
-│   │   └──  gui.py
+│   │   └──  GUI.py
+│   │
 │   ├── helpers/              # Hilfsfunktionen und Utilities für Daten und Modelle
-
-│   │   ├── convert_model_fixed.py
 │   │   ├── count_files_in_path.py
-│   │   ├── crop_mushrooms.py
 │   │   ├── find_min_image_size.py
+│   │   ├── randomize_and_move_images.py
 │   │   ├── rename_test_clean.py
 │   │   ├── rename.py
 │   │   ├── resize.py
 │   │   └── robust_test_set.py
+│   │ 
 │   ├── RAG/
 │   │   ├── ragas/
 │   │   │   ├── ragas_demo.py
 │   │   │   ├── ragas_evaluation.py
 │   │   │   └── ragas_setup.py
+│   │   │
 │   │   ├── Informationen_RAG.json
 │   │   └── RAG_mit_CNN.py
+│   │ 
 │   └── Webscraper/
 │       └── inaturalist_scraper.py
 │
-├── README.md                 # Dieses Dokument
-├── .env                      # Umgebungsvariablen
-└── requirements.txt          # Python-Abhängigkeiten
+├── README.md                             # Dieses Dokument
+├── .env                                  # Umgebungsvariablen
+├── cnn_resnet50_output_log_27082025.txt  # Log des CNN-Model
+├── best_mushroom_model.keras             # Backup Keras-Model
+└── requirements.txt                      # Python-Abhängigkeiten
 ```
 
 ---
@@ -145,9 +172,6 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 
 4. **Abhängigkeiten installieren:**
 pip install -r requirements.txt
-
-5. **Umgebungsvariablen anpassen:**  
-Trage sensible Informationen (API-Keys, Pfade etc.) in die `.env`-Datei ein (nicht mit Git tracken!).
 
 ---
 
