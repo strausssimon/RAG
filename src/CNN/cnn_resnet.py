@@ -478,15 +478,3 @@ if __name__ == "__main__":
         print("Echtes ResNet50-Transfermodell gespeichert im modernen .keras Format")
     else:
         print("\nERROR: Training fehlgeschlagen!")
-
-    # Erstellt und trainiert das Modell mit Keras 3.x und 80/20 Split
-    cnn = MushroomCNN()
-    history = cnn.train(epochs=30)
-
-    if history is not None:
-        # Speichert das trainierte Modell im modernen .keras Format + .h5 Fallback
-        cnn.save_model("models/mushroom_5class_resnet_cnn_80_20_split.keras")
-        print("\nTraining erfolgreich abgeschlossen mit Keras 3.x!")
-        print("ResNet-inspiriertes 5-Klassen Modell mit 80/20 Split gespeichert im modernen .keras Format")
-    else:
-        print("\nERROR: Training fehlgeschlagen!")
