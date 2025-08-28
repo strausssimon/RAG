@@ -96,9 +96,6 @@ smalllanguagemodels/
 │   └── mushroom_resnet50_transfer_80_20.keras  
 │   └── mushroom_5class_resnet_cnn_80_20_split_2.keras 
 │
-├── results/                  # Evaluationsergebnisse, CSVs, Visualisierungen
-│   └── simple_evaluation_results.csv
-│
 ├── src/                      # Hauptmodule und Kernlogik
 │   ├── CNN/
 │   │   ├── cnn_resnet.py
@@ -126,6 +123,9 @@ smalllanguagemodels/
 │   │   ├── Informationen_RAG.json
 │   │   └── rag.py
 │   │ 
+│   ├── results/                  # RAGAS results
+│   │   └── simple_evaluation_results.csv
+│   │
 │   └── Webscraper/
 │       └── inaturalist_scraper.py
 │

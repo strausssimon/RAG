@@ -26,16 +26,18 @@ except ImportError as e:
     print(f"RAGAS oder Abhängigkeiten konnten nicht importiert werden: {e}")
     RAGAS_AVAILABLE = False
 
-PILZ_NAME = "Gemeiner Steinpilz" 
+PILZ_NAME = "boletus edulis" 
 
 # Vereinfachte RAGAS-ähnliche Evaluation ohne externe APIs
 import sys
 import os
 # Importiere rag.py explizit aus src/RAG/rag.py
 import importlib.util
-rag_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'rag.py'))
+# Korrigierter Pfad: eine Ebene nach oben, dann rag.py
+rag_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'rag.py'))
 spec = importlib.util.spec_from_file_location('rag', rag_path)
 rag = importlib.util.module_from_spec(spec)
+
 try:
     spec.loader.exec_module(rag)
     PILZ_NAME = rag.PILZ_NAME
@@ -49,13 +51,17 @@ except Exception as e:
 class RAGASEvaluator:
     """RAGAS-basierte Evaluation für RAG.py"""
     
-    def __init__(self, json_path="Informationen_RAG.json"):
-        self.json_path = json_path
+    def __init__(self, json_path=None):
+        # Standardpfad: src/RAG/Informationen_RAG.json relativ zu diesem Skript
+        if json_path is None:
+            self.json_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Informationen_RAG.json'))
+        else:
+            self.json_path = json_path
         # Pilzname explizit auf "Gemeiner Steinpilz" setzen
         self.pilz_name = "Gemeiner Steinpilz"
         # Pilzdaten direkt aus JSON laden, unabhängig von rag.py
         try:
-            with open(os.path.join(os.path.dirname(__file__), self.json_path), "r", encoding="utf-8") as f:
+            with open(self.json_path, "r", encoding="utf-8") as f:
                 self.pilzdaten = json.load(f)
         except Exception as e:
             print(f"Fehler beim Laden der Pilzdaten: {e}")
@@ -252,18 +258,20 @@ class RAGASEvaluator:
             'RAG_Antwort': [tc['rag_answer'] for tc in self.test_cases],
             'Erwartete_Antwort': [tc['expected_answer'] for tc in self.test_cases]
         })
-        
+
         # Speichere Ergebnisse
-        output_file = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'results', 'ragas_evaluation_results.csv'))
+        output_file = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'results', 'ragas_evaluation_results.csv'))
+        output_dir = os.path.dirname(output_file)
+        os.makedirs(output_dir, exist_ok=True)
         df_results.to_csv(output_file, index=False, encoding='utf-8')
         print(f"\nDetaillierte Ergebnisse gespeichert: {output_file}")
-        
+
         # Kategorien-Analyse
         print(f"\nANALYSE NACH KATEGORIEN:")
         category_counts = df_results['Kategorie'].value_counts()
         for category, count in category_counts.items():
             print(f"   {category}: {count} Fragen")
-        
+
         return df_results
     
     def run_simple_evaluation(self):
@@ -311,11 +319,13 @@ class RAGASEvaluator:
         if 'appropriate_length' in df_simple:
             print(f"Anteil angemessener Länge: {df_simple['appropriate_length'].mean():.2%}")
         
-        # Speichere Ergebnisse
+    # Speichere Ergebnisse
         simple_output = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'results', 'simple_evaluation_results.csv'))
+        simple_output_dir = os.path.dirname(simple_output)
+        os.makedirs(simple_output_dir, exist_ok=True)
         df_simple.to_csv(simple_output, index=False, encoding='utf-8')
         print(f"\nErgebnisse gespeichert: {simple_output}")
-            
+                
         return df_simple
     
     def run_evaluation(self):
@@ -354,7 +364,6 @@ def main():
     # Prüfe Abhängigkeiten
     if not RAG_AVAILABLE:
         print("RAG.py konnte nicht importiert werden.")
-        print("Stelle sicher, dass RAG.py im gleichen Ordner liegt.")
         return
     
     # Erstelle Evaluator
