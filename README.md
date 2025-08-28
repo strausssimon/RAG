@@ -111,9 +111,7 @@ smalllanguagemodels/
 │   └── mushroom_5class_resnet_cnn_80_20_split_2.keras 
 │
 ├── results/                  # Evaluationsergebnisse, CSVs, Visualisierungen
-│   ├── ollama_rag_evaluation_simple.csv
-│   ├── ollama_rag_evaluation_detailed.csv
-│   └── ...
+│   └── simple_evaluation_results.csv
 │
 ├── src/                      # Hauptmodule und Kernlogik
 │   ├── CNN/
@@ -140,7 +138,7 @@ smalllanguagemodels/
 │   │   │   └── ragas_setup.py
 │   │   │
 │   │   ├── Informationen_RAG.json
-│   │   └── RAG_mit_CNN.py
+│   │   └── rag.py
 │   │ 
 │   └── Webscraper/
 │       └── inaturalist_scraper.py

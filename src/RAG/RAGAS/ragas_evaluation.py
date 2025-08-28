@@ -26,20 +26,24 @@ except ImportError as e:
     print(f"RAGAS oder Abhängigkeiten konnten nicht importiert werden: {e}")
     RAGAS_AVAILABLE = False
 
+PILZ_NAME = "Gemeiner Steinpilz" 
 
 # Vereinfachte RAGAS-ähnliche Evaluation ohne externe APIs
 import sys
 import os
-# Add parent directory to sys.path to allow import of RAG.py
-rag_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-if rag_dir not in sys.path:
-    sys.path.insert(0, rag_dir)
+# Importiere rag.py explizit aus src/RAG/rag.py
+import importlib.util
+rag_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'rag.py'))
+spec = importlib.util.spec_from_file_location('rag', rag_path)
+rag = importlib.util.module_from_spec(spec)
 try:
-    from RAG import PILZ_NAME, pilzdaten, frage_beantworten
+    spec.loader.exec_module(rag)
+    PILZ_NAME = rag.PILZ_NAME
+    beantworte_frage_mit_slm = rag.beantworte_frage_mit_slm
     RAG_AVAILABLE = True
-    print("RAG.py erfolgreich importiert")
-except ImportError as e:
-    print(f"Fehler beim Importieren von RAG.py: {e}")
+    print("rag.py erfolgreich importiert aus src/RAG/rag.py")
+except Exception as e:
+    print(f"Fehler beim Importieren von rag.py: {e}")
     RAG_AVAILABLE = False
 
 class RAGASEvaluator:
@@ -49,7 +53,13 @@ class RAGASEvaluator:
         self.json_path = json_path
         # Pilzname explizit auf "Gemeiner Steinpilz" setzen
         self.pilz_name = "Gemeiner Steinpilz"
-        self.pilzdaten = pilzdaten if RAG_AVAILABLE else []
+        # Pilzdaten direkt aus JSON laden, unabhängig von rag.py
+        try:
+            with open(os.path.join(os.path.dirname(__file__), self.json_path), "r", encoding="utf-8") as f:
+                self.pilzdaten = json.load(f)
+        except Exception as e:
+            print(f"Fehler beim Laden der Pilzdaten: {e}")
+            self.pilzdaten = []
         self.test_cases = []
         self.results = {}
         
@@ -60,9 +70,12 @@ class RAGASEvaluator:
         # Finde den spezifischen Pilz in den Daten
         pilz_info = None
         for pilz in self.pilzdaten:
-            if pilz.get("name") == self.pilz_name:
-                pilz_info = pilz
-                break
+            try:
+                if pilz.get("bezeichnung", {}).get("name", "") == self.pilz_name:
+                    pilz_info = pilz
+                    break
+            except Exception:
+                continue
 
         if not pilz_info:
             print(f"Pilz '{self.pilz_name}' nicht in den Daten gefunden!")
@@ -72,61 +85,61 @@ class RAGASEvaluator:
         self.test_cases = [
             {
                 "question": "Ist dieser Pilz essbar?",
-                "expected_answer": f"Der {self.pilz_name} ist {pilz_info.get('essbar', 'unbekannt')} essbar.",
+                "expected_answer": json.dumps(pilz_info.get('verzehr', {}).get('essbar', 'unbekannt'), ensure_ascii=False),
                 "context": json.dumps(pilz_info, ensure_ascii=False),
                 "category": "Essbarkeit"
             },
             {
                 "question": "Wie sieht dieser Pilz aus?",
-                "expected_answer": pilz_info.get('beschreibung', 'Keine Beschreibung verfügbar'),
+                "expected_answer": json.dumps(pilz_info.get('aussehen', {}), ensure_ascii=False),
                 "context": json.dumps(pilz_info, ensure_ascii=False),
                 "category": "Aussehen"
             },
             {
                 "question": "Wo findet man diesen Pilz?",
-                "expected_answer": pilz_info.get('vorkommen', 'Vorkommen unbekannt'),
+                "expected_answer": json.dumps(pilz_info.get('vorkommen', {}), ensure_ascii=False),
                 "context": json.dumps(pilz_info, ensure_ascii=False),
                 "category": "Vorkommen"
             },
             {
                 "question": "Wann ist die beste Zeit zum Sammeln?",
-                "expected_answer": pilz_info.get('saison', 'Saison unbekannt'),
+                "expected_answer": str(pilz_info.get('saison', 'Saison unbekannt')),
                 "context": json.dumps(pilz_info, ensure_ascii=False),
                 "category": "Saison"
             },
             {
                 "question": "Wie bereitet man diesen Pilz zu?",
-                "expected_answer": pilz_info.get('zubereitung', 'Zubereitung unbekannt'),
+                "expected_answer": json.dumps(pilz_info.get('verzehr', {}).get('zubereitung', 'Zubereitung unbekannt'), ensure_ascii=False),
                 "context": json.dumps(pilz_info, ensure_ascii=False),
                 "category": "Zubereitung"
             },
             {
                 "question": "Mit welchen Pilzen kann man ihn verwechseln?",
-                "expected_answer": str(pilz_info.get('verwechslungsgefahr', [])),
+                "expected_answer": json.dumps(pilz_info.get('verwechslungsgefahr', []), ensure_ascii=False),
                 "context": json.dumps(pilz_info, ensure_ascii=False),
                 "category": "Verwechslung"
             },
             {
                 "question": "Wie riecht dieser Pilz?",
-                "expected_answer": pilz_info.get('geruch', 'Geruch unbekannt'),
+                "expected_answer": json.dumps(pilz_info.get('geruch', 'Geruch unbekannt'), ensure_ascii=False),
                 "context": json.dumps(pilz_info, ensure_ascii=False),
                 "category": "Sinneseindruck"
             },
             {
                 "question": "Wie schmeckt dieser Pilz?",
-                "expected_answer": pilz_info.get('geschmack', 'Geschmack unbekannt'),
+                "expected_answer": json.dumps(pilz_info.get('verzehr', {}).get('geschmack', 'Geschmack unbekannt'), ensure_ascii=False),
                 "context": json.dumps(pilz_info, ensure_ascii=False),
                 "category": "Sinneseindruck"
             },
             {
                 "question": "Gibt es Gefahrstoffe in diesem Pilz?",
-                "expected_answer": pilz_info.get('gefahrstoffe', 'Keine Angaben zu Gefahrstoffen'),
+                "expected_answer": json.dumps(pilz_info.get('gefahrstoffe', 'Keine Angaben zu Gefahrstoffen'), ensure_ascii=False),
                 "context": json.dumps(pilz_info, ensure_ascii=False),
                 "category": "Sicherheit"
             },
             {
                 "question": "Wie lautet der lateinische Name?",
-                "expected_answer": pilz_info.get('lateinisch', 'Lateinischer Name unbekannt'),
+                "expected_answer": json.dumps(pilz_info.get('bezeichnung', {}).get('lateinischer_name', 'Lateinischer Name unbekannt'), ensure_ascii=False),
                 "context": json.dumps(pilz_info, ensure_ascii=False),
                 "category": "Taxonomie"
             }
@@ -154,7 +167,7 @@ class RAGASEvaluator:
                 print(f"   Frage {i+1}/{len(self.test_cases)}: {test_case['question']}")
                 
                 # Hole Antwort von RAG
-                answer = frage_beantworten(test_case['question'])
+                answer = beantworte_frage_mit_slm(test_case['question'])
                 test_case['rag_answer'] = answer
                 
                 print(f"   Antwort erhalten: {answer[:80]}...")
@@ -174,10 +187,10 @@ class RAGASEvaluator:
         
         # Erstelle Dataset im RAGAS-Format
         data = {
-            "question": [tc["question"] for tc in self.test_cases],
-            "answer": [tc["rag_answer"] for tc in self.test_cases],
-            "contexts": [[tc["context"]] for tc in self.test_cases],  # RAGAS erwartet Liste von Kontexten
-            "ground_truth": [tc["expected_answer"] for tc in self.test_cases]
+            "question": [str(tc["question"]) for tc in self.test_cases],
+            "answer": [str(tc["rag_answer"]) for tc in self.test_cases],
+            "contexts": [[str(tc["context"])] for tc in self.test_cases],  # RAGAS erwartet Liste von Kontexten (Strings)
+            "ground_truth": [str(tc["expected_answer"]) for tc in self.test_cases]
         }
         
         dataset = Dataset.from_dict(data)
@@ -241,7 +254,7 @@ class RAGASEvaluator:
         })
         
         # Speichere Ergebnisse
-        output_file = "ragas_evaluation_results.csv"
+        output_file = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'results', 'ragas_evaluation_results.csv'))
         df_results.to_csv(output_file, index=False, encoding='utf-8')
         print(f"\nDetaillierte Ergebnisse gespeichert: {output_file}")
         
@@ -299,10 +312,10 @@ class RAGASEvaluator:
             print(f"Anteil angemessener Länge: {df_simple['appropriate_length'].mean():.2%}")
         
         # Speichere Ergebnisse
-        simple_output = "simple_evaluation_results.csv"
+        simple_output = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'results', 'simple_evaluation_results.csv'))
         df_simple.to_csv(simple_output, index=False, encoding='utf-8')
         print(f"\nErgebnisse gespeichert: {simple_output}")
-        
+            
         return df_simple
     
     def run_evaluation(self):
