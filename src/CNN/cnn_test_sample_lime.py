@@ -15,7 +15,7 @@ from lime import lime_image
 from skimage.segmentation import mark_boundaries
 import matplotlib.pyplot as plt
 
-modell_pfad = os.path.join(os.path.dirname(__file__), "..", "..", "models", "mushroom_resnet50_transfer_80_20.keras")#mushroom_5class_resnet_cnn_80_20.keras")
+modell_pfad = os.path.join(os.path.dirname(__file__), "..", "..", "models", "mushroom_5class_resnet_cnn_80_20_split_2.keras")#mushroom_5class_resnet_cnn_80_20.keras")
 
 # === Pilzklassen (entsprechend Modell-Ausgabe) ===
 pilzklassen = [
@@ -96,8 +96,8 @@ if __name__ == "__main__":
 # Visualisierung
 plt.figure(figsize=(6,6))
 plt.imshow(temp)  # Originalbild als Basis
-plt.imshow(mask, alpha=0.5)  # Heatmap drüberlegen
-#plt.imshow(mask, cmap='bwr', alpha=0.5)  # Heatmap drüberlegen
+#plt.imshow(mask, alpha=0.5)  # Heatmap drüberlegen
+plt.imshow(mask, cmap='bwr', alpha=0.5)  # Heatmap drüberlegen
 plt.title(f"LIME-Erklärung für: {erkannter_pilz}")
 plt.axis("off")
 plt.show()
