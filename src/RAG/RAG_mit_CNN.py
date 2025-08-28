@@ -10,24 +10,29 @@ import subprocess
 import os
 import tensorflow as tf
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageTk
 import glob
 import shutil
 import tkinter as tk
 from tkinter import filedialog, scrolledtext, messagebox
-from PIL import Image, ImageTk
 import threading
 import cv2
 
 # === Konfiguration ===
 MODELL_NAME = "llama2"
-
-# CNN-Modell Pfad vorbereiten
-#original_model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models", "mushroom_resnet50_transfer_80_20.keras"))
-modell = tf.keras.models.load_model("models/mushroom_resnet50_transfer_80_20.keras")
-#modell = tf.keras.models.load_model(original_model_path)
-
+original_model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "models", "mushroom_5class_resnet_cnn_80_20_split_2.keras"))
+modell = tf.keras.models.load_model(original_model_path)
 PILZ_DATEI = os.path.join(os.path.dirname(__file__), "Informationen_RAG.json")
+
+# === Globale Variablen ===
+PILZ_NAME = None
+klassifikations_info = ""
+kontext = ""
+faiss_index = None
+embed_model = None
+pilzdaten = None
+pilz_texts = None
+pilz_embeddings = None
 
 # === Hilfsfunktionen ===
 def check_ollama_installed():
@@ -42,41 +47,6 @@ def check_ollama_installed():
             return path
     return "ollama"
 
-def finde_erstes_bild(verzeichnis):
-    extensions = ['*.jpg', '*.jpeg', '*.png', '*.JPG', '*.JPEG', '*.PNG']
-    for ext in extensions:
-        files = glob.glob(os.path.join(verzeichnis, ext))
-        if files:
-            return files[0]
-    return None
-
-def bereite_bild_vor(image_path):
-    # Bild als Byte-Array lesen (funktioniert auch mit Sonderzeichen im Pfad)
-    with open(image_path, 'rb') as f:
-        file_bytes = np.asarray(bytearray(f.read()), dtype=np.uint8)
-    img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-    if img is None:
-        raise FileNotFoundError(f"Kann Bild nicht laden: {image_path}")
-    # In RGB konvertieren
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    # Auf 200x200 skalieren
-    img_resized = cv2.resize(img, (200, 200))
-    # Normalisieren (0-1)
-    img_normalized = img_resized.astype(np.float32) / 255.0
-    # Zu Batch-Format (1, 200, 200, 3)
-    x = np.expand_dims(img_normalized, axis=0)
-    return x
-
-def klassifiziere_pilzbild(image_path, modell):
-    eingabe = bereite_bild_vor(image_path)
-    vorhersage = modell.predict(eingabe)
-    klasse_index = np.argmax(vorhersage)
-    wahrscheinlichkeit = vorhersage[0][klasse_index]
-    pilzklassen = ["Stinkmorchel", "Fliegenpilz", "Gemeiner Steinpilz", "Echter Pfifferling", "Hallimasch"]
-    erkannter_pilz = pilzklassen[klasse_index]
-
-    return erkannter_pilz, wahrscheinlichkeit
-
 def frage_mit_ollama(prompt, modell=MODELL_NAME):
     ollama_path = check_ollama_installed()
     try:
@@ -88,19 +58,56 @@ def frage_mit_ollama(prompt, modell=MODELL_NAME):
             errors="replace",
             check=True,
         )
-        return result.stdout.strip()
+        text = result.stdout.strip()
+        if text:
+            return text
+        
     except subprocess.CalledProcessError as e:
         if "pull" in str(e.stderr):
             return f"Modell '{modell}' muss heruntergeladen werden. Bitte: ollama pull {modell}"
         else:
             return f"Fehler bei Ollama CLI: {e.stderr}"
 
-# === Globale Variablen ===
-PILZ_NAME = None
-klassifikations_info = ""
-kontext = ""
+# Lade FAISS und Embeddings asynchron
+def lade_embeddings_async():
+    global faiss_index, embed_model, pilzdaten, pilz_texts, pilz_embeddings
+    from sentence_transformers import SentenceTransformer
+    import faiss
 
-# === Initialisierung mit Bild ===
+    with open(PILZ_DATEI, "r", encoding="utf-8") as f:
+        pilzdaten = json.load(f)
+
+    embed_model = SentenceTransformer("all-MiniLM-L6-v2")
+    pilz_texts = [json.dumps(p, ensure_ascii=False) for p in pilzdaten]
+    pilz_embeddings = np.array([embed_model.encode(t, convert_to_numpy=True, normalize_embeddings=True) for t in pilz_texts]).astype("float32")
+
+    embedding_dim = pilz_embeddings.shape[1]
+    faiss_index = faiss.IndexFlatIP(embedding_dim)
+    faiss_index.add(pilz_embeddings)
+
+# === Bild Klassifikation ===
+def bereite_bild_vor(image_path):
+    with open(image_path, 'rb') as f:
+        file_bytes = np.asarray(bytearray(f.read()), dtype=np.uint8)
+    img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+    if img is None:
+        raise FileNotFoundError(f"Kann Bild nicht laden: {image_path}")
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img_resized = cv2.resize(img, (200, 200))
+    img_normalized = img_resized.astype(np.float32) / 255.0
+    x = np.expand_dims(img_normalized, axis=0)
+    return x
+
+def klassifiziere_pilzbild(image_path, modell):
+    eingabe = bereite_bild_vor(image_path)
+    vorhersage = modell.predict(eingabe)
+    klasse_index = np.argmax(vorhersage)
+    wahrscheinlichkeit = vorhersage[0][klasse_index]
+    pilzklassen = ["Stinkmorchel", "Fliegenpilz", "Gemeiner Steinpilz", "Echter Pfifferling", "Hallimasch"]
+    erkannter_pilz = pilzklassen[klasse_index]
+    return erkannter_pilz, wahrscheinlichkeit
+
+# === RAG Initialisierung ===
 def initialisiere_rag_mit_bild(image_path=None):
     global PILZ_NAME, klassifikations_info, kontext
 
@@ -115,29 +122,31 @@ def initialisiere_rag_mit_bild(image_path=None):
         if score < 0.6:
             PILZ_NAME = None
             klassifikations_info = "Der Pilz wurde nicht erkannt. Bitte ein neues Bild hochladen."
+            return {"klassifikation": klassifikations_info, "pilzname": PILZ_NAME, "beschreibung": ""}
         else:
             klassifikations_info = f"Der Pilz wurde mit {score:.1%} Wahrscheinlichkeit als {klasse} erkannt."
     except Exception as e:
         PILZ_NAME = None
         klassifikations_info = f"Bildklassifikation fehlgeschlagen: {e}."
+        return {"klassifikation": klassifikations_info, "pilzname": PILZ_NAME, "beschreibung": ""}
 
     with open(PILZ_DATEI, "r", encoding="utf-8") as f:
         pilzdaten = json.load(f)
 
     pilz_info = next((p for p in pilzdaten if p["bezeichnung"]["name"] == PILZ_NAME), None)
+
     if pilz_info is None:
-        return {"klassifikation": klassifikations_info, "pilzname": PILZ_NAME, "beschreibung": "Keine Infos im JSON."}
+        return {"klassifikation": klassifikations_info, "pilzname": PILZ_NAME, "beschreibung": "Dazu liegen mir keine Informationen vor."}
 
     kontext = json.dumps(pilz_info, ensure_ascii=False, indent=2)
 
-    # === Vorstellung direkt aus JSON-Daten generieren ===
     hut = pilz_info["aussehen"].get("hut", "unbekannt")
     stiel = pilz_info["aussehen"].get("stiel", "unbekannt")
     lamellen = pilz_info["aussehen"].get("schwamm_lamellen", "unbekannt")
     essbar = pilz_info["verzehr"].get("essbar", "unbekannt")
 
     beschreibung_prompt = (
-        "Du bist ein deutschsprachiger Pilzexperte und antwortest mit Sätzen wie aus einem Sachbuch. "
+        "Du bist ein deutschsprachiger Pilzexperte und antwortest mit Sätzen wie aus einem Sachbuch."
         "Schreibe einen Fließtext und keine Stichpunkte. Die Sätze dürfen die Informationen ausschließlich aus folgendem Kontext beinhalten und keine weiteren Informationen."
         f"=== Kontext ===\n"
         f"Bescheibe den Hut vom {PILZ_NAME}: {hut}\n"
@@ -151,19 +160,19 @@ def initialisiere_rag_mit_bild(image_path=None):
 
     return {"klassifikation": klassifikations_info, "pilzname": PILZ_NAME, "beschreibung": beschreibung}
 
+# === Frage Antwort ===
 def beantworte_frage_mit_slm(frage):
     if not PILZ_NAME or not kontext:
         return "Bitte zuerst ein Bild hochladen und analysieren."
+
     prompt = (
-        "Du bist ein deutschsprachiger Pilzexperte. Nutze ausschließlich den folgenden Kontext, um die Frage zu beantworten. "
-        "Antwort immer in vollständigen, klar formulierten Sätzen. Füge keine Informationen hinzu, die nicht im Kontext enthalten sind. "
-        "Wenn die Antwort nicht im Kontext steht, sage: 'Leider habe ich dazu keine Information.'\n\n"
-        "Rede nicht davon, dass du dich auf Quellen stützt, sondern antworte direkt und präzise.\n\n"
-        f"=== Bildanalyse ===\n{klassifikations_info}\n\n"
         f"Es geht um den Pilz: {PILZ_NAME}\n\n"
+        "Bilde einen Fließtext aus vollständigen deutschen Sätzen nur anhand folgender Informationen.\n"
+        "Weitere Informationen dürfen nicht hinzugefügt werden.\n\n"
         f"=== Kontext ===\n{kontext}\n\n"
+        "Folgende Frage soll anhand der deutschen Sätze präzise und direkt beantwortet werden:\n\n"
         f"=== Frage ===\n{frage}\n\n"
-        "=== Antwort (auf Deutsch, vollständige Sätze): ==="
+        "=== Antwort (ausschließlich auf Deutsch, vollständige Sätze): ==="
     )
     return frage_mit_ollama(prompt)
 
@@ -173,7 +182,6 @@ class PilzGUI:
         self.master = master
         master.title("🍄 Pilz-Experte")
         master.geometry("1300x850")
-
         self.bg_color = "#1e1e1e"
         self.fg_color = "#f5f5f5"
         self.text_bg = "#2b2b2b"
@@ -301,4 +309,6 @@ class PilzGUI:
 if __name__ == "__main__":
     root = tk.Tk()
     app = PilzGUI(root)
+    root.update()
+    threading.Thread(target=lade_embeddings_async, daemon=True).start()
     root.mainloop()
