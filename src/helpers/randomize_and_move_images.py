@@ -12,7 +12,7 @@ import random
 # Konfiguration - absolute Pfade verwenden
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.join(script_dir, "..", "..")
-SOURCE_BASE = os.path.join(project_root, "data", "inaturalist_mushrooms")
+SOURCE_BASE = os.path.join(project_root, "data", "resized_mushrooms", "inaturalist")
 TARGET_BASE = os.path.join(project_root, "data", "randomized_mushrooms", "inaturalist")
 CLASSES = [
     "Amanita_muscaria",
@@ -21,9 +21,9 @@ CLASSES = [
     "phallus_impudicus",
     "cantharellus_cibarius",
     ]
-N_IMAGES = 300
+N_IMAGES = 1500
 
-print(f"🍄 MUSHROOM RANDOMIZER - Kopiere {N_IMAGES} Bilder pro Klasse")
+print(f"MUSHROOM RANDOMIZER - Kopiere {N_IMAGES} Bilder pro Klasse")
 print("=" * 70)
 print(f"Quelle: {SOURCE_BASE}")
 print(f"Ziel:   {TARGET_BASE}")
