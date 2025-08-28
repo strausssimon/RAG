@@ -1,8 +1,8 @@
-# SmallLanguageModels
+# RAG-System zur automatisierten Klassifikation von Pilzen und Wissensbereitstellung durch ein LLM
 
 ## Projektübersicht
 
-Dieses Repository enthält ein modulares System zur automatisierten Klassifikation von Pilzarten und zur Wissensbereitstellung mittels Retrieval-Augmented Generation (RAG). Die Lösung kombiniert eine effiziente Webscraping-Komponente mit einer modernen Bildverarbeitung (CNN) sowie einen Small Language Model (SLM) zur nutzerfreundlichen Interaktion und Wissensausgabe. Das Projekt richtet sich an Forschende und Entwickler aus den Bereichen Computer Vision, maschinelles Lernen und Data Mining mit Fokus auf Pilzbestimmung und angewandte KI.
+Dieses Repository enthält ein modulares System zur automatisierten Klassifikation von Pilzarten und zur Wissensbereitstellung mittels Retrieval-Augmented Generation (RAG). Die Lösung kombiniert eine effiziente Webscraping-Komponente mit einer modernen Bildverarbeitung (CNN) sowie einen Large Language Model (LLM) zur nutzerfreundlichen Interaktion und Wissensausgabe. Das Projekt richtet sich an Forschende und Entwickler aus den Bereichen Computer Vision, maschinelles Lernen und Data Mining mit Fokus auf Pilzbestimmung und angewandte KI.
 
 ---
 
