@@ -65,20 +65,6 @@ smalllanguagemodels/
 │   │       │   └── ...
 │   │       └── Phallus_impudicus
 │   │ 
-│   ├── recolored_mushrooms   # grün -> grau 
-│   │   └── inaturalist
-│   │       ├── Amanita_muscaria
-│   │       │   └── ...
-│   │       ├── Armillaria_mellea
-│   │       │   └── ...
-│   │       ├── Amanita_muscaria
-│   │       │   └── ...
-│   │       ├── Boletus_edulis
-│   │       │   └── ...
-│   │       ├── Cantharellus_cibarius
-│   │       │   └── ...
-│   │       └── Phallus_impudicus
-│   │ 
 │   ├── resized_mushrooms     # 200 x 200
 │   │   └── inaturalist
 │   │       ├── Amanita_muscaria
@@ -188,15 +174,3 @@ pip install -r requirements.txt
   Über das SLM können, basierend auf Klassifikationsergebnissen, Erklärungen und Zusatzinformationen zu Pilzarten abgerufen werden.
 
 ---
-
-## Beispielaufruf
-
-```sh
-python src/rag/rag.py --image data/beispiel_pilz.jpg
-```
-
----
-
-## Kontakt
-
-Fragen, Anregungen oder Beiträge bitte via [GitHub Issues](https://github.com/strausssimon/SmallLanguageModels/issues) einreichen.
