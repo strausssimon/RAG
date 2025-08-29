@@ -33,7 +33,7 @@ smalllanguagemodels/
 │   │       │── ...
 │   │       └── inaturalist_phallus_impudicus.csv
 │   │ 
-│   ├── inaturalist_mushrooms   # Scraped Datensatz
+│   ├── inaturalist_mushrooms   # leer aufgrund Speicherbegrenzung 256 MB
 │   │   ├── Amanita_muscaria
 │   │   │   └── ...
 │   │   ├── Armillaria_mellea
@@ -46,12 +46,12 @@ smalllanguagemodels/
 │   │   │   └── ...
 │   │   └── Phallus_impudicus
 │   │ 
-│   ├── inaturalist_samples 
+│   ├── inaturalist_samples   # leer aufgrund Speicherbegrenzung 256 MB
 │   │   ├── amanita_muscaria_7488.jpg
 │   │   ├── ...
 │   │   └── phallus_impudicus_545748746.jpg
 │   │ 
-│   ├── randomized_mushrooms    # 1500 Bilder je Pilz
+│   ├── randomized_mushrooms    # 1500 Bilder je Pilz # leer aufgrund Speicherbegrenzung 256 MB
 │   │   └── inaturalist
 │   │       ├── Amanita_muscaria
 │   │       │   └── ...
@@ -65,7 +65,7 @@ smalllanguagemodels/
 │   │       │   └── ...
 │   │       └── Phallus_impudicus
 │   │ 
-│   ├── resized_mushrooms     # 200 x 200
+│   ├── resized_mushrooms     # 200 x 200 # leer aufgrund Speicherbegrenzung 256 MB
 │   │   └── inaturalist
 │   │       ├── Amanita_muscaria
 │   │       │   └── ...
@@ -79,7 +79,7 @@ smalllanguagemodels/
 │   │       │   └── ...
 │   │       └── Phallus_impudicus
 │   │ 
-│   └── test_mushrooms        # Testdatensatz
+│   └── test_mushrooms        # Testdatensatz # leer aufgrund Speicherbegrenzung 256 MB
 │       ├── Amanita_muscaria
 │       │   └── ...
 │       ├── Armillaria_mellea
@@ -93,7 +93,6 @@ smalllanguagemodels/
 │       └── Phallus_impudicus
 │
 ├── models/                   # Vorgefertigte Modelle (CNN, etc.)// Über GIT LFS (siehe oben)
-│   └── mushroom_resnet50_transfer_80_20.keras  
 │   └── mushroom_5class_resnet_cnn_80_20_split_2.keras 
 │
 ├── src/                      # Hauptmodule und Kernlogik
@@ -119,12 +118,15 @@ smalllanguagemodels/
 │   │   │   ├── ragas_demo.py
 │   │   │   ├── ragas_evaluation.py
 │   │   │   └── ragas_setup.py
+│   │   │ 
+│   │   ├── results/                  # RAGAS results
+│   │   │   ├── ollama_category_summary.csv
+│   │   │   ├── ollama_per_question_analysis.csv
+│   │   │   ├── ollama_summary.json
+│   │   │   └── ollama_worst_cases.csv
 │   │   │
 │   │   ├── Informationen_RAG.json
 │   │   └── rag.py
-│   │ 
-│   ├── results/                  # RAGAS results
-│   │   └── simple_evaluation_results.csv
 │   │
 │   └── Webscraper/
 │       └── inaturalist_scraper.py
