@@ -37,7 +37,7 @@ for cls in CLASSES:
     src_dir = os.path.join(SOURCE_BASE, cls)
     tgt_dir = os.path.join(TARGET_BASE, cls)
     
-    print(f"\n📁 Verarbeite: {cls}")
+    print(f"\nVerarbeite: {cls}")
     
     # Zielordner leeren falls schon vorhanden
     if os.path.exists(tgt_dir):
@@ -45,7 +45,7 @@ for cls in CLASSES:
     os.makedirs(tgt_dir, exist_ok=True)
     
     if not os.path.exists(src_dir):
-        print(f"❌ Quellordner nicht gefunden: {src_dir}")
+        print(f"Quellordner nicht gefunden: {src_dir}")
         continue
         
     # Nur Bilddateien
@@ -54,7 +54,7 @@ for cls in CLASSES:
     print(f"   Verfügbare Bilder: {len(files)}")
     
     if len(files) < N_IMAGES:
-        print(f"⚠️  Warnung: {src_dir} enthält nur {len(files)} Bilder, weniger als {N_IMAGES}!")
+        print(f"Warnung: {src_dir} enthält nur {len(files)} Bilder, weniger als {N_IMAGES}!")
         selected = files
     else:
         selected = random.sample(files, N_IMAGES)
@@ -72,11 +72,11 @@ for cls in CLASSES:
         except Exception as e:
             print(f"   Fehler beim Kopieren {fname}: {e}")
     
-    print(f"✅ {copied_count} Bilder erfolgreich kopiert")
+    print(f"{copied_count} Bilder erfolgreich kopiert")
     total_copied += copied_count
 
 print("\n" + "=" * 70)
-print(f"🎉 FERTIG: {total_copied} Bilder insgesamt kopiert")
-print(f"💯 Erwartete Anzahl: {len(CLASSES)} × {N_IMAGES} = {len(CLASSES) * N_IMAGES}")
-print(f"📊 Erfolgsrate: {total_copied}/{len(CLASSES) * N_IMAGES} = {(total_copied/(len(CLASSES) * N_IMAGES)*100):.1f}%")
+print(f"FERTIG: {total_copied} Bilder insgesamt kopiert")
+print(f"Erwartete Anzahl: {len(CLASSES)} × {N_IMAGES} = {len(CLASSES) * N_IMAGES}")
+print(f"Erfolgsrate: {total_copied}/{len(CLASSES) * N_IMAGES} = {(total_copied/(len(CLASSES) * N_IMAGES)*100):.1f}%")
 print("=" * 70)

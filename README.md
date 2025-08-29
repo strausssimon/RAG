@@ -33,7 +33,7 @@ smalllanguagemodels/
 │   │       │── ...
 │   │       └── inaturalist_phallus_impudicus.csv
 │   │ 
-│   ├── inaturalist_mushrooms   # leer aufgrund Speicherbegrenzung 256 MB
+│   ├── inaturalist_mushrooms   # leer aufgrund Speicherbegrenzung FOM 256 MB
 │   │   ├── Amanita_muscaria
 │   │   │   └── ...
 │   │   ├── Armillaria_mellea
@@ -46,12 +46,12 @@ smalllanguagemodels/
 │   │   │   └── ...
 │   │   └── Phallus_impudicus
 │   │ 
-│   ├── inaturalist_samples   # leer aufgrund Speicherbegrenzung 256 MB
+│   ├── inaturalist_samples   # leer aufgrund Speicherbegrenzung FOM 256 MB
 │   │   ├── amanita_muscaria_7488.jpg
 │   │   ├── ...
 │   │   └── phallus_impudicus_545748746.jpg
 │   │ 
-│   ├── randomized_mushrooms    # 1500 Bilder je Pilz # leer aufgrund Speicherbegrenzung 256 MB
+│   ├── randomized_mushrooms    # 1500 Bilder je Pilz # leer aufgrund Speicherbegrenzung FOM 256 MB
 │   │   └── inaturalist
 │   │       ├── Amanita_muscaria
 │   │       │   └── ...
@@ -65,7 +65,7 @@ smalllanguagemodels/
 │   │       │   └── ...
 │   │       └── Phallus_impudicus
 │   │ 
-│   ├── resized_mushrooms     # 200 x 200 # leer aufgrund Speicherbegrenzung 256 MB
+│   ├── resized_mushrooms     # 200 x 200 # leer aufgrund Speicherbegrenzung FOM 256 MB
 │   │   └── inaturalist
 │   │       ├── Amanita_muscaria
 │   │       │   └── ...
@@ -79,7 +79,7 @@ smalllanguagemodels/
 │   │       │   └── ...
 │   │       └── Phallus_impudicus
 │   │ 
-│   └── test_mushrooms        # Testdatensatz # leer aufgrund Speicherbegrenzung 256 MB
+│   └── test_mushrooms        # Testdatensatz # leer aufgrund Speicherbegrenzung FOM 256 MB
 │       ├── Amanita_muscaria
 │       │   └── ...
 │       ├── Armillaria_mellea
@@ -107,7 +107,7 @@ smalllanguagemodels/
 │   ├── helpers/              # Hilfsfunktionen und Utilities für Daten und Modelle
 │   │   ├── count_files_in_path.py
 │   │   ├── find_min_image_size.py
-│   │   ├── randomize_and_move_images.py
+│   │   ├── randomize_and_move_images.py 
 │   │   ├── rename_test_clean.py
 │   │   ├── rename.py
 │   │   ├── resize.py
@@ -129,7 +129,7 @@ smalllanguagemodels/
 │   │   └── rag.py
 │   │
 │   └── Webscraper/
-│       └── inaturalist_scraper.py
+│       └── inaturalist_scraper.py    
 │
 ├── README.md                             # Dieses Dokument
 ├── .env                                  # Umgebungsvariablen

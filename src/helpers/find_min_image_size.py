@@ -215,7 +215,7 @@ def quick_size_check():
                     print(f"  {img_file.name}: Fehler beim Laden")
 
 if __name__ == "__main__":
-    print("🔍 BILDGRÖSSEN-ANALYSE 🔍")
+    print("BILDGRÖSSEN-ANALYSE")
     print("=" * 50)
     
     choice = input("Vollständige Analyse (f) oder schnelle Überprüfung (s)? [f/s]: ").lower().strip()

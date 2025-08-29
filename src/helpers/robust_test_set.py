@@ -116,8 +116,8 @@ def check_and_move_test_images(source_dir="data/resized_mushrooms",
     print(f"\n" + "=" * 60)
     print("ROBUSTE VERSCHIEBUNG ABGESCHLOSSEN")
     print("=" * 60)
-    print(f"✅ Gesamt erfolgreich: {total_moved} Dateien")
-    print(f"❌ Gesamt fehlgeschlagen: {total_failed} Dateien")
+    print(f"Gesamt erfolgreich: {total_moved} Dateien")
+    print(f"Gesamt fehlgeschlagen: {total_failed} Dateien")
     
     if total_moved > 0:
         print(f"\nVERTEILUNG IM TEST-SET:")
@@ -251,17 +251,17 @@ def reset_test_split(source_dir="Webscraper/data/resized_mushrooms",
             print(f"   Fehler bei {img_file.name}: {e}")
             failed += 1
     
-    print(f"\n✅ Zurück verschoben: {moved_back}")
-    print(f"❌ Fehlgeschlagen: {failed}")
+    print(f"\nZurück verschoben: {moved_back}")
+    print(f"Fehlgeschlagen: {failed}")
     
     # Test-Ordner löschen wenn leer
     remaining = list(test_path.glob("*"))
     if not remaining:
         test_path.rmdir()
-        print(f"🗑️ Leerer Test-Ordner entfernt")
+        print(f"Leerer Test-Ordner entfernt")
 
 if __name__ == "__main__":
-    print("🔧 ROBUSTER TEST-SET MANAGER 🔧")
+    print("ROBUSTER TEST-SET MANAGER")
     print("=" * 50)
     
     print("Optionen:")
@@ -287,7 +287,7 @@ if __name__ == "__main__":
         moved, failed, stats = check_and_move_test_images()
         
         if moved > 0:
-            print(f"\n✅ {moved} Bilder erfolgreich verschoben!")
+            print(f"\n{moved} Bilder erfolgreich verschoben!")
             verify_current_state()
         
     else:
