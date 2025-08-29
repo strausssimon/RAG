@@ -1,0 +1,10 @@
+{
+  "summary": {
+    "num_questions": 6,
+    "answer_rate": 1.0,
+    "avg_answer_length": 47.833333333333336,
+    "mean_jaccard_overlap": 0.4834833333333333,
+    "contains_gt_substring_rate": 0.3333333333333333
+  },
+  "ragas_scores": {}
+}

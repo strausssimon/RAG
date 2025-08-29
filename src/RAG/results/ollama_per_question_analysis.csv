@@ -1,0 +1,7 @@
+question,category,answer,expected,answer_length,has_answer,jaccard_overlap,contains_gt_substring,exact_latin_name_match
+Ist dieser Pilz essbar?,Essbarkeit,"Ja, nach dem Garen ist er esssbar. Rohe Essensaufnahme kann schwierig sein.","nach dem Garen essbar, bei rohem Verzehr schwer verdaulich",75,True,0.1667,False,
+Wie sieht dieser Pilz aus?,Aussehen,Hell- bis dunkelbraun mit einem hellbraunen Stiel und Schwammlamellen.,"{""hut"": ""hell- bis dunkelbraun"", ""stiel"": ""hellbraun"", ""schwamm_lamellen"": ""besitzt einen Schwamm""}",70,True,0.2667,False,
+Wo findet man diesen Pilz?,Vorkommen,Der Gemeine Steinpilz wächst in Laub- oder Nadelwäldern auf der Nordhalbkugel.,"{""verbreitungsgebiet"": [""Nordhalbkugel"", ""Europa, Nordamerika, Asien"", ""besonders in gemäßigten Zonen""], ""umgebung"": [""feuchte Umgebung, ansonsten anspruchslos"", ""Laub- oder Nadelwälder""]}",78,True,0.1818,False,
+Wann ist die beste Zeit zum Sammeln?,Saison,Juli bis Oktober,Juli bis Oktober,16,True,1.0,True,
+Mit welchen Pilzen kann man ihn verwechseln?,Verwechslung,Gallenröhrling und Satansröhrling.,"[""Gallenröhrling (Tylopilus felleus)"", ""Satansröhrling (Rubroboletus satanas)""]",34,True,0.2857,False,
+Wie lautet der lateinische Name?,Taxonomie,Boletus edulis,boletus edulis,14,True,1.0,True,True
