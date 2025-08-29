@@ -32,7 +32,22 @@ faiss_index = None
 embed_model = None
 pilzdaten = None
 pilz_texts = None
+
 pilz_embeddings = None
+
+# === Testmodus für RAG-Tests ===
+def setze_test_pilz(pilzname: str):
+    """Setzt PILZ_NAME und kontext für Testzwecke, ohne Bildklassifikation."""
+    global PILZ_NAME, kontext
+    with open(PILZ_DATEI, "r", encoding="utf-8") as f:
+        pilzdaten = json.load(f)
+    pilz_info = next((p for p in pilzdaten if p["bezeichnung"]["name"].lower() == pilzname.lower()), None)
+    if pilz_info is not None:
+        PILZ_NAME = pilzname
+        kontext = json.dumps(pilz_info, ensure_ascii=False, indent=2)
+    else:
+        PILZ_NAME = None
+        kontext = ""
 
 # === Hilfsfunktionen ===
 def check_ollama_installed():
@@ -163,7 +178,7 @@ def initialisiere_rag_mit_bild(image_path=None):
 # === Frage Antwort ===
 def beantworte_frage_mit_slm(frage):
     if not PILZ_NAME or not kontext:
-        return "Bitte zuerst ein Bild hochladen und analysieren."
+        return "Bitte zuerst ein Bild hochladen und analysieren. (Oder setze_test_pilz() für Tests verwenden.)"
 
     prompt = (
         f"Es geht um den Pilz: {PILZ_NAME}\n\n"

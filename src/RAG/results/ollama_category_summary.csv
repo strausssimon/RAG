@@ -1,0 +1,7 @@
+category,jaccard_overlap,has_answer,contains_gt_substring
+Taxonomie,1.0,1.0,1.0
+Saison,1.0,1.0,1.0
+Verwechslung,0.2857,1.0,0.0
+Aussehen,0.2667,1.0,0.0
+Vorkommen,0.1818,1.0,0.0
+Essbarkeit,0.1667,1.0,0.0
