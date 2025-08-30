@@ -25,8 +25,7 @@ if os.environ.get("RAGAS_LLM_PROVIDER", "").lower() != "ollama":
 
 if "RAGAS_LLM_MODEL" not in os.environ:
     os.environ["RAGAS_LLM_MODEL"] = "llama2"
-    print("[INFO] Setze RAGAS_LLM_MODEL=llama2 (Standardmodell für Ollama). "
-          "Falls du ein anderes Modell möchtest, passe die Umgebungsvariable an.")
+    print("[INFO] Setze RAGAS_LLM_MODEL=llama2 (Standardmodell für Ollama).")
 
 print("RAGAS_LLM_PROVIDER:", os.environ.get("RAGAS_LLM_PROVIDER"))
 print("RAGAS_LLM_MODEL:", os.environ.get("RAGAS_LLM_MODEL"))
