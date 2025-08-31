@@ -48,19 +48,19 @@ def check_ollama_installed():
     
     for path in possible_paths:
         if shutil.which(path) or (path.endswith('.exe') and os.path.exists(path)):
-            print(f"✅ Ollama gefunden: {path}")
+            print(f"Ollama gefunden: {path}")
             return path
     
-    print("❌ Ollama ist nicht installiert oder nicht im PATH!")
+    print("Ollama ist nicht installiert oder nicht im PATH!")
     print("Installieren Sie Ollama von: https://ollama.ai/download")
     return None
 
 # === Embedding-Modell laden ===
-print("🔢 Lade Embedding-Modell...")
+print("Lade Embedding-Modell...")
 embedder = SentenceTransformer("all-MiniLM-L6-v2")
 
 # === CNN-Modell laden ===
-print("🧠 Lade CNN-Modell für Pilzklassifikation...")
+print("Lade CNN-Modell für Pilzklassifikation...")
 
 def create_compatible_model():
     """Erstellt ein kompatibles CNN-Modell mit der gleichen Architektur"""
@@ -109,47 +109,47 @@ def create_compatible_model():
 
 cnn_model = None
 if os.path.exists(CNN_MODEL_PATH):
-    print(f"   📁 Modell gefunden: {CNN_MODEL_PATH}")
-    print(f"   📏 Dateigröße: {os.path.getsize(CNN_MODEL_PATH) / (1024*1024):.1f} MB")
+    print(f"Modell gefunden: {CNN_MODEL_PATH}")
+    print(f" Dateigröße: {os.path.getsize(CNN_MODEL_PATH) / (1024*1024):.1f} MB")
     
     try:
-        print("   🔄 Versuche Standard-Lademethode...")
+        print("Versuche Standard-Lademethode...")
         cnn_model = tf.keras.models.load_model(CNN_MODEL_PATH, compile=False)
-        print(f"✅ CNN-Modell erfolgreich geladen!")
+        print(f"CNN-Modell erfolgreich geladen!")
     except Exception as e1:
-        print(f"   ❌ Standard-Methode fehlgeschlagen: Kompatibilitätsproblem")
-        print("   🔄 Verwende Gewichte-Transfer-Methode...")
+        print(f"Standard-Methode fehlgeschlagen: Kompatibilitätsproblem")
+        print(" Verwende Gewichte-Transfer-Methode...")
         
         try:
             # Erstelle kompatibles Modell und lade nur die Gewichte
-            print("   🏗️  Erstelle kompatible Modellarchitektur...")
+            print("Erstelle kompatible Modellarchitektur...")
             cnn_model = create_compatible_model()
             
             # Lade nur die Gewichte aus der H5-Datei
-            print("   ⚖️  Lade Gewichte aus H5-Datei...")
+            print("Lade Gewichte aus H5-Datei...")
             cnn_model.load_weights(CNN_MODEL_PATH)
-            print(f"✅ CNN-Modell mit Gewichte-Transfer geladen!")
+            print(f"CNN-Modell mit Gewichte-Transfer geladen!")
             
         except Exception as e2:
-            print(f"   ❌ Gewichte-Transfer fehlgeschlagen: {e2}")
-            print("   💡 Das Modell ist nicht kompatibel mit dieser TensorFlow-Version")
+            print(f"Gewichte-Transfer fehlgeschlagen: {e2}")
+            print("Das Modell ist nicht kompatibel mit dieser TensorFlow-Version")
             cnn_model = None
 else:
-    print(f"⚠️  CNN-Modell nicht gefunden: {CNN_MODEL_PATH}")
-    print("   Stellen Sie sicher, dass das Training abgeschlossen ist!")
+    print(f"CNN-Modell nicht gefunden: {CNN_MODEL_PATH}")
+    print("Stellen Sie sicher, dass das Training abgeschlossen ist!")
 
 # Debug-Information über das geladene Modell
 if cnn_model is not None:
-    print(f"   🎯 Modell-Typ: {type(cnn_model)}")
-    print(f"   � Modell-Input-Shape: {cnn_model.input_shape}")
-    print(f"   📊 Modell-Output-Shape: {cnn_model.output_shape}")
-    print(f"   🔢 Anzahl Layer: {len(cnn_model.layers)}")
+    print(f"Modell-Typ: {type(cnn_model)}")
+    print(f"Modell-Input-Shape: {cnn_model.input_shape}")
+    print(f"Modell-Output-Shape: {cnn_model.output_shape}")
+    print(f"Anzahl Layer: {len(cnn_model.layers)}")
 
 # Definiere die Klassennamen wie im ursprünglichen Modell
 class_names = ["Amanita_phalloides", "Armillaria_mellea", "Boletus_edulis", "Cantharellus_cibarius"]
 
 # === Pilzdaten laden ===
-print("📂 Lade Pilzdaten...")
+print("Lade Pilzdaten...")
 with open(PILZ_DATEI, "r", encoding="utf-8") as f:
     pilzdaten = json.load(f)
 
@@ -163,7 +163,7 @@ Zubereitung: {pilz.get('zubereitung', 'keine Angabe')}
     texte.append(text)
 
 # === Embeddings berechnen & FAISS-Index aufbauen ===
-print("📈 Erstelle FAISS-Index...")
+print("Erstelle FAISS-Index...")
 embeddings = embedder.encode(texte, convert_to_numpy=True)
 index = faiss.IndexFlatL2(embeddings.shape[1])
 index.add(embeddings)
@@ -173,7 +173,7 @@ def frage_mit_ollama(prompt, modell="phi3:mini"):
     # Erst prüfen ob Ollama verfügbar ist
     ollama_path = check_ollama_installed()
     if not ollama_path:
-        return "❌ Ollama nicht verfügbar"
+        return "Ollama nicht verfügbar"
     
     try:
         result = subprocess.run(
@@ -187,9 +187,9 @@ def frage_mit_ollama(prompt, modell="phi3:mini"):
         return clean_output(result.stdout.strip())
     except subprocess.CalledProcessError as e:
         if "pull" in str(e.stderr):
-            return f"📥 Modell '{modell}' muss heruntergeladen werden. Führen Sie aus: ollama pull {modell}"
+            return f"Modell '{modell}' muss heruntergeladen werden. Führen Sie aus: ollama pull {modell}"
         else:
-            return f"❌ Fehler bei Ollama CLI: {e.stderr}"
+            return f"Fehler bei Ollama CLI: {e.stderr}"
 
 # === Bildklassifikation ===
 def klassifiziere_pilzbild(bild_pfad):
@@ -219,9 +219,9 @@ def klassifiziere_pilzbild(bild_pfad):
         confidence = np.max(prediction)
         predicted_class = class_names[predicted_class_idx]
         
-        print(f"🔍 Bildklassifikation:")
-        print(f"   Erkannter Pilz: {predicted_class}")
-        print(f"   Konfidenz: {confidence:.2%}")
+        print(f"Bildklassifikation:")
+        print(f"Erkannter Pilz: {predicted_class}")
+        print(f"Konfidenz: {confidence:.2%}")
         
         return predicted_class, confidence, "Erfolg"
     
@@ -252,7 +252,7 @@ def bild_frage_beantworten(bild_pfad, zusatz_frage=""):
     predicted_class, confidence, status = klassifiziere_pilzbild(bild_pfad)
     
     if predicted_class is None:
-        return f"❌ Bildklassifikation fehlgeschlagen: {status}"
+        return f"Bildklassifikation fehlgeschlagen: {status}"
     
     # 2. Relevante Pilzinformationen für RAG suchen
     pilz_name = predicted_class.replace("_", " ")  # z.B. "Amanita_phalloides" -> "Amanita phalloides"
@@ -294,35 +294,35 @@ if __name__ == "__main__":
     test_bild_pfad = os.path.join(os.path.dirname(__file__), test_bild)
     
     if os.path.exists(test_bild_pfad):
-        print(f"🖼️  Analysiere Testbild: {test_bild}")
+        print(f"Analysiere Testbild: {test_bild}")
         print("=" * 60)
         
         # Bildbasierte Analyse
         antwort = bild_frage_beantworten(test_bild_pfad)
-        print("\n🤖 KI-Analyse des Pilzbildes:")
+        print("\nKI-Analyse des Pilzbildes:")
         print("-" * 60)
         print(antwort)
         print("-" * 60)
         
         # Optional: Zusätzliche Frage
         print("\n" + "=" * 60)
-        print("💬 Möchten Sie eine zusätzliche Frage zu diesem Pilz stellen?")
+        print("Möchten Sie eine zusätzliche Frage zu diesem Pilz stellen?")
         zusatz_frage = input("Zusatzfrage (oder Enter zum Überspringen): ").strip()
         
         if zusatz_frage:
             antwort_zusatz = bild_frage_beantworten(test_bild_pfad, zusatz_frage)
-            print("\n🤖 Antwort auf Zusatzfrage:")
+            print("\nAntwort auf Zusatzfrage:")
             print("-" * 60)
             print(antwort_zusatz)
             print("-" * 60)
     else:
-        print(f"❌ Testbild nicht gefunden: {test_bild_pfad}")
+        print(f"Testbild nicht gefunden: {test_bild_pfad}")
         print("Stelle stattdessen eine normale Textfrage:")
         
-        print("❓ Stelle deine Frage zu Pilzen:")
+        print("Stelle deine Frage zu Pilzen:")
         frage = input("> ")
         antwort = frage_beantworten(frage)
-        print("\n💡 Antwort von Phi3:mini via Ollama:")
+        print("\nAntwort von Phi3:mini via Ollama:")
         print("-" * 60)
         print(antwort)
         print("-" * 60)

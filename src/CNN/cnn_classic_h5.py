@@ -440,7 +440,7 @@ class MushroomCNN:
             print(f"Fehler beim Laden des Modells: {e}")
 
 if __name__ == "__main__":
-    print("\n🍄 MUSHROOM CLASSIFICATION CNN - 4 CLASSES 🍄")
+    print("\nMUSHROOM CLASSIFICATION CNN - 4 CLASSES")
     print("=" * 60)
     print("Classes: Amanita_phalloides, Armillaria_mellea, Boletus_edulis, Cantharellus_cibarius")
     print("Training: Augmented 200x200 images")
@@ -455,6 +455,6 @@ if __name__ == "__main__":
     if history is not None:
         # Speichere das trainierte Modell
         cnn.save_model("mushroom_4class_cnn_external_test.h5")
-        print("\n✅ Training abgeschlossen! Modell gespeichert.")
+        print("\nTraining abgeschlossen! Modell gespeichert.")
     else:
-        print("\n❌ Training fehlgeschlagen!")
+        print("\nTraining fehlgeschlagen!")

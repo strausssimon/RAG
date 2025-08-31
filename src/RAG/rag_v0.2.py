@@ -80,9 +80,9 @@ def frage_mit_ollama(prompt, modell=MODELL_NAME):
         return result.stdout.strip()
     except subprocess.CalledProcessError as e:
         if "pull" in str(e.stderr):
-            return f"📥 Modell '{modell}' muss heruntergeladen werden. Führen Sie aus: ollama pull {modell}"
+            return f"Modell '{modell}' muss heruntergeladen werden. Führen Sie aus: ollama pull {modell}"
         else:
-            return f"❌ Fehler bei Ollama CLI: {e.stderr}"
+            return f"Fehler bei Ollama CLI: {e.stderr}"
 
 # === Fragebeantwortung nur für gewählten Pilz ===
 def frage_beantworten(frage):
@@ -103,9 +103,9 @@ def frage_beantworten(frage):
 # === Interaktive Schleife ===
 if __name__ == "__main__":
     while True:
-        frage = input("\n❓ Stelle deine Frage (oder 'exit' zum Beenden): ")
+        frage = input("\nStelle deine Frage (oder 'exit' zum Beenden): ")
         if frage.lower() == "exit":
             break
         antwort = frage_beantworten(frage)
-        print("\n💡 Antwort:")
+        print("\nAntwort:")
         print(antwort)

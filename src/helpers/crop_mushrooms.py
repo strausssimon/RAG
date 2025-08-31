@@ -447,16 +447,16 @@ class MushroomCropper:
         # Empfehlung basierend auf Erfolgsrate
         success_rate = successful/(successful+failed)*100
         if success_rate < 50:
-            print(f"\n⚠️  Niedrige Erfolgsrate ({success_rate:.1f}%)!")
+            print(f"\nNiedrige Erfolgsrate ({success_rate:.1f}%)!")
             print("   Empfehlungen:")
             print("   - Prüfen Sie die Bildqualität")
             print("   - Möglicherweise sind die Pilze zu klein oder unscharf")
             print("   - Fallback-Bilder wurden mit einfachem Center-Crop erstellt")
         elif success_rate < 80:
-            print(f"\n⚠️  Moderate Erfolgsrate ({success_rate:.1f}%)")
+            print(f"\nModerate Erfolgsrate ({success_rate:.1f}%)")
             print("   Einige Bilder konnten nicht optimal gecroppt werden")
         else:
-            print(f"\n✅ Gute Erfolgsrate ({success_rate:.1f}%)")
+            print(f"\nGute Erfolgsrate ({success_rate:.1f}%)")
         
         return successful, failed
     

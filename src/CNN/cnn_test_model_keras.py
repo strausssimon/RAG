@@ -94,7 +94,7 @@ class ModelTester:
         test_files = []
         test_labels = []
         
-        print(f"🔍 Suche nach Testbildern in {len(self.class_names)} Klassen...")
+        print(f"Suche nach Testbildern in {len(self.class_names)} Klassen...")
         
         for class_idx, class_name in enumerate(self.class_names):
             class_dir = self.test_data_path / class_name

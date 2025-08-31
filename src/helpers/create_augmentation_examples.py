@@ -272,9 +272,9 @@ class AugmentationExampleCreator:
         # Zusammenfassung erstellen
         self.create_summary_info()
         
-        print(f"\n🎯 Alle Beispiele erfolgreich erstellt!")
-        print(f"📁 Gespeichert in: {self.example_dir.absolute()}")
-        print(f"📝 Für jede Technik gibt es zwei Dateien:")
+        print(f"\nAlle Beispiele erfolgreich erstellt!")
+        print(f"Gespeichert in: {self.example_dir.absolute()}")
+        print(f"Für jede Technik gibt es zwei Dateien:")
         print(f"   - *_einzeln.jpg (nur das augmentierte Bild)")
         print(f"   - *_vergleich.jpg (vorher/nachher Vergleich)")
     
@@ -317,10 +317,10 @@ Alle Augmentierungen behalten die Ausgabegröße von 128x128 Pixeln bei.
         with open(summary_path, 'w', encoding='utf-8') as f:
             f.write(summary_text)
         
-        print(f"📄 Zusammenfassung gespeichert: {summary_path.name}")
+        print(f"Zusammenfassung gespeichert: {summary_path.name}")
 
 if __name__ == "__main__":
-    print("🔍 AUGMENTATION EXAMPLE CREATOR 🔍")
+    print("AUGMENTATION EXAMPLE CREATOR")
     print("=" * 50)
     print("Erstellt Beispiele für alle Augmentierungstechniken")
     print("Speicherort: Webscraper/data/augmented_mushrooms/example")

@@ -32,18 +32,18 @@ try:
         raise ImportError(f"Keras {keras_version} ist nicht unterstützt. Mindestens Keras 3.x erforderlich!")
     
     KERAS_AVAILABLE = True
-    print(f"✅ Keras 3.x erfolgreich geladen (Version: {keras.__version__})")
-    print(f"✅ TensorFlow erfolgreich geladen (Version: {tf.__version__})")
+    print(f"Keras 3.x erfolgreich geladen (Version: {keras.__version__})")
+    print(f"TensorFlow erfolgreich geladen (Version: {tf.__version__})")
     
 except ImportError as e:
-    print(f"❌ KRITISCHER FEHLER: Keras 3.x ist erforderlich!")
-    print(f"❌ Fehlerdetails: {e}")
-    print(f"❌ Installieren Sie Keras 3.x mit: pip install keras>=3.11.2")
-    print("🛑 Script wird beendet - Keras 3.x ist zwingend erforderlich!")
+    print(f"KRITISCHER FEHLER: Keras 3.x ist erforderlich!")
+    print(f"Fehlerdetails: {e}")
+    print(f"Installieren Sie Keras 3.x mit: pip install keras>=3.11.2")
+    print("Script wird beendet - Keras 3.x ist zwingend erforderlich!")
     exit(1)
 except Exception as e:
-    print(f"❌ UNERWARTETER FEHLER beim Keras 3.x Import: {e}")
-    print("🛑 Script wird beendet!")
+    print(f"UNERWARTETER FEHLER beim Keras 3.x Import: {e}")
+    print("Script wird beendet!")
     exit(1)
 
 
@@ -96,7 +96,7 @@ def load_cnn_model(model_paths=None):
     
     for model_path in model_paths:
         if not os.path.exists(model_path):
-            print(f"⚠️ Modell nicht gefunden: {os.path.basename(model_path)}")
+            print(f"Modell nicht gefunden: {os.path.basename(model_path)}")
             continue
             
         print(f"Versuche Modell zu laden: {os.path.basename(model_path)}")
@@ -104,7 +104,7 @@ def load_cnn_model(model_paths=None):
         # Keras 3.x Standard-Methode
         try:
             model = keras.models.load_model(model_path)
-            print(f"✅ Modell erfolgreich geladen mit Keras 3.x: {os.path.basename(model_path)}")
+            print(f"Modell erfolgreich geladen mit Keras 3.x: {os.path.basename(model_path)}")
             return model
         except Exception as e1:
             print(f"Keras 3.x Standard-Laden fehlgeschlagen: {str(e1)[:100]}...")
@@ -112,13 +112,13 @@ def load_cnn_model(model_paths=None):
             # Keras 3.x ohne Kompilierung (für Kompatibilität)
             try:
                 model = keras.models.load_model(model_path, compile=False)
-                print(f"✅ Modell erfolgreich geladen (compile=False) mit Keras 3.x: {os.path.basename(model_path)}")
+                print(f"Modell erfolgreich geladen (compile=False) mit Keras 3.x: {os.path.basename(model_path)}")
                 return model
             except Exception as e2:
                 print(f"Keras 3.x compile=False fehlgeschlagen: {str(e2)[:100]}...")
                 continue
     
-    print("❌ Alle verfügbaren Modell-Formate fehlgeschlagen mit Keras 3.x")
+    print("Alle verfügbaren Modell-Formate fehlgeschlagen mit Keras 3.x")
     return None
 
 # Dynamische Bildsuche im RAG-Ordner
@@ -162,7 +162,7 @@ def klassifiziere_pilzbild(image_path, model_paths=None):
         class_labels = ["Amanita_phalloides", "Armillaria_mellea", "Boletus_edulis", "Cantharellus_cibarius"]
         predicted_class = class_labels[class_idx]
         
-        print(f"✅ Vorhersage: {predicted_class} (Konfidenz: {confidence:.4f})")
+        print(f"Vorhersage: {predicted_class} (Konfidenz: {confidence:.4f})")
         return predicted_class, confidence
         
     except Exception as e:
@@ -170,7 +170,7 @@ def klassifiziere_pilzbild(image_path, model_paths=None):
 
 # --- Führe Klassifikation beim Start aus ---
 print("\n=== CNN-Bildklassifikation (TensorFlow 2.19.1 & Keras 3.x EXKLUSIV) ===")
-print("🚀 Keras 3.x erfolgreich initialisiert")
+print("Keras 3.x erfolgreich initialisiert")
 
 klassifikations_info = ""
 if TEST_IMAGE_PATH:
@@ -178,16 +178,16 @@ if TEST_IMAGE_PATH:
     print(f"Verfügbare Modellformate: .keras (bevorzugt), .h5 (Fallback)")
     try:
         klasse, score = klassifiziere_pilzbild(TEST_IMAGE_PATH)
-        print(f"✅ Vorhergesagte Klasse: {klasse} (Konfidenz: {score:.1%})")
+        print(f"Vorhergesagte Klasse: {klasse} (Konfidenz: {score:.1%})")
         # PILZ_NAME dynamisch aus Klassifikation setzen
         PILZ_NAME = klasse
         klassifikations_info = f"Das analysierte Bild wurde mit {score:.1%} Wahrscheinlichkeit als {klasse} klassifiziert. "
     except Exception as e:
-        print(f"❌ Fehler bei der Bildklassifikation: {e}")
+        print(f"Fehler bei der Bildklassifikation: {e}")
         PILZ_NAME = "Gemeiner Steinpilz"  # Fallback
         klassifikations_info = f"Bildklassifikation fehlgeschlagen ({e}). Verwende Fallback-Pilz. "
 else:
-    print("ℹ️ Kein Bild im RAG-Ordner gefunden!")
+    print("Kein Bild im RAG-Ordner gefunden!")
     PILZ_NAME = "Gemeiner Steinpilz"  # Fallback
     klassifikations_info = "Kein Bild gefunden. Verwende Fallback-Pilz. "
     PILZ_NAME = "Gemeiner Steinpilz"  # Fallback
@@ -361,16 +361,16 @@ if __name__ == "__main__":
     
     try:
         from GUI import PilzGUI
-        print("✅ GUI-Modul erfolgreich importiert")
+        print("GUI-Modul erfolgreich importiert")
     except ImportError as e:
-        print(f"❌ Fehler beim Importieren der GUI: {e}")
+        print(f"Fehler beim Importieren der GUI: {e}")
         print("Verwende Fallback-GUI...")
         
         # Fallback: Minimale GUI falls Import fehlschlägt
         class PilzGUI:
             def __init__(self, master):
                 self.master = master
-                master.title("🍄 Pilz-Experte (Fallback)")
+                master.title("Pilz-Experte (Fallback)")
                 master.geometry("400x300")
                 
                 tk.Label(master, text="GUI-Import fehlgeschlagen", 
@@ -431,8 +431,8 @@ if __name__ == "__main__":
             # Chat-Nachricht falls GUI-Element existiert
             if hasattr(self, 'chat_box'):
                 self.chat_box.config(state="normal")
-                self.chat_box.insert(tk.END, f"✅ Bild erfolgreich hochgeladen.\n")
-                self.chat_box.insert(tk.END, "🔍 Bild wird analysiert...\n\n")
+                self.chat_box.insert(tk.END, f"Bild erfolgreich hochgeladen.\n")
+                self.chat_box.insert(tk.END, "Bild wird analysiert...\n\n")
                 self.chat_box.config(state="disabled")
                 self.chat_box.see(tk.END)
 
@@ -454,7 +454,7 @@ if __name__ == "__main__":
                     print(info)
                     
             except Exception as e:
-                error_msg = f"❌ Fehler bei der Bildanalyse: {e}\n"
+                error_msg = f"Fehler bei der Bildanalyse: {e}\n"
                 if hasattr(self, 'chat_box'):
                     self.chat_box.config(state="normal")
                     self.chat_box.insert(tk.END, error_msg)
@@ -500,7 +500,7 @@ if __name__ == "__main__":
                     print(answer_text)
                     
             except Exception as e:
-                error_text = f"❌ Fehler: {e}\n"
+                error_text = f"Fehler: {e}\n"
                 if hasattr(self, 'chat_box'):
                     self.chat_box.config(state="normal")
                     self.chat_box.insert(tk.END, error_text)
@@ -509,7 +509,7 @@ if __name__ == "__main__":
                 else:
                     print(error_text)
 
-    print("🚀 Starte Pilz-Experte GUI...")
+    print("Starte Pilz-Experte GUI...")
     root = tk.Tk()
     app = ErweiterteGUI(root)
     root.mainloop()

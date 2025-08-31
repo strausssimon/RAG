@@ -13,20 +13,20 @@ print(f"Zielverzeichnis: {target_dir}")
 os.makedirs(target_dir, exist_ok=True)
 
 # Download latest version
-print("📥 Lade Kaggle Mushroom Dataset herunter...")
+print("Lade Kaggle Mushroom Dataset herunter...")
 path = kagglehub.dataset_download("derekkunowilliams/mushrooms")
 
 print("Path to dataset files:", path)
 
 # Alle PNG-Dateien finden und kopieren
-print("🔍 Suche nach PNG-Dateien...")
+print("Suche nach PNG-Dateien...")
 source_path = Path(path)
 png_files = list(source_path.rglob("*.png"))
 
 print(f"Gefunden: {len(png_files)} PNG-Dateien")
 
 if png_files:
-    print(f"📂 Kopiere Dateien nach {target_dir}...")
+    print(f"Kopiere Dateien nach {target_dir}...")
     
     for png_file in png_files:
         # Relativen Pfad beibehalten für Ordnerstruktur
@@ -38,11 +38,11 @@ if png_files:
         
         # Datei kopieren
         shutil.copy2(png_file, target_file)
-        print(f"✅ Kopiert: {rel_path}")
+        print(f"Kopiert: {rel_path}")
     
-    print(f"🎉 Fertig! {len(png_files)} PNG-Dateien nach {target_dir} kopiert.")
+    print(f"Fertig! {len(png_files)} PNG-Dateien nach {target_dir} kopiert.")
 else:
-    print("❌ Keine PNG-Dateien im Dataset gefunden.")
+    print("Keine PNG-Dateien im Dataset gefunden.")
     print("Dataset-Inhalt:")
     for item in source_path.rglob("*"):
         if item.is_file():

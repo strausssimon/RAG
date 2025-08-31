@@ -23,18 +23,18 @@ try:
     if major_version < 3:
         raise ImportError(f"Keras {keras_version} ist nicht unterstützt. Mindestens Keras 3.x erforderlich!")
     
-    print(f"✅ Keras 3.x erfolgreich geladen (Version: {keras.__version__})")
-    print(f"✅ TensorFlow erfolgreich geladen (Version: {tf.__version__})")
+    print(f"Keras 3.x erfolgreich geladen (Version: {keras.__version__})")
+    print(f"TensorFlow erfolgreich geladen (Version: {tf.__version__})")
     
 except ImportError as e:
-    print(f"❌ KRITISCHER FEHLER: Keras 3.x ist erforderlich!")
-    print(f"❌ Fehlerdetails: {e}")
-    print(f"❌ Installieren Sie Keras 3.x mit: pip install keras>=3.11.2")
-    print("🛑 Script wird beendet - Keras 3.x ist zwingend erforderlich!")
+    print(f"KRITISCHER FEHLER: Keras 3.x ist erforderlich!")
+    print(f"Fehlerdetails: {e}")
+    print(f"Installieren Sie Keras 3.x mit: pip install keras>=3.11.2")
+    print("Script wird beendet - Keras 3.x ist zwingend erforderlich!")
     exit(1)
 except Exception as e:
-    print(f"❌ UNERWARTETER FEHLER beim Keras 3.x Import: {e}")
-    print("🛑 Script wird beendet!")
+    print(f"UNERWARTETER FEHLER beim Keras 3.x Import: {e}")
+    print("Script wird beendet!")
     exit(1)
 
 import numpy as np
@@ -334,7 +334,7 @@ class MushroomCNN:
             loss='categorical_crossentropy',
             metrics=['accuracy']
         )
-        print(f"✅ Modell erfolgreich erstellt für {self.num_classes} Klassen mit Keras 3.x Functional API")
+        print(f"Modell erfolgreich erstellt für {self.num_classes} Klassen mit Keras 3.x Functional API")
         
     def train(self, epochs=30, use_external_test=True):
         print("\nStarting training process...")
@@ -449,26 +449,26 @@ class MushroomCNN:
         """Speichert das trainierte Modell im modernen .keras Format (Keras 3.x kompatibel)"""
         if self.model is not None:
             self.model.save(filepath)
-            print(f"✅ Modell gespeichert im Keras 3.x Format: {filepath}")
+            print(f"Modell gespeichert im Keras 3.x Format: {filepath}")
             
             # Erstelle auch .h5 Version für Rückwärtskompatibilität
             if filepath.endswith('.keras'):
                 h5_filepath = filepath.replace('.keras', '.h5')
                 try:
                     self.model.save(h5_filepath)
-                    print(f"✅ Rückwärtskompatible .h5 Version erstellt: {h5_filepath}")
+                    print(f"Rückwärtskompatible .h5 Version erstellt: {h5_filepath}")
                 except Exception as e:
-                    print(f"⚠️ .h5 Version konnte nicht erstellt werden: {e}")
+                    print(f".h5 Version konnte nicht erstellt werden: {e}")
         else:
-            print("❌ Fehler: Kein Modell zum Speichern vorhanden!")
+            print("Fehler: Kein Modell zum Speichern vorhanden!")
     
     def load_model(self, filepath="mushroom_cnn_model.keras"):
         """Lädt ein gespeichertes Modell (Keras 3.x EXKLUSIV)"""
         try:
             self.model = keras.models.load_model(filepath)
-            print(f"✅ Modell erfolgreich geladen mit Keras 3.x: {filepath}")
+            print(f"Modell erfolgreich geladen mit Keras 3.x: {filepath}")
         except Exception as e:
-            print(f"❌ Fehler beim Laden des Modells: {e}")
+            print(f"Fehler beim Laden des Modells: {e}")
 
 if __name__ == "__main__":
     print("\nMUSHROOM CLASSIFICATION CNN - 4 CLASSES (TensorFlow 2.19.1 & Keras 3.x EXKLUSIV)")
@@ -487,7 +487,7 @@ if __name__ == "__main__":
     if history is not None:
         # Speichert das trainierte Modell im modernen .keras Format + .h5 Fallback
         cnn.save_model("models/mushroom_4class_cnn_external_test.keras")
-        print("\n🎉 Training erfolgreich abgeschlossen mit Keras 3.x!")
-        print("✅ Modell gespeichert im modernen .keras Format mit .h5 Rückwärtskompatibilität")
+        print("\nTraining erfolgreich abgeschlossen mit Keras 3.x!")
+        print("Modell gespeichert im modernen .keras Format mit .h5 Rückwärtskompatibilität")
     else:
-        print("\n❌ Training fehlgeschlagen!")
+        print("\nTraining fehlgeschlagen!")

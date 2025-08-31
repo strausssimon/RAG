@@ -70,7 +70,7 @@ def remove_small_images(root_dir="data/randomized_mushrooms/inaturalist", min_si
                     small_images += 1
                     
                     relative_path = image_path.relative_to(root_path)
-                    print(f"❌ KLEIN: {relative_path} ({width}x{height})")
+                    print(f"KLEIN: {relative_path} ({width}x{height})")
                     
                     deleted_files.append({
                         'path': str(image_path),
@@ -91,7 +91,7 @@ def remove_small_images(root_dir="data/randomized_mushrooms/inaturalist", min_si
         except Exception as e:
             corrupted_images += 1
             relative_path = image_path.relative_to(root_path)
-            print(f"💥 KORRUPT: {relative_path} - {e}")
+            print(f"KORRUPT: {relative_path} - {e}")
             
             # Korrupte Bilder auch löschen
             if not dry_run:
@@ -103,22 +103,22 @@ def remove_small_images(root_dir="data/randomized_mushrooms/inaturalist", min_si
     
     # Zusammenfassung
     print("\n" + "=" * 80)
-    print("📊 ZUSAMMENFASSUNG:")
+    print("ZUSAMMENFASSUNG:")
     print(f"   Gesamte Bilder analysiert: {total_images}")
     print(f"   Zu kleine Bilder gefunden: {small_images}")
     print(f"   Korrupte Bilder gefunden: {corrupted_images}")
     print(f"   Problematische Bilder gesamt: {small_images + corrupted_images}")
     
     if dry_run:
-        print(f"\n⚠️  DRY RUN - Keine Dateien wurden gelöscht!")
+        print(f"\nDRY RUN - Keine Dateien wurden gelöscht!")
         print(f"   Zum tatsächlichen Löschen: dry_run=False setzen")
     else:
-        print(f"\n✅ LÖSCHEN ABGESCHLOSSEN!")
+        print(f"\nLÖSCHEN ABGESCHLOSSEN!")
         print(f"   {small_images + corrupted_images} Dateien wurden entfernt")
     
     # Detaillierte Liste der zu löschenden/gelöschten Dateien
     if deleted_files:
-        print(f"\n📋 DETAILLIERTE LISTE ({len(deleted_files)} Dateien):")
+        print(f"\nDETAILLIERTE LISTE ({len(deleted_files)} Dateien):")
         print("-" * 80)
         
         # Sortiere nach Größe (kleinste zuerst)
@@ -138,7 +138,7 @@ def remove_small_images(root_dir="data/randomized_mushrooms/inaturalist", min_si
 
 def main():
     """Hauptfunktion"""
-    print("🖼️  BILD-BEREINIGUNG: Entfernung kleiner Bilder")
+    print("BILD-BEREINIGUNG: Entfernung kleiner Bilder")
     print("=" * 60)
     
     # Konfiguration
@@ -151,7 +151,7 @@ def main():
     print()
     
     # Erste Analyse im Dry-Run Modus
-    print("🔍 SCHRITT 1: Analyse (Dry Run)")
+    print("SCHRITT 1: Analyse (Dry Run)")
     print("-" * 40)
     
     stats = remove_small_images(
@@ -161,14 +161,14 @@ def main():
     )
     
     if stats['small_images'] > 0 or stats['corrupted_images'] > 0:
-        print("\n" + "⚠️" * 20)
+        print("\n" + "Achtung" * 20)
         print("WARNUNG: Problematische Bilder gefunden!")
-        print("⚠️" * 20)
+        print("Achtung" * 20)
         
         user_input = input("\nMöchten Sie diese Dateien wirklich löschen? (ja/nein): ").strip().lower()
         
         if user_input in ['ja', 'j', 'yes', 'y']:
-            print("\n🗑️  SCHRITT 2: Löschen aktiviert")
+            print("\nSCHRITT 2: Löschen aktiviert")
             print("-" * 40)
             
             final_stats = remove_small_images(
@@ -177,12 +177,12 @@ def main():
                 dry_run=False
             )
             
-            print(f"\n🎉 BEREINIGUNG ABGESCHLOSSEN!")
+            print(f"\nBEREINIGUNG ABGESCHLOSSEN!")
             print(f"   {final_stats['small_images'] + final_stats['corrupted_images']} Dateien entfernt")
         else:
-            print("\n❌ Abgebrochen - Keine Dateien wurden gelöscht")
+            print("\nAbgebrochen - Keine Dateien wurden gelöscht")
     else:
-        print("\n✅ Alle Bilder haben ausreichende Größe!")
+        print("\nAlle Bilder haben ausreichende Größe!")
         print("   Keine Aktion erforderlich")
 
 if __name__ == "__main__":
