@@ -1,3 +1,10 @@
+"""
+====================================================
+Programmname : RAG mit CNN Version 0.1
+Beschreibung : RAG (Retrieval-Augmented Generation) zur Klassifikation von Pilzen und Informationsbereitstellung
+
+====================================================
+"""
 import json
 import numpy as np
 import faiss

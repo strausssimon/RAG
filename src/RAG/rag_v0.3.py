@@ -1,4 +1,10 @@
+"""
+====================================================
+Programmname : RAG mit CNN Version 0.3
+Beschreibung : RAG (Retrieval-Augmented Generation) zur Klassifikation von Pilzen und Informationsbereitstellung
 
+====================================================
+"""
 # TensorFlow 2.19.1 & Keras 3.11.2 Konfiguration - EXKLUSIV
 import os
 # Moderne TensorFlow/Keras 3 Konfiguration

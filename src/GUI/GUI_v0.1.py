@@ -1,3 +1,10 @@
+"""
+====================================================
+Programmname : GUI: Pilz-Experte Version 0.1
+Beschreibung : GUI-Anwendung zur Interaktion mit RAG für die Pilzidentifikation.
+
+====================================================
+"""
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
