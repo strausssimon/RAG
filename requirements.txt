@@ -18,4 +18,5 @@ langchain
 huggingface_hub
 Pillow
 lfs
+subprocess
 uv

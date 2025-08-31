@@ -103,7 +103,7 @@ def main():
     for folder_name, (image_count, total_count) in sorted_counts:
         total_images += image_count
         total_files += total_count
-        print(f"📁 {folder_name:<30} | {image_count:>6} Bilddateien | {total_count:>6} Dateien gesamt")
+        print(f"Ordner: {folder_name:<30} | {image_count:>6} Bilddateien | {total_count:>6} Dateien gesamt")
     
     print("-" * 80)
     print(f"Gesamt: {total_images:>6} Bilddateien | {total_files:>6} Dateien gesamt")

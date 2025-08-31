@@ -25,7 +25,8 @@ if os.environ.get("RAGAS_LLM_PROVIDER", "").lower() != "ollama":
 
 if "RAGAS_LLM_MODEL" not in os.environ:
     os.environ["RAGAS_LLM_MODEL"] = "llama2"
-    print("[INFO] Setze RAGAS_LLM_MODEL=llama2 (Standardmodell für Ollama).")
+    print("[INFO] Setze RAGAS_LLM_MODEL=llama2 (Standardmodell für Ollama). "
+          "Falls du ein anderes Modell möchtest, passe die Umgebungsvariable an.")
 
 print("RAGAS_LLM_PROVIDER:", os.environ.get("RAGAS_LLM_PROVIDER"))
 print("RAGAS_LLM_MODEL:", os.environ.get("RAGAS_LLM_MODEL"))
@@ -172,7 +173,7 @@ class RAGASEvaluator:
         model = model or self.model
         ollama_path = self.check_ollama()
         if not ollama_path:
-            return "❌ Ollama nicht gefunden"
+            return "Ollama nicht gefunden"
 
         try:
             # Prompt als Argument (funktioniert plattformübergreifend)
@@ -187,11 +188,11 @@ class RAGASEvaluator:
             )
             if result.returncode == 0:
                 return result.stdout.strip()
-            return f"❌ Ollama Fehler: {result.stderr.strip() or 'Unbekannter Fehler'}"
+            return f"Ollama Fehler: {result.stderr.strip() or 'Unbekannter Fehler'}"
         except subprocess.TimeoutExpired:
-            return "❌ Ollama Timeout (120s)"
+            return "Ollama Timeout (120s)"
         except Exception as e:
-            return f"❌ Unerwarteter Ollama Fehler: {str(e)}"
+            return f"Unerwarteter Ollama Fehler: {str(e)}"
 
     # -----------------------------
     # Testfall-Erzeugung
@@ -257,18 +258,18 @@ class RAGASEvaluator:
             return []
 
         model = model or self.model
-        print(f"\n🚀 Starte Ollama-Evaluation mit Modell: {model}")
+        print(f"\nStarte Ollama-Evaluation mit Modell: {model}")
 
         results = []
         for i, tc in enumerate(self.test_cases, 1):
             q = tc["question"]
-            print(f"\n[{i}/{len(self.test_cases)}] 📝 Frage: {q}")
+            print(f"\n[{i}/{len(self.test_cases)}] Frage: {q}")
             prompt = (
                 "Beantworte die folgende Frage faktengetreu basierend auf diesen Pilzdaten:\n\n"
                 f"{tc['context']}\n\nFrage: {q}\nAntwort (knapp, präzise):"
             )
             answer = self.query_ollama(prompt, model=model)
-            print(f"💡 Antwort: {answer[:200]}...")
+            print(f"Antwort: {answer[:200]}...")
             results.append({
                 "question": q,
                 "category": tc["category"],
@@ -303,7 +304,7 @@ class RAGASEvaluator:
 
             # Flags / Längen
             has_answer = bool(_normalize_text(ans)) and not any(k in ans.lower() for k in [
-                "❌", "error", "fehler", "nicht gefunden", "keine information"
+                "X", "error", "fehler", "nicht gefunden", "keine information"
             ])
             answer_length = len(ans)
 
