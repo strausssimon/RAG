@@ -32,22 +32,7 @@ faiss_index = None
 embed_model = None
 pilzdaten = None
 pilz_texts = None
-
 pilz_embeddings = None
-
-# === Testmodus für RAG-Tests ===
-def setze_test_pilz(pilzname: str):
-    """Setzt PILZ_NAME und kontext für Testzwecke, ohne Bildklassifikation."""
-    global PILZ_NAME, kontext
-    with open(PILZ_DATEI, "r", encoding="utf-8") as f:
-        pilzdaten = json.load(f)
-    pilz_info = next((p for p in pilzdaten if p["bezeichnung"]["name"].lower() == pilzname.lower()), None)
-    if pilz_info is not None:
-        PILZ_NAME = pilzname
-        kontext = json.dumps(pilz_info, ensure_ascii=False, indent=2)
-    else:
-        PILZ_NAME = None
-        kontext = ""
 
 # === Hilfsfunktionen ===
 def check_ollama_installed():
@@ -76,7 +61,6 @@ def frage_mit_ollama(prompt, modell=MODELL_NAME):
         text = result.stdout.strip()
         if text:
             return text
-        
     except subprocess.CalledProcessError as e:
         if "pull" in str(e.stderr):
             return f"Modell '{modell}' muss heruntergeladen werden. Bitte: ollama pull {modell}"
@@ -175,19 +159,34 @@ def initialisiere_rag_mit_bild(image_path=None):
 
     return {"klassifikation": klassifikations_info, "pilzname": PILZ_NAME, "beschreibung": beschreibung}
 
-# === Frage Antwort ===
-def beantworte_frage_mit_slm(frage):
-    if not PILZ_NAME or not kontext:
-        return "Bitte zuerst ein Bild hochladen und analysieren. (Oder setze_test_pilz() für Tests verwenden.)"
+# === Frage Antwort mit FAISS, gesamter Kontext bleibt ===
+def beantworte_frage_mit_slm(frage, pilz_name=None):
+    if not pilz_name or not faiss_index or not pilzdaten:
+        return "Bitte zuerst ein Bild hochladen und analysieren."
+
+    # FAISS-Suche nach relevantem Teil des Pilztexts
+    frage_embedding = embed_model.encode(frage, convert_to_numpy=True, normalize_embeddings=True).astype("float32")
+    D, I = faiss_index.search(np.array([frage_embedding]), k=10)
+    # Wir suchen den Top-Treffer für den jeweiligen Pilz
+    relevante_kontexte = []
+    for idx in I[0]:
+        p = pilzdaten[idx]
+        if p["bezeichnung"]["name"] == pilz_name:
+            relevante_kontexte.append(json.dumps(p, ensure_ascii=False))
+    if not relevante_kontexte:
+        print("Es wird der gesamte Kontext verwendet, da kein passender Eintrag in FAISS gefunden wurde.")
+        relevante_kontexte = [json.dumps(p, ensure_ascii=False) for p in pilzdaten if p["bezeichnung"]["name"] == pilz_name]
+
+    kombinierter_kontext = "\n".join(relevante_kontexte)
 
     prompt = (
-        f"Es geht um den Pilz: {PILZ_NAME}\n\n"
-        "Bilde einen Fließtext aus vollständigen deutschen Sätzen nur anhand folgender Informationen.\n"
-        "Weitere Informationen dürfen nicht hinzugefügt werden.\n\n"
-        f"=== Kontext ===\n{kontext}\n\n"
+        f"Es geht um den Pilz: {pilz_name}\n\n"
+        "Bilde einen Fließtext aus vollständigen deutschen Sätzen.\n"
+        "Beziehe dich ausschließlich auf den Kontext und füge keine weiteren Informationen hinzu.\n\n"
+        f"=== Kontext ===\n{kombinierter_kontext}\n\n"
         "Folgende Frage soll anhand der deutschen Sätze präzise und direkt beantwortet werden:\n\n"
         f"=== Frage ===\n{frage}\n\n"
-        "=== Antwort (ausschließlich auf Deutsch, vollständige Sätze): ==="
+        "=== Antwort (ausschließlich auf Deutsch, maximal sechs vollständige Sätze): ==="
     )
     return frage_mit_ollama(prompt)
 
@@ -310,7 +309,7 @@ class PilzGUI:
 
     def get_answer(self, frage):
         try:
-            antwort = beantworte_frage_mit_slm(frage)
+            antwort = beantworte_frage_mit_slm(frage, pilz_name=PILZ_NAME)
             self.chat_box.config(state="normal")
             self.chat_box.insert(tk.END, f"🍄 Pilz-Experte: {antwort}\n\n")
             self.chat_box.config(state="disabled")
