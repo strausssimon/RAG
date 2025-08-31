@@ -184,20 +184,29 @@ smalllanguagemodels/
 │
 ├── src/                      # Hauptmodule und Kernlogik
 │   ├── CNN/
+│   │   ├── cnn_classic_h5.py
+│   │   ├── cnn_classic_h5.py
 │   │   ├── cnn_resnet.py
 │   │   ├── cnn_test_model_keras.py
 │   │   └── cnn_test_sample_lime.py
 │   │
 │   ├── GUI/
-│   │   ├──  GUI_1.py
-│   │   ├──  GUI_2.py
-│   │   ├──  GUI_3.py
+│   │   ├──  GUI_v0.1.py
+│   │   ├──  GUI_v.02.py
+│   │   ├──  GUI_v.03.py
 │   │   └──  GUI.py
 │   │
 │   ├── helpers/              # Hilfsfunktionen und Utilities für Daten und Modelle
+│   │   ├── ollama
+│   │   │    └── ollama.py
+│   │   ├── augment_images.py
+│   │   ├── convert_model.py
 │   │   ├── count_files_in_path.py
+│   │   ├── create_augmentation_examples.py
+│   │   ├── crop_mushrooms.py
 │   │   ├── find_min_image_size.py
-│   │   ├── randomize_and_move_images.py 
+│   │   ├── randomize_and_move_images.py
+│   │   ├── remove_small_images.py 
 │   │   ├── rename_test_clean.py
 │   │   ├── rename.py
 │   │   ├── resize.py
@@ -205,9 +214,7 @@ smalllanguagemodels/
 │   │ 
 │   ├── RAG/
 │   │   ├── ragas/
-│   │   │   ├── ragas_demo.py
-│   │   │   ├── ragas_evaluation.py
-│   │   │   └── ragas_setup.py
+│   │   │   └── ragas_evaluation.py
 │   │   │ 
 │   │   ├── results/                  # RAGAS results
 │   │   │   ├── ollama_category_summary.csv
@@ -216,10 +223,15 @@ smalllanguagemodels/
 │   │   │   └── ollama_worst_cases.csv
 │   │   │
 │   │   ├── Informationen_RAG.json
+│   │   ├── rag_v0.1.py
+│   │   ├── rag_v0.2.py
+│   │   ├── rag_v0.3.py
 │   │   └── rag.py
 │   │
 │   └── Webscraper/
-│       └── inaturalist_scraper.py    
+│       ├── inaturalist_scraper.py
+│       ├── kaggle_scraper.py
+│       └── mushroomobserver_scraper.py    
 │
 ├── README.md                             # Dieses Dokument
 ├── .env                                  # Umgebungsvariablen
