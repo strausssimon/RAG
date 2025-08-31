@@ -1,6 +1,6 @@
 """
 ====================================================
-Programmname : CNN: Classic mit Keras
+Programmname : CNN: Classic in Keras-Format
 Beschreibung : Klassisches CNN-Modell mit separatem Testset und im neuen Keras-Format
 
 ====================================================

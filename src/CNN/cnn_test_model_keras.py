@@ -3,7 +3,7 @@
 Programmname : Keras Model Tester
 Beschreibung : Testet ein gespeichertes Keras-Modell mit unabhängigen Testdaten.
                Speziell für das 5-Klassen Pilzklassifikationsmodell.
-             Zweck: Performance-Evaluation auf echten, ungesehenen Testdaten
+               Zweck: Performance-Evaluation auf echten, ungesehenen Testdaten
 ====================================================
 """
 
