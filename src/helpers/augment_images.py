@@ -1,3 +1,10 @@
+"""
+====================================================
+Programmname : Augmentation
+Beschreibung : Augmentierungstechniken für Bilddaten
+
+====================================================
+"""
 import cv2
 import numpy as np
 from pathlib import Path

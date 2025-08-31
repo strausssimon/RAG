@@ -1,3 +1,10 @@
+"""
+====================================================
+Programmname : Remove Small Images
+Beschreibung : Entfernt Bilder mit zu geringer Auflösung.
+
+====================================================
+"""
 #!/usr/bin/env python3
 """
 Skript zum Entfernen von Bildern mit zu geringer Auflösung

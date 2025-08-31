@@ -1,3 +1,10 @@
+"""
+====================================================
+Programmname : Create Augmentation Examples
+Beschreibung : Erstellt Beispiele für Bildaugmentierungen.
+
+====================================================
+"""
 import cv2
 import numpy as np
 from pathlib import Path

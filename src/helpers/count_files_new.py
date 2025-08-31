@@ -1,3 +1,10 @@
+"""
+====================================================
+Programmname : CNN: ResNet
+Beschreibung : CNN-Modell basierend auf der ResNet-Architektur für die Bildklassifikation.
+
+====================================================
+"""
 #!/usr/bin/env python3
 """
 Skript zum Zählen von Dateien in Unterordnern

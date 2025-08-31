@@ -1,3 +1,10 @@
+"""
+====================================================
+Programmname : CNN: Classic mit Keras
+Beschreibung : Klassisches CNN-Modell mit separatem Testset und im neuen Keras-Format
+
+====================================================
+"""
 # TensorFlow 2.19.1 & Keras 3.11.2 Konfiguration - EXKLUSIV
 import os
 # Moderne TensorFlow/Keras 3 Konfiguration

@@ -1,3 +1,10 @@
+"""
+====================================================
+Programmname : CNN: Classic in h5-Format
+Beschreibung : Klassisches CNN-Modell mit separatem Testset und im alten h5-Format
+
+====================================================
+"""
 import tensorflow as tf
 from tensorflow.keras import layers, models
 import numpy as np

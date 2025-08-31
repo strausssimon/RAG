@@ -1,3 +1,10 @@
+"""
+====================================================
+Programmname : Crop Mushrooms
+Beschreibung : Entfernt den Hintergrund von Pilzbildern und schneidet sie auf eine einheitliche Größe zu.
+
+====================================================
+"""
 import cv2
 import numpy as np
 from pathlib import Path
